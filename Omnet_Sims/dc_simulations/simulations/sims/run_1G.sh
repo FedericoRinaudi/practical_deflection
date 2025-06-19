@@ -28,7 +28,7 @@ echo "\n\n-------------------------------------------"
 echo "Running DCTCP_DIBS"
 opp_runall -j50 ../../src/dc_simulations -m -u Cmdenv -c DCTCP_DIBS -n ..:../../src:../../../inet/src:../../../inet/examples:../../../inet/tutorials:../../../inet/showcases --image-path=../../../inet/images -l ../../../inet/src/INET omnetpp_1G.ini
 do_extract dctcp_dibs
-mkdir logs/dctcp_dctcp_dibs_1G
+mkdir logs/dctcp_dibs_1G
 cp results/*.out logs/dctcp_dibs_1G/
 
 echo "\n\n-------------------------------------------"
