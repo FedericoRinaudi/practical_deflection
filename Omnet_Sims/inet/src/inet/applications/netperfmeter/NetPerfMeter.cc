@@ -802,8 +802,8 @@ void NetPerfMeter::writeStatistics()
     const simtime_t statisticsStopTime = simTime();
     const double duration = statisticsStopTime.dbl() - StatisticsStartTime.dbl();
 
-    recordScalar("Total Measurement Duration", duration);
-    recordScalar("On-Off Cycles", OnOffCycleCounter);
+    //recordScalar("Total Measurement Duration", duration);
+    //recordScalar("On-Off Cycles", OnOffCycleCounter);
 
     // ====== Per-Stream Statistics ==========================================
     unsigned long long totalSentBytes = 0;
@@ -822,11 +822,11 @@ void NetPerfMeter::writeStatistics()
         const double transmissionBitRate = (duration > 0.0) ? (8 * senderStatistics->SentBytes / duration) : 0.0;
         const double transmissionByteRate = (duration > 0.0) ? (senderStatistics->SentBytes / duration) : 0.0;
         const double transmissionMessageRate = (duration > 0.0) ? (senderStatistics->SentMessages / duration) : 0.0;
-        recordScalar(format("Transmission Bit Rate Stream #%u", streamID).c_str(), transmissionBitRate);
-        recordScalar(format("Transmission Byte Rate Stream #%u", streamID).c_str(), transmissionByteRate);
-        recordScalar(format("Transmission Message Rate Stream #%u", streamID).c_str(), transmissionMessageRate);
-        recordScalar(format("Sent Bytes Stream #%u", streamID).c_str(), senderStatistics->SentBytes);
-        recordScalar(format("Sent Messages Stream #%u", streamID).c_str(), senderStatistics->SentMessages);
+        //recordScalar(format("Transmission Bit Rate Stream #%u", streamID).c_str(), transmissionBitRate);
+        //recordScalar(format("Transmission Byte Rate Stream #%u", streamID).c_str(), transmissionByteRate);
+        //recordScalar(format("Transmission Message Rate Stream #%u", streamID).c_str(), transmissionMessageRate);
+        //recordScalar(format("Sent Bytes Stream #%u", streamID).c_str(), senderStatistics->SentBytes);
+        //recordScalar(format("Sent Messages Stream #%u", streamID).c_str(), senderStatistics->SentMessages);
     }
 
     unsigned long long totalReceivedBytes = 0;
@@ -846,11 +846,11 @@ void NetPerfMeter::writeStatistics()
         const double receptionBitRate = (duration > 0.0) ? (8 * receiverStatistics->ReceivedBytes / duration) : 0.0;
         const double receptionByteRate = (duration > 0.0) ? (receiverStatistics->ReceivedBytes / duration) : 0.0;
         const double receptionMessageRate = (duration > 0.0) ? (receiverStatistics->ReceivedMessages / duration) : 0.0;
-        recordScalar(format("Reception Bit Rate Stream #%u", streamID).c_str(), receptionBitRate);
-        recordScalar(format("Reception Byte Rate Stream #%u", streamID).c_str(), receptionByteRate);
-        recordScalar(format("Reception Message Rate Stream #%u", streamID).c_str(), receptionMessageRate);
-        recordScalar(format("Received Bytes Stream #%u", streamID).c_str(), receiverStatistics->ReceivedBytes);
-        recordScalar(format("Received Messages Stream #%u", streamID).c_str(), receiverStatistics->ReceivedMessages);
+        //recordScalar(format("Reception Bit Rate Stream #%u", streamID).c_str(), receptionBitRate);
+        //recordScalar(format("Reception Byte Rate Stream #%u", streamID).c_str(), receptionByteRate);
+        //recordScalar(format("Reception Message Rate Stream #%u", streamID).c_str(), receptionMessageRate);
+        //recordScalar(format("Received Bytes Stream #%u", streamID).c_str(), receiverStatistics->ReceivedBytes);
+        //recordScalar(format("Received Messages Stream #%u", streamID).c_str(), receiverStatistics->ReceivedMessages);
         receiverStatistics->ReceivedDelayHistogram.recordAs(format("Received Message Delay Stream #%u", streamID).c_str(), "s");
     }
 
@@ -867,17 +867,17 @@ void NetPerfMeter::writeStatistics()
 
     // NOTE: The byte rate is redundant, but having bits and bytes
     //       makes manual reading of the results easier.
-    recordScalar("Total Transmission Bit Rate", totalTransmissionBitRate);
-    recordScalar("Total Transmission Byte Rate", totalTransmissionByteRate);
-    recordScalar("Total Transmission Message Rate", totalTransmissionMessageRate);
-    recordScalar("Total Sent Bytes", totalSentBytes);
-    recordScalar("Total Sent Messages", totalSentMessages);
+    //recordScalar("Total Transmission Bit Rate", totalTransmissionBitRate);
+    //recordScalar("Total Transmission Byte Rate", totalTransmissionByteRate);
+    //recordScalar("Total Transmission Message Rate", totalTransmissionMessageRate);
+    //recordScalar("Total Sent Bytes", totalSentBytes);
+    //recordScalar("Total Sent Messages", totalSentMessages);
 
-    recordScalar("Total Reception Bit Rate", totalReceptionBitRate);
-    recordScalar("Total Reception Byte Rate", totalReceptionByteRate);
-    recordScalar("Total Reception Message Rate", totalReceptionMessageRate);
-    recordScalar("Total Received Bytes", totalReceivedBytes);
-    recordScalar("Total Received Messages", totalReceivedMessages);
+    //recordScalar("Total Reception Bit Rate", totalReceptionBitRate);
+    //recordScalar("Total Reception Byte Rate", totalReceptionByteRate);
+    //recordScalar("Total Reception Message Rate", totalReceptionMessageRate);
+    //recordScalar("Total Received Bytes", totalReceivedBytes);
+    //recordScalar("Total Received Messages", totalReceivedMessages);
 
     resetStatistics();   // Make sure that it is not mistakenly used later
 }

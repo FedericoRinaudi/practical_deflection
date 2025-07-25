@@ -1446,7 +1446,7 @@ Instrument figures:
   - Implemented a facility that allows one to display various gauges, meters
     and indicators in the network graphics that take their inputs from signals.
     The "gadgets" themselves are figures that are added into the network using
-    @figure properties, and they are driven by signals via @statistic properties,
+    @figure properties, and they are driven by signals via //@statistic properties,
     using a special result recorder ("figure") that sets the value in the target
     figure. Figure types are: gauge, linearGauge, progressMeter, thermometer,
     counter, indicatorLabel/indicatorText, and indexedImage. Their sources
@@ -2443,7 +2443,7 @@ Other, smaller changes:
     application if it is ready to transmit more bytes.
   - registerSignal() calls were moved from initialize() to static
     variable declarations.
-  - Added/fixed @signal declarations, fixed the type of emitted values.
+  - Added/fixed //@signal declarations, fixed the type of emitted values.
   - httptools: removed the fileExists() function.
   - New logging mechanism + EV handling in preparation for the new OMNeT++ 5.0
     logging mechanism.
@@ -2997,7 +2997,7 @@ This version of INET requires OMNeT++ 4.2 (version 4.2.1 suggested).
 - removed Ieee802.11 Mesh feature. It depended on too many upper layer
   protocols and features.
 
-- statistics (@statistic properties) cleaned up in all modules: standardized
+- statistics (//@statistic properties) cleaned up in all modules: standardized
   on lower case statistics titles; record packet counts in a less confusing
   way (NOT as rcvdPkBytes:count); cleaned up recorder lists
 
@@ -3216,7 +3216,7 @@ to revise your existing omnetpp.ini files and possibly NED/C++ files as well.
 The most significant changes:
 
 - replaced cOutVector and recordScalar() with signal-based statistics
-  recording in most places (see @statistic properties in NED files)
+  recording in most places (see //@statistic properties in NED files)
 
 - support for more than one type of tcpApp and udpApp in StandardHost
   (elimination of tcpAppType/udpAppType parameters)

@@ -29,10 +29,10 @@ simple PassivePacketSource extends PacketSourceBase like IPassivePacketSource
     parameters:
         volatile double providingInterval @unit(s) = default(0s); // elapsed time between subsequent packets allowed to be popped by the connected packet collector, 0 means any number of packets can be popped at the same simulation time
         @class(PassivePacketSource);
-        @signal[packetPopped](type=inet::Packet);
-        @signal[packetCreated](type=inet::Packet);
-        @statistic[packetPopped](title="packets popped"; record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
-        @statistic[packetCreated](title="packets created"; record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
+        //@signal[packetPopped](type=inet::Packet);
+        //@signal[packetCreated](type=inet::Packet);
+        //@statistic[packetPopped](title="packets popped"; record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
+        //@statistic[packetCreated](title="packets created"; record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
     gates:
         output out @labels(pop);
 }

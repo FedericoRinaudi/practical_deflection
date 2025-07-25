@@ -124,14 +124,14 @@ void CsmaCaMac::initialize(int stage)
 
 void CsmaCaMac::finish()
 {
-    recordScalar("numRetry", numRetry);
-    recordScalar("numSentWithoutRetry", numSentWithoutRetry);
-    recordScalar("numGivenUp", numGivenUp);
-    recordScalar("numCollision", numCollision);
-    recordScalar("numSent", numSent);
-    recordScalar("numReceived", numReceived);
-    recordScalar("numSentBroadcast", numSentBroadcast);
-    recordScalar("numReceivedBroadcast", numReceivedBroadcast);
+    ////recordScalar("numRetry", numRetry);
+    //recordScalar("numSentWithoutRetry", numSentWithoutRetry);
+    //recordScalar("numGivenUp", numGivenUp);
+    //recordScalar("numCollision", numCollision);
+    //recordScalar("numSent", numSent);
+    //recordScalar("numReceived", numReceived);
+    //recordScalar("numSentBroadcast", numSentBroadcast);
+    //recordScalar("numReceivedBroadcast", numReceivedBroadcast);
 }
 
 void CsmaCaMac::configureInterfaceEntry()

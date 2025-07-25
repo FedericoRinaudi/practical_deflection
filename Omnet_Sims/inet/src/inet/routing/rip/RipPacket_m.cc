@@ -334,7 +334,7 @@ unsigned int RipEntryDescriptor::getFieldTypeFlags(int field) const
         field -= basedesc->getFieldCount();
     }
     static unsigned int fieldTypeFlags[] = {
-        0,    // FIELD_addressFamilyId
+        FD_ISEDITABLE,    // FIELD_addressFamilyId
         FD_ISEDITABLE,    // FIELD_routeTag
         0,    // FIELD_address
         FD_ISEDITABLE,    // FIELD_prefixLength
@@ -486,6 +486,7 @@ bool RipEntryDescriptor::setFieldValueAsString(void *object, int field, int i, c
     }
     RipEntry *pp = (RipEntry *)object; (void)pp;
     switch (field) {
+        case FIELD_addressFamilyId: pp->addressFamilyId = (inet::RipAf)string2enum(value, "inet::RipAf"); return true;
         case FIELD_routeTag: pp->routeTag = string2ulong(value); return true;
         case FIELD_prefixLength: pp->prefixLength = string2long(value); return true;
         case FIELD_metric: pp->metric = string2ulong(value); return true;
@@ -739,7 +740,7 @@ unsigned int RipPacketDescriptor::getFieldTypeFlags(int field) const
         field -= basedesc->getFieldCount();
     }
     static unsigned int fieldTypeFlags[] = {
-        0,    // FIELD_command
+        FD_ISEDITABLE,    // FIELD_command
         FD_ISARRAY | FD_ISCOMPOUND,    // FIELD_entry
     };
     return (field >= 0 && field < 2) ? fieldTypeFlags[field] : 0;
@@ -872,6 +873,7 @@ bool RipPacketDescriptor::setFieldValueAsString(void *object, int field, int i, 
     }
     RipPacket *pp = (RipPacket *)object; (void)pp;
     switch (field) {
+        case FIELD_command: pp->setCommand((inet::RipCommand)string2enum(value, "inet::RipCommand")); return true;
         default: return false;
     }
 }

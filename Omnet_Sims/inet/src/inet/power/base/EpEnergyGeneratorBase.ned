@@ -30,7 +30,7 @@ simple EpEnergyGeneratorBase like IEpEnergyGenerator
 {
     parameters:
         @display("i=block/plug");
-        @signal[powerGenerationChanged];
-        @statistic[powerGeneration](title="Power generation"; source=powerGenerationChanged; record=vector; interpolationmode=sample-hold);
+        //@signal[powerGenerationChanged];
+        //@statistic[powerGeneration](title="Power generation"; source=powerGenerationChanged; record=vector; interpolationmode=sample-hold);
 }
 

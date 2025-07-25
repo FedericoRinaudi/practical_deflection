@@ -70,27 +70,27 @@ module Radio extends PhysicalLayerBase like IRadio
 
         @class(Radio);
 
-        @signal[packetSentToUpper](type=cPacket);
-        @signal[packetReceivedFromUpper](type=cPacket);
-        @signal[radioModeChanged](type=long);
-        @signal[listeningChanged];
-        @signal[receptionStateChanged](type=long);
-        @signal[transmissionStateChanged](type=long);
-        @signal[receivedSignalPartChanged](type=long);
-        @signal[transmittedSignalPartChanged](type=long);
-        @signal[transmissionStarted];
-        @signal[transmissionEnded];
-        @signal[receptionStarted];
-        @signal[receptionEnded];
+        //@signal[packetSentToUpper](type=cPacket);
+        //@signal[packetReceivedFromUpper](type=cPacket);
+        //@signal[radioModeChanged](type=long);
+        //@signal[listeningChanged];
+        //@signal[receptionStateChanged](type=long);
+        //@signal[transmissionStateChanged](type=long);
+        //@signal[receivedSignalPartChanged](type=long);
+        //@signal[transmittedSignalPartChanged](type=long);
+        //@signal[transmissionStarted];
+        //@signal[transmissionEnded];
+        //@signal[receptionStarted];
+        //@signal[receptionEnded];
 
-        @statistic[radioMode](title="Radio mode"; source=radioModeChanged; record=count,vector; interpolationmode=sample-hold);
-        @statistic[receptionState](title="Radio reception state"; source=receptionStateChanged; record=count,vector; interpolationmode=sample-hold);
-        @statistic[transmissionState](title="Radio transmission state"; source=transmissionStateChanged; record=count,vector; interpolationmode=sample-hold);
+        //@statistic[radioMode](title="Radio mode"; source=radioModeChanged; record=count,vector; interpolationmode=sample-hold);
+        //@statistic[receptionState](title="Radio reception state"; source=receptionStateChanged; record=count,vector; interpolationmode=sample-hold);
+        //@statistic[transmissionState](title="Radio transmission state"; source=transmissionStateChanged; record=count,vector; interpolationmode=sample-hold);
 
-        @statistic[minSnir](title="Min SNIR"; source=minimumSnir(packetSentToUpper); record=histogram);
-        @statistic[packetErrorRate](title="Packet error rate"; source=packetErrorRate(packetSentToUpper); record=histogram);
-        @statistic[bitErrorRate](title="Bit error rate"; source=bitErrorRate(packetSentToUpper); record=histogram);
-        @statistic[symbolErrorRate](title="Symbol error rate"; source=symbolErrorRate(packetSentToUpper); record=histogram);
+        //@statistic[minSnir](title="Min SNIR"; source=minimumSnir(packetSentToUpper); record=histogram);
+        //@statistic[packetErrorRate](title="Packet error rate"; source=packetErrorRate(packetSentToUpper); record=histogram);
+        //@statistic[bitErrorRate](title="Bit error rate"; source=bitErrorRate(packetSentToUpper); record=histogram);
+        //@statistic[symbolErrorRate](title="Symbol error rate"; source=symbolErrorRate(packetSentToUpper); record=histogram);
 
     submodules:
         antenna: <default("IsotropicAntenna")> like IAntenna {

@@ -27,7 +27,7 @@ network AntennaDirectionalSelectivityExample
 {
     parameters:
 	    @display("bgb=1000,1000");
-    	@statistic[receptionPower](source="receptionMinSignalPower(radioMedium.signalArrivalStarted)"; record=vector);
+    	//@statistic[receptionPower](source="receptionMinSignalPower(radioMedium.signalArrivalStarted)"; record=vector);
     submodules:
         visualizer: <default("IntegratedCanvasVisualizer")> like IIntegratedVisualizer if hasVisualizer() {
             parameters:

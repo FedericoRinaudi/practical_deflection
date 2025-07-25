@@ -64,8 +64,8 @@ foreach $fname (@fnames)
     # joinbackslashed lines
     $txt =~ s|\\\n||gs;
 
-    # @statistic[rcvdPk](title="packets received"; source=rcvdPk; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
-    $txt =~ s|^\s*\@statistic\[(\w+)\]|addItem($1);""|gme;
+    # //@statistic[rcvdPk](title="packets received"; source=rcvdPk; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+    $txt =~ s|^\s*\//@statistic\[(\w+)\]|addItem($1);""|gme;
 }
 
 # print items

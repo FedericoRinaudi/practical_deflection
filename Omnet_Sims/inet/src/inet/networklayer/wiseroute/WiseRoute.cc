@@ -144,8 +144,8 @@ void WiseRoute::handleLowerPacket(Packet *packet)
     // Check whether the message is a flood and if it has to be forwarded.
     floodTypes floodType = updateFloodTable(wiseRouteHeader->getIsFlood(), initialSrcAddr, finalDestAddr,
                 wiseRouteHeader->getSeqNum());
-    allReceivedRSSI.record(rssi);
-    allReceivedBER.record(ber);
+    //allReceivedRSSI.record(rssi);
+    //allReceivedBER.record(ber);
     if (floodType == DUPLICATE) {
         nbDuplicatedFloodsReceived++;
         delete packet;
@@ -298,26 +298,26 @@ void WiseRoute::handleUpperPacket(Packet *packet)
 
 void WiseRoute::finish()
 {
-    recordScalar("nbDataPacketsForwarded", nbDataPacketsForwarded);
-    recordScalar("nbDataPacketsReceived", nbDataPacketsReceived);
-    recordScalar("nbDataPacketsSent", nbDataPacketsSent);
-    recordScalar("nbDuplicatedFloodsReceived", nbDuplicatedFloodsReceived);
-    recordScalar("nbFloodsSent", nbFloodsSent);
-    recordScalar("nbPureUnicastSent", nbPureUnicastSent);
-    recordScalar("nbRouteFloodsSent", nbRouteFloodsSent);
-    recordScalar("nbRouteFloodsReceived", nbRouteFloodsReceived);
-    recordScalar("nbUnicastFloodForwarded", nbUnicastFloodForwarded);
-    recordScalar("nbPureUnicastForwarded", nbPureUnicastForwarded);
-    recordScalar("nbGetRouteFailures", nbGetRouteFailures);
-    recordScalar("nbRoutesRecorded", nbRoutesRecorded);
-    recordScalar("meanNbHops", (double)nbHops / (double)nbDataPacketsReceived);
+    //recordScalar("nbDataPacketsForwarded", nbDataPacketsForwarded);
+    //recordScalar("nbDataPacketsReceived", nbDataPacketsReceived);
+    //recordScalar("nbDataPacketsSent", nbDataPacketsSent);
+    //recordScalar("nbDuplicatedFloodsReceived", nbDuplicatedFloodsReceived);
+    //recordScalar("nbFloodsSent", nbFloodsSent);
+    //recordScalar("nbPureUnicastSent", nbPureUnicastSent);
+    //recordScalar("nbRouteFloodsSent", nbRouteFloodsSent);
+    //recordScalar("nbRouteFloodsReceived", nbRouteFloodsReceived);
+    //recordScalar("nbUnicastFloodForwarded", nbUnicastFloodForwarded);
+    //recordScalar("nbPureUnicastForwarded", nbPureUnicastForwarded);
+    //recordScalar("nbGetRouteFailures", nbGetRouteFailures);
+    //recordScalar("nbRoutesRecorded", nbRoutesRecorded);
+    //recordScalar("meanNbHops", (double)nbHops / (double)nbDataPacketsReceived);
 }
 
 void WiseRoute::updateRouteTable(const L3Address& origin, const L3Address& lastHop, double rssi, double ber)
 {
     auto pos = routeTable.find(origin);
-    receivedRSSI.record(rssi);
-    receivedBER.record(ber);
+    //receivedRSSI.record(rssi);
+    //receivedBER.record(ber);
     if (pos == routeTable.end()) {
         // A route towards origin does not exist yet. Insert the currently discovered one
         // only if the received RSSI is above the threshold.
@@ -327,8 +327,8 @@ void WiseRoute::updateRouteTable(const L3Address& origin, const L3Address& lastH
             // last hop from origin means next hop towards origin.
             newEntry.nextHop = lastHop;
             newEntry.rssi = rssi;
-            routeRSSI.record(rssi);
-            routeBER.record(ber);
+            //routeRSSI.record(rssi);
+            //routeBER.record(ber);
             routeTable.insert(make_pair(origin, newEntry));
             nbRoutesRecorded++;
             if (origin.isUnspecified()) {

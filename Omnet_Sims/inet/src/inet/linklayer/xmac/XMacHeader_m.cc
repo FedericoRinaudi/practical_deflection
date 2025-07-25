@@ -392,7 +392,7 @@ unsigned int XMacHeaderBaseDescriptor::getFieldTypeFlags(int field) const
     static unsigned int fieldTypeFlags[] = {
         0,    // FIELD_srcAddr
         0,    // FIELD_destAddr
-        0,    // FIELD_type
+        FD_ISEDITABLE,    // FIELD_type
     };
     return (field >= 0 && field < 3) ? fieldTypeFlags[field] : 0;
 }
@@ -527,6 +527,7 @@ bool XMacHeaderBaseDescriptor::setFieldValueAsString(void *object, int field, in
     }
     XMacHeaderBase *pp = (XMacHeaderBase *)object; (void)pp;
     switch (field) {
+        case FIELD_type: pp->setType((inet::XMacTypes)string2enum(value, "inet::XMacTypes")); return true;
         default: return false;
     }
 }

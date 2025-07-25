@@ -168,8 +168,8 @@ void MacRelayUnit::learn(MacAddress srcAddr, int arrivalInterfaceId)
 
 void MacRelayUnit::finish()
 {
-    recordScalar("processed frames", numProcessedFrames);
-    recordScalar("discarded frames", numDiscardedFrames);
+    //recordScalar("processed frames", numProcessedFrames);
+    //recordScalar("discarded frames", numDiscardedFrames);
 }
 
 } // namespace inet

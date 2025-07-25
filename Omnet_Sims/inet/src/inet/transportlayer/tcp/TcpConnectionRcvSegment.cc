@@ -31,6 +31,8 @@
 #include "inet/transportlayer/tcp_common/TcpHeader_m.h"
 #include "inet/linklayer/ethernet/EtherFrame_m.h"
 #include "inet/linklayer/ethernet/EtherPhyFrame_m.h"
+#include "inet/applications/tcpapp/GenericAppMsg_m.h"
+#include "inet/common/FlowKey.h"
 
 namespace inet {
 namespace tcp {
@@ -114,7 +116,27 @@ TcpEventCode TcpConnection::process_RCV_SEGMENT(Packet *packet, const Ptr<const 
     printSegmentBrief(packet, tcpseg);
     EV_DETAIL << "TCB: " << state->str() << "\n";
 
-    emit(rcvSeqSignal, tcpseg->getSequenceNo());
+    uint32_t srcAddr = 0;
+    uint32_t destAddr = 0;
+
+    // Se gli indirizzi sono IPv4, convertili
+    if (src.getType() == L3Address::IPv4) {
+        srcAddr = src.toIpv4().getInt();
+    }
+    if (dest.getType() == L3Address::IPv4) {
+        destAddr = dest.toIpv4().getInt();
+    }
+    
+    FlowKey f1{ tcpseg->getSequenceNo(), 
+                static_cast<uint16_t>(tcpseg->getSrcPort()), 
+                static_cast<uint16_t>(tcpseg->getDestPort()), 
+                srcAddr, 
+                destAddr };
+
+    if (packet->getByteLength() > B(tcpseg->getChunkLength()).get())
+        emit(rcvSeqSignal, f1.getSafeHash());
+
+    //emit(rcvSeqSignal, tcpseg->getSequenceNo());
     emit(rcvAckSignal, tcpseg->getAckNo());
 
     //v2 marking and ordering
@@ -134,7 +156,7 @@ TcpEventCode TcpConnection::process_RCV_SEGMENT(Packet *packet, const Ptr<const 
     }
     else {
         // RFC 793 steps "first check sequence number", "second check the RST bit", etc
-        event = processSegment1stThru8th(packet, tcpseg);
+        event = processSegment1stThru8th(packet, tcpseg, src, dest);
     }
 
     delete packet;
@@ -157,7 +179,7 @@ bool TcpConnection::hasEnoughSpaceForSegmentInReceiveQueue(Packet *packet, const
     return seqLE(firstSeq, payloadSeq) && seqLE(payloadSeq + payloadLength, firstSeq + state->maxRcvBuffer);
 }
 
-TcpEventCode TcpConnection::processSegment1stThru8th(Packet *packet, const Ptr<const TcpHeader>& tcpseg)
+TcpEventCode TcpConnection::processSegment1stThru8th(Packet *packet, const Ptr<const TcpHeader>& tcpseg, L3Address src, L3Address dest)
 {
     //
     // RFC 793: first check sequence number
@@ -580,7 +602,24 @@ TcpEventCode TcpConnection::processSegment1stThru8th(Packet *packet, const Ptr<c
                     state->rcv_oooseg++;
 //                    std::cout << "oooseg received" << endl;
 
-                    emit(rcvOooSegSignal, state->rcv_nxt);
+                    uint32_t srcAddr = 0;
+                    uint32_t destAddr = 0;
+
+                    // Se gli indirizzi sono IPv4, convertili
+                    if (src.getType() == L3Address::IPv4) {
+                        srcAddr = src.toIpv4().getInt();
+                    }
+                    if (dest.getType() == L3Address::IPv4) {
+                        destAddr = dest.toIpv4().getInt();
+                    }
+
+                    FlowKey f1{ tcpseg->getSequenceNo(), 
+                                static_cast<uint16_t>(tcpseg->getSrcPort()), 
+                                static_cast<uint16_t>(tcpseg->getDestPort()), 
+                                srcAddr, 
+                                destAddr };
+
+                    emit(rcvOooSegSignal, f1.getSafeHash());
                     tcpMain->num_received_ooo_segs++;
 
                     // RFC 2018, page 4:

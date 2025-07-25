@@ -24,6 +24,6 @@ moduleinterface IMobility
 {
     parameters:
         @display("i=block/cogwheel");
-        @signal[mobilityStateChanged];
+        //@signal[mobilityStateChanged];
 }
 

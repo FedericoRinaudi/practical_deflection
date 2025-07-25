@@ -69,8 +69,8 @@ simple Ipv6
         string ipv6TunnelingModule;
         double procDelay @unit(s) = default(0s);
         @display("i=block/network2");
-        @signal[packetDropped](type=cPacket);
-        @signal[packetSentToUpper](type=inet::Packet);
+        //@signal[packetDropped](type=cPacket);
+        //@signal[packetSentToUpper](type=inet::Packet);
     gates:
         input transportIn @labels(Ipv6ControlInfo/down,TcpHeader,UdpHeader);
         output transportOut @labels(Ipv6ControlInfo/up,TcpHeader,UdpHeader);

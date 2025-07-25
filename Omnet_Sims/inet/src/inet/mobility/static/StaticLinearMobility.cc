@@ -61,8 +61,8 @@ void StaticLinearMobility::setInitialPosition()
 void StaticLinearMobility::finish()
 {
     StationaryMobilityBase::finish();
-    recordScalar("x", lastPosition.x);
-    recordScalar("y", lastPosition.y);
+    //recordScalar("x", lastPosition.x);
+    //recordScalar("y", lastPosition.y);
 }
 
 } // namespace inet

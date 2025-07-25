@@ -39,8 +39,8 @@ simple RtpPayloadReceiver like IRTPPayloadReceiver
     parameters:
         string outputFileName;
         string outputLogFileName = default("outputLogLoss%d.log");
-        @signal[rcvdPkRtpTimestamp](type=simtime_t; unit=s);
-        @statistic[rcvdPkRtpTimestamp](title="received packet RTP timestamp"; record=vector);
+        //@signal[rcvdPkRtpTimestamp](type=simtime_t; unit=s);
+        //@statistic[rcvdPkRtpTimestamp](title="received packet RTP timestamp"; record=vector);
 
     gates:
         input profileIn @labels(RtpInnerPacket);

@@ -30,11 +30,11 @@ simple CcEnergyStorageBase like ICcEnergyStorage
 {
     parameters:
         @display("i=block/plug");
-        @signal[currentConsumptionChanged];
-        @signal[currentGenerationChanged];
-        @signal[residualChargeCapacityChanged];
-        @statistic[currentConsumption](title="Current consumption"; source=currentConsumptionChanged; record=vector; interpolationmode=sample-hold);
-        @statistic[currentGeneration](title="Current generation"; source=currentGenerationChanged; record=vector; interpolationmode=sample-hold);
-        @statistic[residualChargeCapacity](title="Residual charge capacity"; source=residualChargeCapacityChanged; record=vector; interpolationmode=linear);
+        //@signal[currentConsumptionChanged];
+        //@signal[currentGenerationChanged];
+        //@signal[residualChargeCapacityChanged];
+        //@statistic[currentConsumption](title="Current consumption"; source=currentConsumptionChanged; record=vector; interpolationmode=sample-hold);
+        //@statistic[currentGeneration](title="Current generation"; source=currentGenerationChanged; record=vector; interpolationmode=sample-hold);
+        //@statistic[residualChargeCapacity](title="Residual charge capacity"; source=residualChargeCapacityChanged; record=vector; interpolationmode=linear);
 }
 

@@ -56,7 +56,7 @@ module Ieee80211Radio extends FlatRadioBase
         *.bandName = bandName;
         *.channelNumber = channelNumber;
         @class(Ieee80211Radio);
-        @signal[radioChannelChanged](type=long);
-        @statistic[radioChannel](title="Radio channel"; source=radioChannelChanged; record=histogram,vector; interpolationmode=sample-hold);
+        //@signal[radioChannelChanged](type=long);
+        //@statistic[radioChannel](title="Radio channel"; source=radioChannelChanged; record=histogram,vector; interpolationmode=sample-hold);
 }
 

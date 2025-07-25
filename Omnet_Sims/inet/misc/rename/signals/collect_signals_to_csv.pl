@@ -18,7 +18,7 @@ while (<INFILE>) {
     push(@fnames,$_);
 }
 
-@signals = ();
+//@signals = ();
 
 foreach $fname (@fnames)
 {
@@ -45,19 +45,19 @@ foreach $fname (@fnames)
 
     # registerSignal("NF_PP_TX_BEGIN");
     # simsignal_t NF_PP_TX_END = cComponent::registerSignal("NF_PP_TX_END");
-    $txt =~ s|^\s*(?:const\s+)?(?:simsignal_t\s+)?((?:(?:[A-Za-z0-9_]+)::)*)([A-Za-z0-9_]+)\s*=\s*(?:cComponent::)?registerSignal\("([^"]+)"\)|push(@signals,"\"\"\"$3\"\"\"\t$2\t$1\t$fname1");""|gme;
+    $txt =~ s|^\s*(?:const\s+)?(?:simsignal_t\s+)?((?:(?:[A-Za-z0-9_]+)::)*)([A-Za-z0-9_]+)\s*=\s*(?:cComponent::)?registerSignal\("([^"]+)"\)|push(//@signals,"\"\"\"$3\"\"\"\t$2\t$1\t$fname1");""|gme;
 
     $txt =~ s|^(.*registerSignal\(.*)$|push(@othersignals,"$1\t$fname1");""|gme;
 }
 
 # print signals
 
-###print join("\n",@signals);
+###print join("\n",//@signals);
 print "Unrecognised registersignals calls:\n";
 print join("\n",sort(@othersignals)),"\n";
 
 $out = "Name\tVariable\tNamespace\tFilename\n";
-$out .= join("\n", sort(@signals));
+$out .= join("\n", sort(//@signals));
 $out .= "\n";
 
 writefile("signals.csv", $out);

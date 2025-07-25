@@ -28,6 +28,7 @@
 #include "inet/queueing/queue/PacketQueue.h"
 #include "BouncingIeee8021dRelay.h"
 #include "inet/applications/tcpapp/GenericAppMsg_m.h"
+#include "inet/common/FlowKey.h"
 #include <sqlite3.h>
 
 using namespace inet;
@@ -53,14 +54,29 @@ simsignal_t BouncingIeee8021dRelay::feedBackPacketDroppedPortSignal = registerSi
 simsignal_t BouncingIeee8021dRelay::feedBackPacketGeneratedSignal = registerSignal("feedBackPacketGenerated");
 simsignal_t BouncingIeee8021dRelay::bounceLimitPassedSignal = registerSignal("bounceLimitPassed");
 simsignal_t BouncingIeee8021dRelay::burstyPacketReceivedSignal = registerSignal("burstyPacketReceived");
+simsignal_t BouncingIeee8021dRelay::requesterIDSignal = registerSignal("requesterID"); // Registra il nuovo segnale
+simsignal_t BouncingIeee8021dRelay::packetUniqueIDSignal = registerSignal("packetUniqueID"); // Registra il segnale per l'ID univoco del pacchetto
+simsignal_t BouncingIeee8021dRelay::queueLenSignal = registerSignal("queueLen");
+simsignal_t BouncingIeee8021dRelay::queuesTotLenSignal = registerSignal("queuesTotLen");
+simsignal_t BouncingIeee8021dRelay::queueCapacitySignal = registerSignal("queueCapacity");
+simsignal_t BouncingIeee8021dRelay::queuesTotCapacitySignal = registerSignal("queuesTotCapacity");
+simsignal_t BouncingIeee8021dRelay::packetActionSignal = registerSignal("packetAction");
+simsignal_t BouncingIeee8021dRelay::switchSeqNumSignal = registerSignal("switchSeqNum");
+simsignal_t BouncingIeee8021dRelay::switchTtlSignal = registerSignal("switchTtl");
+simsignal_t BouncingIeee8021dRelay::actionSeqNumSignal = registerSignal("actionSeqNum");
+simsignal_t BouncingIeee8021dRelay::switchIdSignal = registerSignal("switchId");
+simsignal_t BouncingIeee8021dRelay::switchIdActionSignal = registerSignal("switchIdAction");
+simsignal_t BouncingIeee8021dRelay::interfaceIdSignal = registerSignal("interfaceId");
 
 BouncingIeee8021dRelay::BouncingIeee8021dRelay()
 {
+    EV_INFO << "BouncingIeee8021dRelay constructor called." << endl;
 }
 
 BouncingIeee8021dRelay::~BouncingIeee8021dRelay()
 {
-    recordScalar("lightInRelayPacketDropCounter", light_in_relay_packet_drop_counter);
+    EV_INFO << "BouncingIeee8021dRelay deconstructor called. :(" << endl;
+    //recordScalar("lightInRelayPacketDropCounter", light_in_relay_packet_drop_counter);
 }
 
 static int callback_incremental_deployment(void *data, int argc, char **argv, char **azColName){
@@ -318,6 +334,24 @@ void BouncingIeee8021dRelay::initialize(int stage)
         }
     }
     else if (stage == INITSTAGE_LINK_LAYER) {
+
+
+        cModule *switchModule = getParentModule();
+        int numPorts = ifTable->getNumInterfaces();
+        macList.reserve(numPorts);
+        for (int i = 0; i < numPorts; ++i) {
+            // prendi il sottomodulo eth[i] (di tipo EthernetInterface)
+            cModule *ethIface = switchModule->getSubmodule("eth", i);
+            if (!ethIface)
+                throw cRuntimeError("BouncingIeee8021dRelay: eth[%d] non trovato", i);
+            // dentro eth[i] c’è il submodule “mac”
+            cModule *macMod = ethIface->getSubmodule("mac");
+            if (!macMod)
+                throw cRuntimeError("BouncingIeee8021dRelay: mac non trovato in eth[%d]", i);
+            AugmentedEtherMac* mac = check_and_cast<AugmentedEtherMac*>(macMod);
+            if(!mac->isActive()) continue;
+            macList.push_back(mac);
+        }
 //        std::cout << getFullPath() << ": " << stage << ": INITSTAGE_LINK_LAYER" << endl;
         registerService(Protocol::ethernetMac, gate("upperLayerIn"), gate("ifIn"));
         registerProtocol(Protocol::ethernetMac, gate("ifOut"), gate("upperLayerOut"));
@@ -2282,6 +2316,113 @@ void BouncingIeee8021dRelay::generate_and_send_bolt_src_packet(Packet *packet, i
     handleAndDispatchFrame(src_packet);
 }
 
+unsigned long BouncingIeee8021dRelay::getRequesterIDFromPacket(Packet *packet, InterfaceEntry *ie) {
+    unsigned long requesterID = 0;
+    
+    try {
+        // Creiamo una copia del pacchetto per non modificare l'originale
+        auto packet_dup = packet->dup();
+        b packetPosition = packet_dup->getFrontOffset();
+        packet_dup->setFrontIteratorPosition(b(0));
+        
+        // Rimuoviamo gli header per arrivare al GenericAppMsg che contiene il requesterID
+        if (packet_dup->getBitLength() > 0) {
+            // Rimuovi l'header fisico Ethernet se presente
+            if (packet_dup->hasAtFront<EthernetPhyHeader>())
+                packet_dup->removeAtFront<EthernetPhyHeader>();
+                
+            // Rimuovi l'header MAC Ethernet
+            if (packet_dup->hasAtFront<EthernetMacHeader>())
+                packet_dup->removeAtFront<EthernetMacHeader>();
+                
+            // Rimuovi l'header IPv4
+            if (packet_dup->hasAtFront<Ipv4Header>())
+                packet_dup->removeAtFront<Ipv4Header>();
+                
+            // Rimuovi l'header TCP
+            if (packet_dup->hasAtFront<tcp::TcpHeader>())
+                packet_dup->removeAtFront<tcp::TcpHeader>();
+            
+            // Cerca il GenericAppMsg che contiene il requesterID
+            if (packet_dup->getBitLength() > 0 && packet_dup->hasAtFront<GenericAppMsg>()) {
+                auto chunk = packet_dup->peekAtFront<GenericAppMsg>();
+                requesterID = chunk->getRequesterID();
+                EV << "Estratto requesterID: " << requesterID << " dal pacchetto " << packet->str() << endl;
+            }
+        }
+        
+        delete packet_dup;
+    }
+    catch (const std::exception& e) {
+        EV << "Errore nell'estrazione del requesterID: " << e.what() << endl;
+    }
+    
+    return requesterID;
+
+}
+
+
+unsigned long BouncingIeee8021dRelay::getSequenceNumberFromPacket(Packet *packet, InterfaceEntry *ie) {
+    unsigned long sequenceN = 0;
+    
+    try {
+        auto packet_dup = packet->dup();
+        b packetPosition = packet_dup->getFrontOffset();
+        packet_dup->setFrontIteratorPosition(b(0));
+        
+        // Rimuovi gli header per arrivare all'header TCP
+        if (packet_dup->hasAtFront<EthernetPhyHeader>())
+            packet_dup->removeAtFront<EthernetPhyHeader>();
+        if (packet_dup->hasAtFront<EthernetMacHeader>())
+            packet_dup->removeAtFront<EthernetMacHeader>();
+        if (packet_dup->hasAtFront<Ipv4Header>())
+            packet_dup->removeAtFront<Ipv4Header>();
+        
+        // Estrai il sequence number dal TCP header
+        if (packet_dup->getBitLength() > 0  && packet_dup->hasAtFront<tcp::TcpHeader>()) {
+            auto tcpHeader = packet_dup->peekAtFront<tcp::TcpHeader>();
+            
+            // Conversione diretta: requesterID*10^10 + sequenceNo
+            // 10^10 è abbastanza grande da contenere qualsiasi sequenceNo a 32 bit
+            // mentre requesterID è al massimo di 5 cifre
+            sequenceN = tcpHeader->getSequenceNo();
+                    
+        }
+        
+        delete packet_dup;
+    }
+    catch (const std::exception& e) {
+        EV << "Errore nell'estrazione del sequence number: " << e.what() << endl;
+    }
+    
+    return sequenceN;
+}
+
+
+unsigned long BouncingIeee8021dRelay::getPacketIDFromPacket(Packet *packet, InterfaceEntry *ie) {
+    unsigned long packetUniqueID = 0;
+    try {
+            // Estrai il requesterID
+        unsigned long requesterID = getRequesterIDFromPacket(packet, ie);
+        EV_INFO << "Requester ID extracted for pid: " << requesterID << endl;
+        if (requesterID == 0) {
+            return 0;
+        }
+        
+        unsigned long sequenceNo = getSequenceNumberFromPacket(packet, ie);
+        EV_INFO << "Sequence number extracted: " << sequenceNo << endl;
+        if (sequenceNo == 0) {
+            return 0;
+        }
+        
+        unsigned long result = sequenceNo * 100000ULL + requesterID;
+    } catch (const std::exception& e) {
+        EV << "Errore nell'estrazione dell'ID del pacchetto: " << e.what() << endl;
+    }
+    return packetUniqueID;    
+}
+
+
 void BouncingIeee8021dRelay::dispatch(Packet *packet, InterfaceEntry *ie)
 {
 //    std::string packet_name = packet->getName();
@@ -2295,22 +2436,116 @@ void BouncingIeee8021dRelay::dispatch(Packet *packet, InterfaceEntry *ie)
 //        return;
 //    }
 
-//    std::cout << simTime() << endl;
+//    std::cout << simTime() << endl
 
+    EV_INFO << "BouncingIeee8021dRelay::dispatch called for " << packet->str() << endl;
+    bool is_tcp_seg  = false;
+    int switchId = getParentModule()->getIndex();
+    bool is_tcp_with_payload = false;
+    int sequenceNo = -1;
+    size_t hashedId = -1;
     if (ie != nullptr) {
         b position = packet->getFrontOffset();
         packet->setFrontIteratorPosition(b(0));
         auto phy_header_temp = packet->removeAtFront<EthernetPhyHeader>();
         auto mac_header_temp = packet->removeAtFront<EthernetMacHeader>();
+        /*
+        auto ip_header_temp = packet->removeAtFront<Ipv4Header>();
+        auto tcp_header_temp = packet->removeAtFront<tcp::TcpHeader>();
+        //auto app_msg_temp = packet->removeAtFront<GenericAppMsg>();
+        */
         mac_header_temp->setOriginal_interface_id(ie->getInterfaceId());
+
+        auto ip_header = packet->removeAtFront<Ipv4Header>();
+
+        std::string protocol = packet->getName();
+        is_tcp_seg = (protocol.find("tcpseg") != std::string::npos);
+        if (is_tcp_seg) {
+            // Estrai direttamente il TCP header e il payload senza duplicare il pacchetto
+            auto tcp_header = packet->removeAtFront<tcp::TcpHeader>();
+            auto chunk = packet->removeAtFront<SliceChunk>();
+            auto main_chunk = chunk->getChunk();
+
+            // Estrai direttamente il GenericAppMsg senza creare pacchetti temporanei
+            auto payload = dynamicPtrCast<const GenericAppMsg>(main_chunk);
+            if (payload) {
+                is_tcp_with_payload = true;
+                long requesterID = static_cast<long>(payload->getRequesterID());
+                sequenceNo = tcp_header->getSequenceNo();
+                uint16_t srcPort  = tcp_header->getSrcPort();
+                uint16_t dstPort = tcp_header->getDestPort();
+                uint32_t srcAddrInt  = ip_header->getSrcAddress().getInt();
+                uint32_t dstAddrInt = ip_header->getDestAddress().getInt();
+                FlowKey f1 = FlowKey{static_cast<uint32_t>(sequenceNo), srcPort, dstPort, srcAddrInt, dstAddrInt};
+                hashedId = f1.getSafeHash();
+                long packetUniqueID = requesterID * 100000L + static_cast<long>(sequenceNo);
+                short ttl = ip_header->getTimeToLive();
+                emit(requesterIDSignal, payload->getRequesterID());
+                emit(interfaceIdSignal, ie->getIndex());
+                emit(packetUniqueIDSignal, packetUniqueID);
+                emit(switchSeqNumSignal, hashedId);
+                emit(switchTtlSignal, ttl);
+                emit(switchIdSignal, switchId);
+                
+                long totalOcc = 0;
+                for (auto mac : macList)
+                    totalOcc += mac->get_queue_occupancy(mac->getFullPath() + ".queue");
+                emit(queuesTotLenSignal, totalOcc);
+
+                capacity_recorded = true;
+                long tot_capacity = 0;
+                for (auto mac : macList) {
+                    tot_capacity += mac->get_queue_capacity(mac->getFullPath() + ".queue");
+                }
+                emit(queuesTotCapacitySignal, tot_capacity);
+                
+            }
+
+            // Ricostruisci il pacchetto nell'ordine corretto
+            packet->insertAtFront(chunk);
+            packet->insertAtFront(tcp_header);
+        }
+        packet->insertAtFront(ip_header);
+
+
         packet->insertAtFront(mac_header_temp);
         packet->insertAtFront(phy_header_temp);
+        //packet->insertAtFront(ip_header_temp);
+        //packet->insertAtFront(tcp_header_temp);
+        //packet->insertAtFront(app_msg_temp);
         packet->setFrontIteratorPosition(position);
+            
+        
+
+        //long seq_number = static_cast<long>(tcp_header_temp->getSequenceNo());
+        //emit(requesterIDSignal, seq_number);
+        //long requesterID = static_cast<long>(app_msg_temp->getRequesterID());
+        //long packetUniqueID = requesterID*100000L + seq_number;
+        /*
+        if (packetUniqueID > 0 && requesterID > 0) {
+            emit(packetUniqueIDSignal, packetUniqueID);
+            emit(requesterIDSignal, requesterID);
+            EV_INFO << "Emesso packetUniqueID = " << packetUniqueID << endl;
+            EV_INFO << "Emesso requesterID = " << requesterID << " per il pacchetto " << packet->getName() << endl;
+        }
+        
+        // Estrai e registra il requesterID per ogni pacchetto
+        if (requesterID > 0) {  // emetti solo quando il requesterID è stato effettivamente trovato
+            emit(requesterIDSignal, requesterID);
+            EV_INFO << "Emesso requesterID = " << requesterID << " per il pacchetto " << packet->getName() << endl;
+        }
+            */
+    } else {
+        EV_INFO << "InterfaceEntry is nullpt." << endl;
     }
 
     const auto& frame = packet->peekAtFront<EthernetMacHeader>();
     std::string switch_name = getParentModule()->getFullName();
     b packet_length = b(packet->getBitLength());
+    //size_t h = std::hash<std::string>{}(switch_name);
+    //long hashValue = static_cast<long>(h);
+    //emit(requesterIDSignal, hashValue);
+    
 
 //    if (drop_cnt >=0 && frame->getPayload_length() >= b(100)) {
 //        delete packet;
@@ -2320,16 +2555,25 @@ void BouncingIeee8021dRelay::dispatch(Packet *packet, InterfaceEntry *ie)
 
     std::string module_path_string;
     InterfaceEntry *ie2 = nullptr;
-
+    module_path_string = switch_name + ".eth[" + std::to_string(ie->getIndex()) + "].mac";
+    AugmentedEtherMac *mac_temp = check_and_cast<AugmentedEtherMac *>(getModuleByPath(module_path_string.c_str()));
+    std::string queue_full_path = module_path_string + ".queue";
+    if (is_tcp_with_payload){
+        long queue_occupancy = mac_temp->get_queue_occupancy(queue_full_path);
+        emit(queueLenSignal, queue_occupancy);
+        long queue_capacity = mac_temp->get_queue_capacity(queue_full_path);
+        emit(queueCapacitySignal, queue_capacity);
+    }
     if (frame->getIs_v2_dropped_packet_header())
         EV << "Packet is a dropped packet header. No need to bounce it." << endl;
 
     if (!frame->getIs_v2_dropped_packet_header() && !frame->getDest().isBroadcast()) {
         // If there is enough space on the chosen port simply forward it
-        module_path_string = switch_name + ".eth[" + std::to_string(ie->getIndex()) + "].mac";
-        EV << "The chosen port path is " << module_path_string << endl;
-        AugmentedEtherMac *mac_temp = check_and_cast<AugmentedEtherMac *>(getModuleByPath(module_path_string.c_str()));
-        std::string queue_full_path = module_path_string + ".queue";
+        //module_path_string = switch_name + ".eth[" + std::to_string(ie->getIndex()) + "].mac";
+        //EV << "The chosen port path is " << module_path_string << endl;
+        //AugmentedEtherMac *mac_temp = check_and_cast<AugmentedEtherMac *>(getModuleByPath(module_path_string.c_str()));
+        //std::string queue_full_path = module_path_string + ".queue";
+
         if (send_header_of_dropped_packet_to_receiver) {
             queue_full_path = module_path_string + ".queue.mainQueue";
         }
@@ -2352,6 +2596,11 @@ void BouncingIeee8021dRelay::dispatch(Packet *packet, InterfaceEntry *ie)
                     if (dctcp_mark_deflected_packets_only)
                         dctcp_mark_ecn_for_deflected_packets(packet);
                     mark_packet_deflection_tag(packet);
+                    if(is_tcp_with_payload){
+                        emit(actionSeqNumSignal, hashedId);
+                        emit(switchIdActionSignal, switchId);
+                        emit(packetActionSignal, 1);
+                    }
                     apply_early_deflection(packet, false, ie);
                 }
                 return;
@@ -2400,6 +2649,11 @@ void BouncingIeee8021dRelay::dispatch(Packet *packet, InterfaceEntry *ie)
                         // Bolt: ignoring cc_thresh for deflected packets.
                         bolt_evaluate_if_src_packet_should_be_generated(packet, ie, ignore_cc_thresh_for_deflected_packets);
                     }
+                    if(is_tcp_with_payload){
+                        emit(actionSeqNumSignal, hashedId);
+                        emit(switchIdActionSignal, switchId);
+                        emit(packetActionSignal, 1);
+                    }
                     find_interface_to_bounce_randomly_v2(packet, false, ie);
                     return;
                 }
@@ -2440,6 +2694,20 @@ void BouncingIeee8021dRelay::dispatch(Packet *packet, InterfaceEntry *ie)
     if (ie2->getInterfaceId() != ie->getInterfaceId()) {
         EV << "The output interface has changed as a result of bouncing." << endl;
         emit(feedBackPacketGeneratedSignal, packet->getId());
+        if(is_tcp_with_payload){
+            emit(actionSeqNumSignal, hashedId);
+            emit(switchIdActionSignal, switchId);
+            emit(packetActionSignal, 1);
+        }
+    }
+    else{
+        EV << "The output interface is the same as the input interface. No bouncing." << endl;
+        emit(feedBackPacketGeneratedSignal, packet->getId());
+        if(is_tcp_with_payload){
+            emit(actionSeqNumSignal, hashedId);
+            emit(switchIdActionSignal, switchId);
+            emit(packetActionSignal, 0); // No feedback
+        }
     }
 
     module_path_string = switch_name + ".eth[" + std::to_string(ie2->getIndex()) + "].mac";
@@ -2523,12 +2791,11 @@ InterfaceEntry *BouncingIeee8021dRelay::chooseInterface()
 
 void BouncingIeee8021dRelay::finish()
 {
-    recordScalar("number of received BPDUs from STP module", numReceivedBPDUsFromSTP);
-    recordScalar("number of received frames from network (including BPDUs)", numReceivedNetworkFrames);
-    recordScalar("number of dropped frames (including BPDUs)", numDroppedFrames);
-    recordScalar("number of delivered BPDUs to the STP module", numDeliveredBDPUsToSTP);
-    recordScalar("number of dispatched BPDU frames to the network", numDispatchedBDPUFrames);
-    recordScalar("number of dispatched non-BDPU frames to the network", numDispatchedNonBPDUFrames);
+    //recordScalar("number of received BPDUs from STP module", numReceivedBPDUsFromSTP);
+    //recordScalar("number of received frames from network (including BPDUs)", numReceivedNetworkFrames);
+    //recordScalar("number of dropped frames (including BPDUs)", numDroppedFrames);
+    //recordScalar("number of delivered BPDUs to the STP module", numDeliveredBDPUsToSTP);
+    //recordScalar("number of dispatched BPDU frames to the network", numDispatchedBDPUFrames);
+    //recordScalar("number of dispatched non-BDPU frames to the network", numDispatchedNonBPDUFrames);
 }
-
 

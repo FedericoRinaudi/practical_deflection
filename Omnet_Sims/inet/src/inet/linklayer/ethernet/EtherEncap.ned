@@ -50,13 +50,13 @@ simple EtherEncap like IEtherEncap
         double stopOperationExtraTime @unit(s) = default(-1s);    // extra time after lifecycle stop operation finished
         double stopOperationTimeout @unit(s) = default(2s);    // timeout value for lifecycle stop operation
         @display("i=block/square");
-        @signal[encapPk](type=cPacket);
-        @signal[decapPk](type=cPacket);
-        @signal[pauseSent](type=long); // pause units
-        @signal[packetDropped](type=inet::Packet);
-        @statistic[encapPk](title="packets encapsulated";source=encapPk; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
-        @statistic[decapPk](title="packets decapsulated";source=decapPk; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
-        @statistic[pauseSent](title="pause sent";record=count,sum,vector);
+        //@signal[encapPk](type=cPacket);
+        //@signal[decapPk](type=cPacket);
+        //@signal[pauseSent](type=long); // pause units
+        //@signal[packetDropped](type=inet::Packet);
+        //@statistic[encapPk](title="packets encapsulated";source=encapPk; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+        //@statistic[decapPk](title="packets decapsulated";source=decapPk; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+        //@statistic[pauseSent](title="pause sent";record=count,sum,vector);
     gates:
         input upperLayerIn @labels(Ieee802Ctrl/down); // higher layer
         output upperLayerOut @labels(Ieee802Ctrl/up); // higher layer

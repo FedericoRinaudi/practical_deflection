@@ -190,7 +190,7 @@
 
 2018-08-17  Zoltan Bojthe
 
-	Added namespace qualifier to @signal type parameters.
+	Added namespace qualifier to //@signal type parameters.
 
 2018-07-27  Zoltan Bojthe
 
@@ -286,7 +286,7 @@
 
 2018-01-09  Zoltan Bojthe
 
-	Renamed @statistics to use camel case.
+	Renamed //@statistics to use camel case.
 
 2018-01-05  Zoltan Bojthe
 
@@ -332,7 +332,7 @@
 
 2017-11-23  Levente Mészáros
 
-	Fixed typos in result filter names in @statistics.
+	Fixed typos in result filter names in //@statistics.
 
 2017-11-16  Levente Mészáros
 
@@ -896,11 +896,11 @@
 	- signal/statistic renaming: rcvdPkBytesFromHL --> encapPk,
 	  rcvdPkBytesFromMAC --> decapPk, sentPause --> pauseSent,
 	  passedUpPkBytes --> passedUpPk, etc.
-	- removed "Statistics" sections from docu, as @statistic are self-describing
+	- removed "Statistics" sections from docu, as //@statistic are self-describing
 
 2011-12-21  Zoltan Bojthe
 
-	EtherMAC/~FullDuplex: refined @signal declarations: type=cPacket
+	EtherMAC/~FullDuplex: refined //@signal declarations: type=cPacket
 	changed to type=EtherFrame
 
 2011-12-21  Zoltan Bojthe
@@ -1215,13 +1215,13 @@
 
 2010-03-05  Andras Varga
 
-	@statistic: added missing 'vector' recording mode
+	//@statistic: added missing 'vector' recording mode
 
 2010-03-05  Andras Varga
 
 	update for omnet++ 4.1b3:
 
-	renamed @signal to @statistic, modeHint= to record=
+	renamed //@signal to //@statistic, modeHint= to record=
 
 2010-02-26  Zoltan Bojthe
 

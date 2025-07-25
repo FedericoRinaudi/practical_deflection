@@ -21,7 +21,7 @@ simple Ieee80211LlcEpd like IIeee80211Llc
 {
     parameters:
         @display("i=block/layer");
-        @signal[packetDropped](type=Packet);
+        //@signal[packetDropped](type=Packet);
     gates:
         input upperLayerIn;
         output upperLayerOut;

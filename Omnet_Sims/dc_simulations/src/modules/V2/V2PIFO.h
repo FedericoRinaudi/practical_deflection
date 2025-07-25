@@ -118,7 +118,7 @@ class INET_API V2PIFO : public PacketQueue
     virtual void sel_reaction_update_quantile_list(Packet* packet);
     virtual double sel_reaction_calc_quantile(Packet* packet);
     virtual std::list<Packet*> get_list_of_packets_to_react(Packet *new_packet);
-
+    virtual long get_queue_capacity() override;
     // incremental deployment: public
     int deployed_with_deflection = -1;
 

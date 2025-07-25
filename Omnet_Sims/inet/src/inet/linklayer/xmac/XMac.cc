@@ -121,18 +121,18 @@ void XMac::finish()
 {
     // record stats
     if (stats) {
-        recordScalar("nbTxDataPackets", nbTxDataPackets);
-        recordScalar("nbTxPreambles", nbTxPreambles);
-        recordScalar("nbRxDataPackets", nbRxDataPackets);
-        recordScalar("nbRxPreambles", nbRxPreambles);
-        recordScalar("nbMissedAcks", nbMissedAcks);
-        recordScalar("nbRecvdAcks", nbRecvdAcks);
-        recordScalar("nbTxAcks", nbTxAcks);
-        recordScalar("nbDroppedDataPackets", nbDroppedDataPackets);
-        recordScalar("nbRxBrokenDataPackets", nbRxBrokenDataPackets);
-        //recordScalar("timeSleep", timeSleep);
-        //recordScalar("timeRX", timeRX);
-        //recordScalar("timeTX", timeTX);
+        //recordScalar("nbTxDataPackets", nbTxDataPackets);
+        //recordScalar("nbTxPreambles", nbTxPreambles);
+        //recordScalar("nbRxDataPackets", nbRxDataPackets);
+        //recordScalar("nbRxPreambles", nbRxPreambles);
+        //recordScalar("nbMissedAcks", nbMissedAcks);
+        //recordScalar("nbRecvdAcks", nbRecvdAcks);
+        //recordScalar("nbTxAcks", nbTxAcks);
+        //recordScalar("nbDroppedDataPackets", nbDroppedDataPackets);
+        //recordScalar("nbRxBrokenDataPackets", nbRxBrokenDataPackets);
+        ////recordScalar("timeSleep", timeSleep);
+        ////recordScalar("timeRX", timeRX);
+        ////recordScalar("timeTX", timeTX);
     }
 }
 

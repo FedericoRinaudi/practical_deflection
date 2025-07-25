@@ -45,11 +45,11 @@ simple V2PIFOBoltQueue extends PacketQueue
 		int CCThresh @unit(b) = default(-1b);
 		int mtu = default(-1);
 
-        @signal[packetDropSeq]();
-        @signal[packetDropRetCount]();
-        @signal[packetDropTotalPayloadLength]();
+        ////@signal[packetDropSeq]();
+        ////@signal[packetDropRetCount]();
+        ////@signal[packetDropTotalPayloadLength]();
         
-        @statistic[droppktSeqs](title="seqs of the dropped packets"; source="packetDropSeq"; record=vector; interpolationmode=none);
-        @statistic[droppktRetCount](title="ret count of the dropped packets"; source="packetDropRetCount"; record=vector; interpolationmode=none);
-        @statistic[pktDropTotalPayloadLen](title="total payload length of BG packets dropped in v2 queue"; source="packetDropTotalPayloadLength"; record=vector; interpolationmode=none);
+        ////@statistic[droppktSeqs](title="seqs of the dropped packets"; source="packetDropSeq"; record=vector; interpolationmode=none);
+        ////@statistic[droppktRetCount](title="ret count of the dropped packets"; source="packetDropRetCount"; record=vector; interpolationmode=none);
+        ////@statistic[pktDropTotalPayloadLen](title="total payload length of BG packets dropped in v2 queue"; source="packetDropTotalPayloadLength"; record=vector; interpolationmode=none);
 }

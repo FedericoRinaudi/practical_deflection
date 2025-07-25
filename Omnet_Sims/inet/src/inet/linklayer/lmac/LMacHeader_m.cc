@@ -486,7 +486,7 @@ unsigned int LMacHeaderBaseDescriptor::getFieldTypeFlags(int field) const
     static unsigned int fieldTypeFlags[] = {
         0,    // FIELD_srcAddr
         0,    // FIELD_destAddr
-        0,    // FIELD_type
+        FD_ISEDITABLE,    // FIELD_type
         FD_ISEDITABLE,    // FIELD_mySlot
         FD_ISARRAY,    // FIELD_occupiedSlots
     };
@@ -632,6 +632,7 @@ bool LMacHeaderBaseDescriptor::setFieldValueAsString(void *object, int field, in
     }
     LMacHeaderBase *pp = (LMacHeaderBase *)object; (void)pp;
     switch (field) {
+        case FIELD_type: pp->setType((inet::LMacType)string2enum(value, "inet::LMacType")); return true;
         case FIELD_mySlot: pp->setMySlot(string2long(value)); return true;
         default: return false;
     }

@@ -337,9 +337,9 @@ void UdpBasicBurst::generateBurst()
 
 void UdpBasicBurst::finish()
 {
-    recordScalar("Total sent", numSent);
-    recordScalar("Total received", numReceived);
-    recordScalar("Total deleted", numDeleted);
+    //recordScalar("Total sent", numSent);
+    //recordScalar("Total received", numReceived);
+    //recordScalar("Total deleted", numDeleted);
     ApplicationBase::finish();
 }
 

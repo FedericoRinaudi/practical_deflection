@@ -42,8 +42,8 @@ while (<LISTFILE>)
 
     # do statistic renamings
     foreach my $i (keys(%replStatistics)) {
-        my $ii = '@statistic['.$i.']';
-        my $rr = '@statistic['.$replStatistics{$i}.']';
+        my $ii = '//@statistic['.$i.']';
+        my $rr = '//@statistic['.$replStatistics{$i}.']';
         $txt =~ s|\Q${ii}\E|${rr}|gs;
     }
 

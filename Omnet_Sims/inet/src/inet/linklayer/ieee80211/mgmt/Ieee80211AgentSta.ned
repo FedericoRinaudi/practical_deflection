@@ -39,15 +39,15 @@ simple Ieee80211AgentSta like IIeee80211Agent
         double startingTime @unit(s) = default(-1s); // agent starting time.
         string defaultSsid = default("SSID"); // default ssid
         @display("i=block/control");
-        @signal[sentRequest](type=long); // ENUM! ~Ieee80211PrimRequestCode
-        @signal[acceptConfirm](type=long); // ENUM! ~Ieee80211PrimConfirmCode
-        @signal[dropConfirm](type=long); // ENUM! ~Ieee80211PrimConfirmCode
-        @signal[l2AssociatedNewAp](type=inet::InterfaceEntry);
-        @signal[l2AssociatedOldAp](type=inet::InterfaceEntry);
-        @signal[l2Disassociated](type=inet::InterfaceEntry);
-        @statistic[sentRequest](title="sent requests"; record=count,vector); // ENUM! ~Ieee80211PrimRequestCode
-        @statistic[acceptConfirm](title="accepted confirms"; record=count,vector); // ENUM! ~Ieee80211PrimConfirmCode
-        @statistic[dropConfirm](title="dropped confirms"; record=count,vector); // ENUM! ~Ieee80211PrimConfirmCode
+        //@signal[sentRequest](type=long); // ENUM! ~Ieee80211PrimRequestCode
+        //@signal[acceptConfirm](type=long); // ENUM! ~Ieee80211PrimConfirmCode
+        //@signal[dropConfirm](type=long); // ENUM! ~Ieee80211PrimConfirmCode
+        //@signal[l2AssociatedNewAp](type=inet::InterfaceEntry);
+        //@signal[l2AssociatedOldAp](type=inet::InterfaceEntry);
+        //@signal[l2Disassociated](type=inet::InterfaceEntry);
+        //@statistic[sentRequest](title="sent requests"; record=count,vector); // ENUM! ~Ieee80211PrimRequestCode
+        //@statistic[acceptConfirm](title="accepted confirms"; record=count,vector); // ENUM! ~Ieee80211PrimConfirmCode
+        //@statistic[dropConfirm](title="dropped confirms"; record=count,vector); // ENUM! ~Ieee80211PrimConfirmCode
     gates:
         input mgmtIn;
         output mgmtOut;

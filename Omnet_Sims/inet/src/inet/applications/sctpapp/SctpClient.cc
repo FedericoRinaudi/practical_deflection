@@ -85,7 +85,7 @@ void SctpClient::initialize(int stage)
         finishEndsSimulation = par("finishEndsSimulation");
         queueSize = par("queueSize");
         WATCH(numRequestsToSend);
-        recordScalar("ums", par("requestLength").intValue());
+        //recordScalar("ums", par("requestLength").intValue());
 
         timeMsg = new cMessage("CliAppTimer", MSGKIND_CONNECT);
         scheduleAt(par("startTime"), timeMsg);

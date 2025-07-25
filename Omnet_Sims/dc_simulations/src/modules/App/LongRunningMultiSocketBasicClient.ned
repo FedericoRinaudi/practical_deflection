@@ -94,30 +94,30 @@ simple LongRunningMultiSocketBasicClient like IApp
         @lifecycleSupport;
         double stopOperationExtraTime @unit(s) = default(-1s);    // extra time after lifecycle stop operation finished
         double stopOperationTimeout @unit(s) = default(2s);    // timeout value for lifecycle stop operation
-        @signal[packetSent](type=inet::Packet);
-        @signal[packetReceived](type=inet::Packet);
-        @signal[connect](type=long);  // 1 for open, -1 for close
-        @signal[flowEnded](type=long);
-        @signal[flowStarted](type=long);
-        @signal[actualFlowStartedTime]();
-        @signal[requestSent](type=long);
-        @signal[notJitteredRequestSent](type=long);
-        @signal[replyLengths]();
-        @signal[chunksReceivedLength]();
-        @signal[chunksReceivedTotalLength]();
-        @statistic[packetReceived](title="packets received"; source=packetReceived; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
-        @statistic[packetSent](title="packets sent"; source=packetSent; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
-        @statistic[endToEndDelay](title="end-to-end delay"; source="dataAge(packetReceived)"; unit=s; record=histogram,weightedHistogram,vector; interpolationmode=none);
-        @statistic[numActiveSessions](title="number of active sessions"; source="sum(connect)"; record=max,timeavg,vector; interpolationmode=sample-hold);
-        @statistic[numSessions](title="total number of sessions"; source="sum(connect+1)/2"; record=last);
-        @statistic[flowEndedRequesterID](title="flow ended requester id"; source="flowEnded"; record=vector; interpolationmode=none);
-        @statistic[flowStartedRequesterID](title="flow started requester id"; source="flowStarted"; record=vector; interpolationmode=none);
-        @statistic[flowStartedActualTime](title="flow started actual time"; source="actualFlowStartedTime"; record=vector; interpolationmode=none);
-        @statistic[requestSentRequesterID](title="request sent requester id"; source="requestSent"; record=vector; interpolationmode=none);
-        @statistic[notJitteredRequestSentTime](title="not jittered request sent requester id"; source="notJitteredRequestSent"; record=vector; interpolationmode=none);
-        @statistic[replyLengthAsked](title="reply length of the packets"; source="replyLengths"; record=vector; interpolationmode=none);
-        @statistic[chunksRcvdLength](title="length of chunks received in application layer"; source="chunksReceivedLength"; record=vector; interpolationmode=none);
-        @statistic[chunksRcvdTotalLength](title="length of data that the received chunk is part of"; source="chunksReceivedTotalLength"; record=vector; interpolationmode=none);
+        ////@signal[packetSent](type=inet::Packet);
+        ////@signal[packetReceived](type=inet::Packet);
+        ////@signal[connect](type=long);  // 1 for open, -1 for close
+        ////@signal[flowEnded](type=long);
+        ////@signal[flowStarted](type=long);
+        ////@signal[actualFlowStartedTime]();
+        ////@signal[requestSent](type=long);
+        ////@signal[notJitteredRequestSent](type=long);
+        ////@signal[replyLengths]();
+        ////@signal[chunksReceivedLength]();
+        ////@signal[chunksReceivedTotalLength]();
+        ////@statistic[packetReceived](title="packets received"; source=packetReceived; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+        ////@statistic[packetSent](title="packets sent"; source=packetSent; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+        ////@statistic[endToEndDelay](title="end-to-end delay"; source="dataAge(packetReceived)"; unit=s; record=histogram,weightedHistogram,vector; interpolationmode=none);
+        ////@statistic[numActiveSessions](title="number of active sessions"; source="sum(connect)"; record=max,timeavg,vector; interpolationmode=sample-hold);
+        ////@statistic[numSessions](title="total number of sessions"; source="sum(connect+1)/2"; record=last);
+        ////@statistic[flowEndedRequesterID](title="flow ended requester id"; source="flowEnded"; record=vector; interpolationmode=none);
+        ////@statistic[flowStartedRequesterID](title="flow started requester id"; source="flowStarted"; record=vector; interpolationmode=none);
+        ////@statistic[flowStartedActualTime](title="flow started actual time"; source="actualFlowStartedTime"; record=vector; interpolationmode=none);
+        ////@statistic[requestSentRequesterID](title="request sent requester id"; source="requestSent"; record=vector; interpolationmode=none);
+        ////@statistic[notJitteredRequestSentTime](title="not jittered request sent requester id"; source="notJitteredRequestSent"; record=vector; interpolationmode=none);
+        ////@statistic[replyLengthAsked](title="reply length of the packets"; source="replyLengths"; record=vector; interpolationmode=none);
+        ////@statistic[chunksRcvdLength](title="length of chunks received in application layer"; source="chunksReceivedLength"; record=vector; interpolationmode=none);
+        ////@statistic[chunksRcvdTotalLength](title="length of data that the received chunk is part of"; source="chunksReceivedTotalLength"; record=vector; interpolationmode=none);
         
     gates:
         input socketIn @labels(TcpCommand/up);

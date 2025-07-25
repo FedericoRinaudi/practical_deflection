@@ -42,9 +42,9 @@ void StaticGridMobility::setInitialPosition()
     lastPosition.x = constraintAreaMin.x + marginX + (col + 0.5) * separationX;
     lastPosition.y = constraintAreaMin.y + marginY + (row + 0.5) * separationY;
     lastPosition.z = par("initialZ");
-    recordScalar("x", lastPosition.x);
-    recordScalar("y", lastPosition.y);
-    recordScalar("z", lastPosition.z);
+    //recordScalar("x", lastPosition.x);
+    //recordScalar("y", lastPosition.y);
+    //recordScalar("z", lastPosition.z);
 }
 
 } // namespace inet

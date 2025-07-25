@@ -295,7 +295,7 @@
 	statistics: emit pk (cPacket*) signals instead of pkBytes etc; added
 	more statistics
 
-	Utilize packetBytes() result filter in @statistic to record byte counts
+	Utilize packetBytes() result filter in //@statistic to record byte counts
 
 2011-06-03  Andras Varga
 

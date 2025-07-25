@@ -28,9 +28,9 @@ simple IpvxTrafSink like IIpvxTrafficGenerator
         int protocol; // value for IPv4, IPv6 protocol field, accepts only between 143 and 254
         @lifecycleSupport;
         @display("i=block/sink");
-        @signal[packetReceived](type=inet::Packet);
-        @statistic[packetReceived](title="packets received"; source=packetReceived; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
-        @statistic[endToEndDelay](title="end-to-end delay"; source="dataAge(packetReceived)"; unit=s; record=histogram,vector; interpolationmode=none);
+        //@signal[packetReceived](type=inet::Packet);
+        //@statistic[packetReceived](title="packets received"; source=packetReceived; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+        //@statistic[endToEndDelay](title="end-to-end delay"; source="dataAge(packetReceived)"; unit=s; record=histogram,vector; interpolationmode=none);
     gates:
         input ipIn @labels(Ipv4ControlInfo/up,Ipv6ControlInfo/up);
         output ipOut @labels(Ipv4ControlInfo/down,Ipv6ControlInfo/down);

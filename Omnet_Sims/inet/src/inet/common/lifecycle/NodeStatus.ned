@@ -27,9 +27,9 @@ package inet.common.lifecycle;
 simple NodeStatus
 {
     parameters:
-        //TODO @signal, @statistic
+        //TODO //@signal, //@statistic
         string initialStatus = default("UP"); // initial status of the network node
         @display("i=block/cogwheel;is=s");
-        @signal[nodeStatusChanged](type=inet::NodeStatus);
+        //@signal[nodeStatusChanged](type=inet::NodeStatus);
 }
 

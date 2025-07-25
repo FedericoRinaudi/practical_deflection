@@ -242,8 +242,8 @@ void TcpSessionApp::parseScript(const char *script)
 void TcpSessionApp::finish()
 {
     EV << getFullPath() << ": received " << bytesRcvd << " bytes in " << packetsRcvd << " packets\n";
-    recordScalar("bytesRcvd", bytesRcvd);
-    recordScalar("bytesSent", bytesSent);
+    //recordScalar("bytesRcvd", bytesRcvd);
+    //recordScalar("bytesSent", bytesSent);
 }
 
 void TcpSessionApp::refreshDisplay() const

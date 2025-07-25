@@ -30,6 +30,6 @@ moduleinterface IEpEnergyConsumer extends IEnergyConsumer
 {
     parameters:
         @display("i=block/plug");
-        @signal[powerConsumptionChanged](type=double);
+        //@signal[powerConsumptionChanged](type=double);
 }
 

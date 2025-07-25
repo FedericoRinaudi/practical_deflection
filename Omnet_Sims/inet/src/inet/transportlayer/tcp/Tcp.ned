@@ -229,16 +229,22 @@ simple Tcp like ITcp
         double endpoint_EWMA_factor = default(1);
         
         @display("i=block/wheelbarrow");
-        @signal[tcpConnectionAdded];
-        @signal[tcpConnectionRemoved];
-        @signal[packetReceivedFromUpper](type=cPacket);
-        @signal[packetReceivedFromLower](type=cPacket);
-        @signal[tcpConnectionSYN]();
-        @signal[tcpConnectionSYNIsBursty]();
-        @signal[tcpConnectionFIN]();
-        @statistic[tcpConnectionFINRcv](title="Fin Rcved"; source="tcpConnectionFIN"; record=vector; interpolationmode=none);
-        @statistic[tcpConnectionSYNSent](title="Syn sent"; source="tcpConnectionSYN"; record=vector; interpolationmode=none);
-        @statistic[tcpConnectionSYNSentIsBursty](title="Syn sent is bursty"; source="tcpConnectionSYNIsBursty"; record=vector; interpolationmode=none);
+        //@signal[tcpConnectionAdded];
+        //@signal[tcpConnectionRemoved];
+        //@signal[packetReceivedFromUpper](type=cPacket);
+        //@signal[packetReceivedFromLower](type=cPacket);
+        //@signal[tcpConnectionSYN]();
+        //@signal[tcpConnectionSYNIsBursty]();
+        //@signal[tcpConnectionFIN]();
+        //@signal[rcvOooSeg];
+        //@signal[rcvSeq];
+        //@signal[sndNxt];
+        //@statistic[tcpConnectionFINRcv](title="Fin Rcved"; source="tcpConnectionFIN"; record=vector; interpolationmode=none);
+        //@statistic[tcpConnectionSYNSent](title="Syn sent"; source="tcpConnectionSYN"; record=vector; interpolationmode=none);
+        //@statistic[tcpConnectionSYNSentIsBursty](title="Syn sent is bursty"; source="tcpConnectionSYNIsBursty"; record=vector; interpolationmode=none);
+        //@statistic[sndNxt](record=vector,stats; interpolationmode=none);    // sent seqNo
+        //@statistic[rcvSeq](record=vector,stats; interpolationmode=none);    // received seqNo
+        //@statistic[rcvOooSeg](record=vector,stats; interpolationmode=none);    // number of received out-of-order segments
         
     gates:
         input appIn @labels(TcpCommand/down) @messageKinds(inet::TcpCommandCode);

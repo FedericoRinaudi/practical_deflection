@@ -475,7 +475,7 @@ unsigned int AddressBlockDescriptor::getFieldTypeFlags(int field) const
         FD_ISEDITABLE,    // FIELD_hasMetric
         FD_ISEDITABLE,    // FIELD_metric
         FD_ISEDITABLE,    // FIELD_hasMetricType
-        0,    // FIELD_metricType
+        FD_ISEDITABLE,    // FIELD_metricType
         FD_ISEDITABLE,    // FIELD_hasSequenceNumber
         0,    // FIELD_sequenceNumber
     };
@@ -645,6 +645,7 @@ bool AddressBlockDescriptor::setFieldValueAsString(void *object, int field, int 
         case FIELD_hasMetric: pp->setHasMetric(string2bool(value)); return true;
         case FIELD_metric: pp->setMetric(string2double(value)); return true;
         case FIELD_hasMetricType: pp->setHasMetricType(string2bool(value)); return true;
+        case FIELD_metricType: pp->setMetricType((inet::dymo::DymoMetricType)string2enum(value, "inet::dymo::DymoMetricType")); return true;
         case FIELD_hasSequenceNumber: pp->setHasSequenceNumber(string2bool(value)); return true;
         default: return false;
     }

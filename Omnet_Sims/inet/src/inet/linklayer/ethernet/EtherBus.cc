@@ -262,11 +262,11 @@ void EtherBus::handleMessage(cMessage *msg)
 void EtherBus::finish()
 {
     simtime_t t = simTime();
-    recordScalar("simulated time", t);
-    recordScalar("messages handled", numMessages);
+    //recordScalar("simulated time", t);
+    //recordScalar("messages handled", numMessages);
 
-    if (t > 0)
-        recordScalar("messages/sec", numMessages / t);
+    //if (t > 0)
+    //    recordScalar("messages/sec", numMessages / t);
 }
 
 } // namespace inet

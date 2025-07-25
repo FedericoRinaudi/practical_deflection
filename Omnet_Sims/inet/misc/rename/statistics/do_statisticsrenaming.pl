@@ -38,8 +38,8 @@ foreach $fname (@fnames)
 
     # replace in ned file
     for $i (sort(keys(%map))) {
-        my $ii = '@statistic['.$i.']';
-        my $rr = '@statistic['.$map{$i}.']';
+        my $ii = '//@statistic['.$i.']';
+        my $rr = '//@statistic['.$map{$i}.']';
         $txt =~ s|\Q$ii\E|$rr|gs;
     }
 

@@ -36,10 +36,10 @@ simple PacketBuffer extends PacketBufferBase like IPacketBuffer
         string dropperClass = default(""); // determines which packets are dropped when the buffer is overloaded, packets are not dropped by default; the parameter must be the name of a C++ class which implements the IPacketDropperFunction C++ interface and is registered via Register_Class
         @class(PacketBuffer);
         @display("i=block/buffer");
-        @signal[packetAdded](type=inet::Packet);
-        @signal[packetRemoved](type=inet::Packet);
-        @signal[packetDropped](type=inet::Packet);
-        @statistic[packetAdded](title="packets added"; record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
-        @statistic[packetRemoved](title="packets removed"; record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
-        @statistic[packetDropQueueOverflow](title="packet drops: queue overflow"; source=packetDropReasonIsQueueOverflow(packetDropped); record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
+        //@signal[packetAdded](type=inet::Packet);
+        //@signal[packetRemoved](type=inet::Packet);
+        //@signal[packetDropped](type=inet::Packet);
+        //@statistic[packetAdded](title="packets added"; record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
+        //@statistic[packetRemoved](title="packets removed"; record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
+        //@statistic[packetDropQueueOverflow](title="packet drops: queue overflow"; source=packetDropReasonIsQueueOverflow(packetDropped); record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
 }

@@ -50,7 +50,7 @@ void VoipStreamReceiver::initialize(int stage)
 
     if (stage == INITSTAGE_LOCAL) {
         // Hack for create results folder
-        recordScalar("hackForCreateResultsFolder", 0);
+        //recordScalar("hackForCreateResultsFolder", 0);
 
         // Say Hello to the world
         EV_TRACE << "VoIPSinkApp initialize()" << endl;

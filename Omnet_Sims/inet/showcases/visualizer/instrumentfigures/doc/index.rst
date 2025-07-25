@@ -106,13 +106,13 @@ module:
 
 .. literalinclude:: ../InstrumentShowcase.ned
    :language: ned
-   :start-at: @statistic[throughput]
+   :start-at: //@statistic[throughput]
    :end-at: @figure[bitratePlot]
 
 How does that work? Take the first one, ``throughputGauge``, for example.
 Instrument figures visualize statistics derived from OMNeT++ signals,
 emitted by modules in the network. The ``source`` attribute of
-``@statistic[throughput]`` declares that the ``client.app[0]`` module's
+``//@statistic[throughput]`` declares that the ``client.app[0]`` module's
 ``packetReceived`` signal should be taken (it emits the packet object),
 and the ``throughput()`` result filter should be applied and divided by
 1000000 to get the throughput in Mbps.

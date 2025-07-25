@@ -19,7 +19,8 @@
 //
 
 #include <string.h>
-#include <algorithm>    // min,max
+#include <algorithm> 
+#include <unordered_map>
 
 #include "inet/applications/common/SocketTag_m.h"
 #include "inet/common/INETUtils.h"
@@ -40,6 +41,7 @@
 #include "inet/transportlayer/tcp_common/TcpHeader.h"
 #include "inet/networklayer/common/DscpTag_m.h"
 #include "inet/networklayer/common/HopLimitTag_m.h"
+#include "inet/common/FlowKey.h"
 
 namespace inet {
 namespace tcp {
@@ -260,9 +262,26 @@ TcpConnection *TcpConnection::cloneListeningConnection()
 
 void TcpConnection::sendToIP(Packet *packet, const Ptr<TcpHeader>& tcpseg)
 {
+    uint32_t localAddrInt = 0;
+    uint32_t remoteAddrInt = 0;
+    
+    // Se gli indirizzi sono IPv4, convertili
+    if (localAddr.getType() == L3Address::IPv4) {
+        localAddrInt = localAddr.toIpv4().getInt();
+    }
+    if (remoteAddr.getType() == L3Address::IPv4) {
+        remoteAddrInt = remoteAddr.toIpv4().getInt();
+    }
+    
+    FlowKey f1{ tcpseg->getSequenceNo(), 
+                static_cast<uint16_t>(localPort), 
+                static_cast<uint16_t>(remotePort), 
+                localAddrInt, 
+                remoteAddrInt };
     // record seq (only if we do send data) and ackno
     if (packet->getByteLength() > B(tcpseg->getChunkLength()).get())
-        emit(sndNxtSignal, tcpseg->getSequenceNo());
+        emit(sndNxtSignal, f1.getSafeHash());
+    //emit(sndNxtSignal, tcpseg->getSequenceNo());
 
     emit(sndAckSignal, tcpseg->getAckNo());
 
@@ -1146,6 +1165,22 @@ void TcpConnection::retransmitOneSegment(bool called_at_rto)
     ulong bytes = std::min((ulong)std::min(state->snd_mss, state->snd_max - state->snd_nxt),
                 sendQueue->getBytesAvailable(state->snd_nxt));
 
+    uint32_t localAddrInt = 0, remoteAddrInt = 0;
+    if (localAddr.getType() == L3Address::IPv4)
+        localAddrInt = localAddr.toIpv4().getInt();
+    if (remoteAddr.getType() == L3Address::IPv4)
+        remoteAddrInt = remoteAddr.toIpv4().getInt();
+
+    uint32_t seq = state->snd_nxt;  // sequence number del segmento da ritrasmettere
+    FlowKey f1{
+        seq,
+        static_cast<uint16_t>(localPort),
+        static_cast<uint16_t>(remotePort),
+        localAddrInt,
+        remoteAddrInt
+    };
+
+    emit(retransmittedSignal, f1.getSafeHash());
     //pfabric probe mode
     if (state->in_probe_mode)
         bytes = std::min(bytes, (ulong)1);

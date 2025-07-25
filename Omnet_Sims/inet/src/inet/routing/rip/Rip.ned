@@ -90,16 +90,16 @@ simple Rip like IApp
         double stopOperationExtraTime @unit(s) = default(-1s);    // extra time after lifecycle stop operation finished
         double stopOperationTimeout @unit(s) = default(2s);    // timeout value for lifecycle stop operation
 
-        @signal[sentRequest](type=cPacket);
-        @signal[sentUpdate](type=cPacket);
-        @signal[rcvdResponse](type=cPacket);
-        @signal[badResponse](type=cPacket);
-        @signal[numRoutes](type=unsigned long);
-        @statistic[sentRequest](title="request sent"; source=sentRequest; record=count,"vector(constant1)"; interpolationmode=none);
-        @statistic[sentUpdate](title="update sent"; source=sentUpdate; record=count,"vector(constant1)"; interpolationmode=none);
-        @statistic[rcvdResponse](title="response received"; source=rcvdResponse; record=count,"vector(constant1)"; interpolationmode=none);
-        @statistic[badResponse](title="bad response received"; source=badResponse; record=count,"vector(constant1)"; interpolationmode=none);
-        @statistic[numRoutes](title="number of routes"; source=numRoutes; record=last,vector; interpolationmode=none);
+        //@signal[sentRequest](type=cPacket);
+        //@signal[sentUpdate](type=cPacket);
+        //@signal[rcvdResponse](type=cPacket);
+        //@signal[badResponse](type=cPacket);
+        //@signal[numRoutes](type=unsigned long);
+        //@statistic[sentRequest](title="request sent"; source=sentRequest; record=count,"vector(constant1)"; interpolationmode=none);
+        //@statistic[sentUpdate](title="update sent"; source=sentUpdate; record=count,"vector(constant1)"; interpolationmode=none);
+        //@statistic[rcvdResponse](title="response received"; source=rcvdResponse; record=count,"vector(constant1)"; interpolationmode=none);
+        //@statistic[badResponse](title="bad response received"; source=badResponse; record=count,"vector(constant1)"; interpolationmode=none);
+        //@statistic[numRoutes](title="number of routes"; source=numRoutes; record=last,vector; interpolationmode=none);
     gates:
         input socketIn @labels(UdpControlInfo/up);
         output socketOut @labels(UdpControlInfo/down);

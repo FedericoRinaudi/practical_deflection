@@ -30,6 +30,6 @@ moduleinterface IEpEnergyStorage extends IEpEnergySource, IEpEnergySink, IEnergy
 {
     parameters:
         @display("i=block/plug");
-        @signal[residualEnergyCapacityChanged](type=double);
+        //@signal[residualEnergyCapacityChanged](type=double);
 }
 

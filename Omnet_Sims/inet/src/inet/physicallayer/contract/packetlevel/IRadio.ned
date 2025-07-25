@@ -48,17 +48,17 @@ moduleinterface IRadio extends IPhysicalLayer
 {
     parameters:
         @display("i=block/wrxtx");
-        @signal[radioModeChanged](type=long);    // type=inet::physicallayer::RadioMode
-        @signal[listeningChanged](type=long);    //TODO always emit 0
-        @signal[receptionStateChanged](type=long);    // type=inet::physicallayer::ReceptionState
-        @signal[transmissionStateChanged](type=long);    // type=inet::physicallayer::TransmissionState
-        @signal[radioChannelChanged](type=long);    // the long is the new channel number
-        @signal[receivedSignalPartChanged](type=long);    // type=IRadioSignal::SignalPart
-        @signal[transmittedSignalPartChanged](type=long);    // type=IRadioSignal::SignalPart
-        @signal[transmissionStarted](type=cObject);     // type=ITransmission
-        @signal[transmissionEnded](type=cObject);     // type=ITransmission
-        @signal[receptionStarted](type=cObject);     // type=IReception
-        @signal[receptionEnded](type=cObject);     // type=IReception
+        //@signal[radioModeChanged](type=long);    // type=inet::physicallayer::RadioMode
+        //@signal[listeningChanged](type=long);    //TODO always emit 0
+        //@signal[receptionStateChanged](type=long);    // type=inet::physicallayer::ReceptionState
+        //@signal[transmissionStateChanged](type=long);    // type=inet::physicallayer::TransmissionState
+        //@signal[radioChannelChanged](type=long);    // the long is the new channel number
+        //@signal[receivedSignalPartChanged](type=long);    // type=IRadioSignal::SignalPart
+        //@signal[transmittedSignalPartChanged](type=long);    // type=IRadioSignal::SignalPart
+        //@signal[transmissionStarted](type=cObject);     // type=ITransmission
+        //@signal[transmissionEnded](type=cObject);     // type=ITransmission
+        //@signal[receptionStarted](type=cObject);     // type=IReception
+        //@signal[receptionEnded](type=cObject);     // type=IReception
     gates:
         input radioIn @labels(ISignal);
 }

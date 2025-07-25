@@ -122,32 +122,32 @@ module PABOHostEtherMac like IEtherMac
         @class(PABOHostEtherMac);
         @display("i=block/rxtx");
 
-        @signal[rxPkOk](type=inet::Packet);
-        @signal[txPausePkUnits](type=long);
-        @signal[rxPausePkUnits](type=long);
-        @signal[packetDropped](type=Packet);
-        @signal[packetSentToLower](type=inet::Packet);
-        @signal[packetReceivedFromLower](type=inet::Packet);
-        @signal[packetSentToUpper](type=inet::Packet);
-        @signal[packetReceivedFromUpper](type=inet::Packet);
-        @signal[collision](type=long);
-        @signal[backoffSlotsGenerated](type=long);    // slotNumber value emitted
-        @signal[transmissionStateChanged](type=long); // enum=MacTransmitState
-        @signal[receptionStateChanged](type=long); // enum=MacReceiveState
-        @signal[packetHopCount](type=long);
+        ////@signal[rxPkOk](type=inet::Packet);
+        ////@signal[txPausePkUnits](type=long);
+        ////@signal[rxPausePkUnits](type=long);
+        ////@signal[packetDropped](type=Packet);
+        ////@signal[packetSentToLower](type=inet::Packet);
+        ////@signal[packetReceivedFromLower](type=inet::Packet);
+        ////@signal[packetSentToUpper](type=inet::Packet);
+        ////@signal[packetReceivedFromUpper](type=inet::Packet);
+        ////@signal[collision](type=long);
+        ////@signal[backoffSlotsGenerated](type=long);    // slotNumber value emitted
+        ////@signal[transmissionStateChanged](type=long); // enum=MacTransmitState
+        ////@signal[receptionStateChanged](type=long); // enum=MacReceiveState
+        ////@signal[packetHopCount](type=long);
 
-        @statistic[txPk](title="packets transmitted"; source=packetSentToLower; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
-        @statistic[rxPkOk](title="packets received OK"; source=rxPkOk; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
-        @statistic[passedUpPk](title="packets passed to higher layer"; source=packetSentToUpper; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
-        @statistic[txPausePkUnits](title="pause units sent"; record=count,sum,vector; interpolationmode=none);
-        @statistic[rxPausePkUnits](title="pause units received"; record=count,sum,vector; interpolationmode=none);
-        @statistic[packetReceivedFromUpper](title="packet bytes from higher layer"; source=packetReceivedFromUpper; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
-        @statistic[packetDropIncorrectlyReceived](title="packet drop: incorrectly received"; source=packetDropReasonIsIncorrectlyReceived(packetDropped); record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
-        @statistic[packetDropInterfaceDown](title="packet drop: interface down"; source=packetDropReasonIsInterfaceDown(packetDropped); record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
-        @statistic[packetDropNotAddressedToUs](title="packet drop: not addressed to us"; source=packetDropReasonIsNotAddressedToUs(packetDropped); record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
-        @statistic[collision](title="collision"; record=count,vector; interpolationmode=none);
-        @statistic[backoffSlotsGenerated](title="backoff"; record=count,vector; interpolationmode=none);
-        @statistic[packetHopCount](title="packet hop count"; record=vector; interpolationmode=none);
+        ////@statistic[txPk](title="packets transmitted"; source=packetSentToLower; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+        ////@statistic[rxPkOk](title="packets received OK"; source=rxPkOk; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+        ////@statistic[passedUpPk](title="packets passed to higher layer"; source=packetSentToUpper; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+        ////@statistic[txPausePkUnits](title="pause units sent"; record=count,sum,vector; interpolationmode=none);
+        ////@statistic[rxPausePkUnits](title="pause units received"; record=count,sum,vector; interpolationmode=none);
+        ////@statistic[packetReceivedFromUpper](title="packet bytes from higher layer"; source=packetReceivedFromUpper; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+        ////@statistic[packetDropIncorrectlyReceived](title="packet drop: incorrectly received"; source=packetDropReasonIsIncorrectlyReceived(packetDropped); record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
+        ////@statistic[packetDropInterfaceDown](title="packet drop: interface down"; source=packetDropReasonIsInterfaceDown(packetDropped); record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
+        ////@statistic[packetDropNotAddressedToUs](title="packet drop: not addressed to us"; source=packetDropReasonIsNotAddressedToUs(packetDropped); record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
+        ////@statistic[collision](title="collision"; record=count,vector; interpolationmode=none);
+        ////@statistic[backoffSlotsGenerated](title="backoff"; record=count,vector; interpolationmode=none);
+        ////@statistic[packetHopCount](title="packet hop count"; record=vector; interpolationmode=none);
 
     gates:
         input upperLayerIn @labels(EtherFrame);    // to ~EtherEncap or ~IMacRelayUnit

@@ -52,14 +52,14 @@ module RadioMedium like IRadioMedium
         @class(RadioMedium);
         @display("i=misc/sun");
 
-        @signal[radioAdded];
-        @signal[radioRemoved];
-        @signal[signalAdded];
-        @signal[signalRemoved];
-        @signal[signalDepartureStarted];
-        @signal[signalDepartureEnded];
-        @signal[signalArrivalStarted];
-        @signal[signalArrivalEnded];
+        //@signal[radioAdded];
+        //@signal[radioRemoved];
+        //@signal[signalAdded];
+        //@signal[signalRemoved];
+        //@signal[signalDepartureStarted];
+        //@signal[signalDepartureEnded];
+        //@signal[signalArrivalStarted];
+        //@signal[signalArrivalEnded];
 
     submodules:
         propagation: <default("ConstantSpeedPropagation")> like IPropagation {

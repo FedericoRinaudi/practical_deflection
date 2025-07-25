@@ -75,16 +75,16 @@ simple PingApp like IApp
         @lifecycleSupport;
         double stopOperationExtraTime @unit(s) = default(-1s);    // extra time after lifecycle stop operation finished
         double stopOperationTimeout @unit(s) = default(2s);    // timeout value for lifecycle stop operation
-        @signal[rtt](type=simtime_t);
-        @signal[numLost](type=long);
-        @signal[numOutOfOrderArrivals](type=long);
-        @signal[pingTxSeq](type=long);
-        @signal[pingRxSeq](type=long);
-        @statistic[rtt](title="ping round-trip time"; unit=s; record=histogram,vector; interpolationmode=none);
-        @statistic[numLost](title="pings lost"; record=last,vector; interpolationmode=none);
-        @statistic[numOutOfOrderArrivals](title="ping out-of-order arrivals"; record=last,vector; interpolationmode=none);
-        @statistic[pingTxSeq](title="ping tx seq"; record=count,vector; interpolationmode=none);
-        @statistic[pingRxSeq](title="ping rx seq"; record=count,vector; interpolationmode=none);
+        //@signal[rtt](type=simtime_t);
+        //@signal[numLost](type=long);
+        //@signal[numOutOfOrderArrivals](type=long);
+        //@signal[pingTxSeq](type=long);
+        //@signal[pingRxSeq](type=long);
+        //@statistic[rtt](title="ping round-trip time"; unit=s; record=histogram,vector; interpolationmode=none);
+        //@statistic[numLost](title="pings lost"; record=last,vector; interpolationmode=none);
+        //@statistic[numOutOfOrderArrivals](title="ping out-of-order arrivals"; record=last,vector; interpolationmode=none);
+        //@statistic[pingTxSeq](title="ping tx seq"; record=count,vector; interpolationmode=none);
+        //@statistic[pingRxSeq](title="ping rx seq"; record=count,vector; interpolationmode=none);
         @selfMessageKinds(inet::PingSelfKinds);    // kind used in self messages
     gates:
         input pingIn;

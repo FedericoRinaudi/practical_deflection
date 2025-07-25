@@ -389,7 +389,7 @@ unsigned int BMacHeaderBaseDescriptor::getFieldTypeFlags(int field) const
     static unsigned int fieldTypeFlags[] = {
         0,    // FIELD_srcAddr
         0,    // FIELD_destAddr
-        FD_ISEDITABLE,    // FIELD_type
+        0,    // FIELD_type
     };
     return (field >= 0 && field < 3) ? fieldTypeFlags[field] : 0;
 }
@@ -524,7 +524,6 @@ bool BMacHeaderBaseDescriptor::setFieldValueAsString(void *object, int field, in
     }
     BMacHeaderBase *pp = (BMacHeaderBase *)object; (void)pp;
     switch (field) {
-        case FIELD_type: pp->setType((inet::BMacType)string2enum(value, "inet::BMacType")); return true;
         default: return false;
     }
 }

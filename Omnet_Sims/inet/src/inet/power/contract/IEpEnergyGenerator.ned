@@ -30,6 +30,6 @@ moduleinterface IEpEnergyGenerator extends IEnergyGenerator
 {
     parameters:
         @display("i=block/plug");
-        @signal[powerGenerationChanged](type=double);
+        //@signal[powerGenerationChanged](type=double);
 }
 

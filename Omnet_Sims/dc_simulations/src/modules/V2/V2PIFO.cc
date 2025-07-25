@@ -32,9 +32,9 @@ simsignal_t V2PIFO::packetRankSignal = registerSignal("packetRank");
 V2PIFO::~V2PIFO()
 {
     cancelAndDelete(updateQueueOccupancyMsg);
-    recordScalar("lightInQueuePacketDropCount", light_in_queue_packet_drop_count);
-    recordScalar("lightAllQueueingTime", all_packets_queueing_time_sum / num_all_packets);
-    recordScalar("lightMiceQueueingTime", mice_packets_queueing_time_sum / num_mice_packets);
+    //recordScalar("lightInQueuePacketDropCount", light_in_queue_packet_drop_count);
+    //recordScalar("lightAllQueueingTime", all_packets_queueing_time_sum / num_all_packets);
+    //recordScalar("lightMiceQueueingTime", mice_packets_queueing_time_sum / num_mice_packets);
 }
 
 static int callback_incremental_deployment(void *data, int argc, char **argv, char **azColName){
@@ -935,6 +935,21 @@ long V2PIFO::get_queue_occupancy(long on_the_way_packet_num, b on_the_way_packet
         if (buffer->getMaxTotalLength() != b(-1))
             return (getTotalLength() + on_the_way_packet_length).get();
     }
+    throw cRuntimeError("No queue/buffer capacity specified!");
+}
+
+long V2PIFO::get_queue_capacity() {
+    EV << "V2PIFO::get_queue_capacity" << endl;
+    if (using_buffer) {
+        if (buffer->getMaxNumPackets() != -1)
+            return buffer->getMaxNumPackets();
+        if (buffer->getMaxTotalLength() != b(-1))
+            return buffer->getMaxTotalLength().get();
+    }
+    if (getMaxNumPackets() != -1)
+        return getMaxNumPackets();
+    if (getMaxTotalLength() != b(-1))
+        return getMaxTotalLength().get();
     throw cRuntimeError("No queue/buffer capacity specified!");
 }
 

@@ -119,6 +119,8 @@ class INET_API V2PIFOCanaryQueue : public PacketQueue
     double calculate_relative_priority_dist(Packet* packet);
     double calculate_relative_priority(Packet* packet);
     void update_quantile_list(Packet* packet);
+    virtual long get_queue_capacity() override;
+    
 
 
 };

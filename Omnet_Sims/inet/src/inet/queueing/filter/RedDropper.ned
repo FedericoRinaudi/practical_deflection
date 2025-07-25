@@ -60,7 +60,7 @@ simple RedDropper extends PacketFilterBase
         int dataCapacity @unit(b) = default(-1b);
         @class(RedDropper);
         @display("i=block/downarrow");
-        @signal[packetDropped](type=inet::Packet);
-        @statistic[packetDropCongestion](title="packet drop: congestion"; source=packetDropReasonIsCongestion(packetDropped); record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
+        //@signal[packetDropped](type=inet::Packet);
+        //@statistic[packetDropCongestion](title="packet drop: congestion"; source=packetDropReasonIsCongestion(packetDropped); record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
 }
 

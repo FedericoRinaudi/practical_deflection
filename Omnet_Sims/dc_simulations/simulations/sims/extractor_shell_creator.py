@@ -19,6 +19,9 @@ else:
         raise Exception('You did not accepted!')
 category = add_category
 
+print("aaa")
+
+
 onlyfiles = [f for f in listdir(RESULT_FILES_DIR) if
              isfile(join(RESULT_FILES_DIR, f)) and f[-4:] == '.vec' and '_0_rep' in f]
 f = open(RESULT_FILES_DIR + 'extractor.sh', 'w')
@@ -75,6 +78,7 @@ for file_name in onlyfiles:
         print(without_format_output_file_name)
         f.write('echo \"{}\"\n'.format(without_format_output_file_name))
 
+        '''
         output_dir_name = 'FLOW_ENDED/'
         command = "scavetool x --type v --filter \"module(**.server[*].app[*]) AND " \
                   "\\\"flowEndedRequesterID:vector\\\"\" -o {} -F CSV-S {}\n".format(
@@ -457,12 +461,12 @@ for file_name in onlyfiles:
         # f.write('echo \"{}\"\n'.format(output_dir_name))
         # f.write(command)
         
-        # output_dir_name = 'FB_PACKET_DROPPED/'
-        # command = "scavetool x --type v --filter \"module(**.**.eth[*].mac) AND " \
+        #output_dir_name = 'FB_PACKET_DROPPED/'
+        #command = "scavetool x --type v --filter \"module(**.**.eth[*].mac) AND " \
         #           "\\\"FBPacketDropped:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY+output_dir_name+output_file_name, vector_file_name)
-        # print(command)
-        # f.write('echo \"{}\"\n'.format(output_dir_name))
-        # f.write(command)
+        #print(command)
+        #f.write('echo \"{}\"\n'.format(output_dir_name))
+        #f.write(command)
         
         # output_dir_name = 'FB_BOUNCING_PASSED/'
         # command = "scavetool x --type v --filter \"module(**.**.eth[*].mac) AND " \
@@ -485,12 +489,12 @@ for file_name in onlyfiles:
         f.write('echo \"{}\"\n'.format(output_dir_name))
         f.write(command)
         
-        # output_dir_name = 'FB_PACKET_DROPPED/'
-        # command = "scavetool x --type v --filter \"module(**.**.relayUnit) AND " \
+        #output_dir_name = 'FB_PACKET_DROPPED/'
+        #command = "scavetool x --type v --filter \"module(**.**.relayUnit) AND " \
         #           "\\\"FBPacketDropped:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY+output_dir_name+output_file_name, vector_file_name)
-        # print(command)
-        # f.write('echo \"{}\"\n'.format(output_dir_name))
-        # f.write(command)
+        #print(command)
+        #f.write('echo \"{}\"\n'.format(output_dir_name))
+        #f.write(command)
         
         # output_dir_name = 'FB_PACKET_DROPPED_PORT/'
         # command = "scavetool x --type v --filter \"module(**.**.relayUnit) AND " \
@@ -569,6 +573,213 @@ for file_name in onlyfiles:
         f.write('echo \"{}\"\n'.format(output_dir_name))
         f.write(command)
         
+        # Aggiunta estrazione del campo RequesterID
+        output_dir_name = 'REQUESTER_ID/'
+        command = "scavetool x --type v --filter \"module(**.**.relayUnit) AND " \
+                  "\\\"RequesterID:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY+output_dir_name+output_file_name, vector_file_name)
+        print(command)
+        f.write('echo \"{}\"\n'.format(output_dir_name))
+        f.write(command)
+        
+        # Estrazione del nuovo campo PacketUniqueID
+        output_dir_name = 'PACKET_UNIQUE_ID/'
+        command = "scavetool x --type v --filter \"module(**.**.relayUnit) AND " \
+                  "\\\"PacketUniqueID:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY+output_dir_name+output_file_name, vector_file_name)
+        print(command)
+        f.write('echo \"{}\"\n'.format(output_dir_name))
+        f.write(command)
+        '''
+        output_dir_name = 'QUEUE_LEN/'
+        command = "scavetool x --type v --filter \"module(LeafSpine1G) AND " \
+                    "\\\"QueueLen:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY+output_dir_name+output_file_name, vector_file_name)
+        print(command)
+        f.write('echo \"{}\"\n'.format(output_dir_name))
+        f.write(command)
+        
+        command = '\n\n'# output_dir_name = 'RTT/'
+        # command = "scavetool x --type v --filter \"module(**.server[*].tcp.*) AND " \
+        #           "\\\"rtt:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY + output_dir_name + output_file_name, vector_file_name)
+        # print(command)
+        # f.write('echo \"{}\"\n'.format(output_dir_name))
+        # f.write(comman
+        print(command)
+        f.write(command)
+        
+        output_dir_name = 'QUEUES_TOT_LEN/'
+        command = "scavetool x --type v --filter \"module(LeafSpine1G) AND " \
+                    "\\\"QueuesTotLen:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY+output_dir_name+output_file_name, vector_file_name)
+        print(command)
+        f.write('echo \"{}\"\n'.format(output_dir_name))
+        f.write(command)
+        
+        command = '\n\n'
+        print(command)
+        f.write(command)
+        
+        output_dir_name = 'QUEUE_CAPACITY/'
+        command = "scavetool x --type v --filter \"module(LeafSpine1G) AND " \
+                  "\\\"QueueCapacity:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY+output_dir_name+output_file_name, vector_file_name)
+        print(command)
+        f.write('echo \"{}\"\n'.format(output_dir_name))
+        f.write(command)
+        
+        command = '\n\n'
+        print(command)
+        f.write(command)
+        
+        output_dir_name = 'QUEUES_TOT_CAPACITY/'
+        command = "scavetool x --type v --filter \"module(LeafSpine1G) AND " \
+                  "\\\"QueuesTotCapacity:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY+output_dir_name+output_file_name, vector_file_name)
+        print(command)
+        f.write('echo \"{}\"\n'.format(output_dir_name))
+        f.write(command)
+        
+        command = '\n\n'
+        print(command)
+        f.write(command)
+        
+        output_dir_name = 'PACKET_ACTION/'
+        command = "scavetool x --type v --filter \"module(LeafSpine1G) AND " \
+                  "\\\"PacketAction:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY+output_dir_name+output_file_name, vector_file_name)
+        print(command)
+        f.write('echo \"{}\"\n'.format(output_dir_name))
+        f.write(command)
+        
+        command = '\n\n'
+        print(command)
+        f.write(command)
+        
+        #output_dir_name = 'RTT/'
+        #command = "scavetool x --type v --filter \"module(**.server[*].tcp.*) AND " \
+        #          "\\\"rtt:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY + output_dir_name + output_file_name, vector_file_name)
+        #print(command)
+        #f.write('echo \"{}\"\n'.format(output_dir_name))
+        #f.write(command)
+        
+        #command = '\n\n'
+        #print(command)
+        #f.write(command)
+        
+        #output_dir_name = 'CLIENT_SEQ_NUM/'
+        #command = "scavetool x --type v --filter \"module(**.server[*].tcp.*) AND " \
+        #          "\\\"seqNo:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY + output_dir_name + output_file_name, vector_file_name)
+        #print(command)
+        #f.write('echo \"{}\"\n'.format(output_dir_name))
+        #f.write(command)
+        
+        #command = '\n\n'
+        #print(command)
+        #f.write(command)
+        
+        output_dir_name = 'RCV_TS_SEQ_NUM/'
+        command = "scavetool x --type v --filter \"module(LeafSpine1G) AND " \
+                  "\\\"rcvSeq:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY + output_dir_name + output_file_name, vector_file_name)
+        print(command)
+        f.write('echo \"{}\"\n'.format(output_dir_name))
+        f.write(command)
+        
+        command = '\n\n'
+        print(command)
+        f.write(command)
+        
+        output_dir_name = 'SND_TS_SEQ_NUM/'
+        command = "scavetool x --type v --filter \"module(LeafSpine1G) AND " \
+                  "\\\"sndNxt:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY + output_dir_name + output_file_name, vector_file_name)
+        print(command)
+        f.write('echo \"{}\"\n'.format(output_dir_name))
+        f.write(command)
+        
+        command = '\n\n'
+        print(command)
+        f.write(command)
+
+        output_dir_name = 'OOO_SEG/'
+        command = "scavetool x --type v --filter \"module(LeafSpine1G) AND " \
+                  "\\\"rcvOooSeg:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY + output_dir_name + output_file_name, vector_file_name)
+        print(command)
+        f.write('echo \"{}\"\n'.format(output_dir_name))
+        f.write(command)
+        
+        command = '\n\n'
+        print(command)
+        f.write(command)
+        
+        output_dir_name = 'SWITCH_SEQ_NUM/'
+        command = "scavetool x --type v --filter \"module(LeafSpine1G) AND " \
+                  "\\\"switchSeqNum:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY + output_dir_name + output_file_name, vector_file_name)
+        print(command)
+        f.write('echo \"{}\"\n'.format(output_dir_name))
+        f.write(command)
+        
+        command = '\n\n'
+        print(command)
+        f.write(command)
+
+        output_dir_name = 'RETRANSMITTED/'
+        command = "scavetool x --type v --filter \"module(LeafSpine1G) AND " \
+                  "\\\"retransmitted:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY + output_dir_name + output_file_name, vector_file_name)
+        print(command)
+        f.write('echo \"{}\"\n'.format(output_dir_name))
+        f.write(command)
+
+        command = '\n\n'
+        print(command)
+        f.write(command)
+        
+        output_dir_name = 'TTL/'
+        command = "scavetool x --type v --filter \"module(LeafSpine1G) AND " \
+                  "\\\"switchTtl:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY + output_dir_name + output_file_name, vector_file_name)
+        print(command)
+        f.write('echo \"{}\"\n'.format(output_dir_name))
+        f.write(command)
+        
+        command = '\n\n'
+        print(command)
+        f.write(command)
+
+        output_dir_name = 'ACTION_SEQ_NUM/'
+        command = "scavetool x --type v --filter \"module(LeafSpine1G) AND " \
+                  "\\\"actionSeqNum:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY + output_dir_name + output_file_name, vector_file_name)
+        print(command)
+        f.write('echo \"{}\"\n'.format(output_dir_name))
+        f.write(command)
+
+        command = '\n\n'
+        print(command)
+        f.write(command)
+        
+        
+        output_dir_name = 'SWITCH_ID/'
+        command = "scavetool x --type v --filter \"module(LeafSpine1G) AND " \
+                  "\\\"switchId:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY + output_dir_name + output_file_name, vector_file_name)
+        print(command)
+        f.write('echo \"{}\"\n'.format(output_dir_name))
+        f.write(command)
+        
+        command = '\n\n'
+        print(command)
+        f.write(command)
+        
+        
+        output_dir_name = 'SWITCH_ID_ACTION/'
+        command = "scavetool x --type v --filter \"module(LeafSpine1G) AND " \
+                  "\\\"switchIdAction:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY + output_dir_name + output_file_name, vector_file_name)
+        print(command)
+        f.write('echo \"{}\"\n'.format(output_dir_name))
+        f.write(command)
+
+        command = '\n\n'
+        print(command)
+        f.write(command)
+        
+        
+        output_dir_name = 'INTERFACE_ID/'
+        command = "scavetool x --type v --filter \"module(LeafSpine1G) AND " \
+                  "\\\"interfaceId:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY + output_dir_name + output_file_name, vector_file_name)
+        print(command)
+        f.write('echo \"{}\"\n'.format(output_dir_name))
+        f.write(command)
+
         command = '\n\n'
         print(command)
         f.write(command)

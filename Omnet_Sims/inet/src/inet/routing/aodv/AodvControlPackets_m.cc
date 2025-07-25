@@ -352,7 +352,7 @@ unsigned int AodvControlPacketDescriptor::getFieldTypeFlags(int field) const
         field -= basedesc->getFieldCount();
     }
     static unsigned int fieldTypeFlags[] = {
-        0,    // FIELD_packetType
+        FD_ISEDITABLE,    // FIELD_packetType
     };
     return (field >= 0 && field < 1) ? fieldTypeFlags[field] : 0;
 }
@@ -479,6 +479,7 @@ bool AodvControlPacketDescriptor::setFieldValueAsString(void *object, int field,
     }
     AodvControlPacket *pp = (AodvControlPacket *)object; (void)pp;
     switch (field) {
+        case FIELD_packetType: pp->setPacketType((inet::aodv::AodvControlPacketType)string2enum(value, "inet::aodv::AodvControlPacketType")); return true;
         default: return false;
     }
 }

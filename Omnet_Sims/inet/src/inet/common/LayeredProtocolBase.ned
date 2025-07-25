@@ -23,10 +23,10 @@ package inet.common;
 simple LayeredProtocolBase
 {
     parameters:
-        @signal[packetSentToUpper](type=cPacket);
-        @signal[packetReceivedFromUpper](type=cPacket);
-        @signal[packetSentToLower](type=cPacket);
-        @signal[packetReceivedFromLower](type=cPacket);
-        @signal[packetDropped](type=cPacket);
+        //@signal[packetSentToUpper](type=cPacket);
+        //@signal[packetReceivedFromUpper](type=cPacket);
+        //@signal[packetSentToLower](type=cPacket);
+        //@signal[packetReceivedFromLower](type=cPacket);
+        //@signal[packetDropped](type=cPacket);
 }
 

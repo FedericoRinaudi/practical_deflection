@@ -13,7 +13,9 @@ random_config_dir/
 core
 *.db*
 *.pyc
-# distributions/
+Omnet_Sims/dc_simulations/simulations/Vertigo_Sims/distributions/
+Omnet_Sims/dc_simulations/simulations/Vertigo_Sims/dist_files_100gbps/
+Omnet_Sims/dc_simulations/simulations/Vertigo_Sims/dist_files_40_10gbps/
 src/dc_simulations
 src/dc_simulations_dbg
 perf*

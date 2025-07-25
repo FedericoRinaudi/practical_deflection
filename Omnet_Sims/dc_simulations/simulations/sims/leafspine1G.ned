@@ -32,6 +32,21 @@ import dc_simulations.modules.Host.HostWithPortPadding.PortPaddingStandardHost;
 network LeafSpine1G
 {
     parameters:
+        @statistic[rcvSeq](record=vector,stats; interpolationmode=none);    // received seqNo
+        @statistic[sndNxt](record=vector,stats; interpolationmode=none);    // sent seqNo
+        @statistic[retransmitted](record=vector,stats; interpolationmode=none); // number of retransmitted segments
+        @statistic[rcvOooSeg](record=vector,stats; interpolationmode=none);    // number of received out-of-order segments
+        @statistic[QueueLen](title="Queue Length"; source="queueLen"; record=vector,stats; interpolationmode=none); // Registra la lunghezza della coda
+        @statistic[QueuesTotLen](title="Total Queues Length"; source="queuesTotLen"; record=vector,stats; interpolationmode=none); // Registra la lunghezza totale delle code
+        @statistic[QueueCapacity](title="Queue Capacity"; source="queueCapacity"; record=vector,stats; interpolationmode=none); // Registra la capacità della coda
+        @statistic[QueuesTotCapacity](title="Queue Total Capacity"; source="queuesTotCapacity"; record=vector,stats; interpolationmode=none); // Registra la capacità totale delle code
+        @statistic[PacketAction](title="Packet Action"; source="packetAction"; record=vector,stats; interpolationmode=none); // Registra l'azione del pacchetto (0: forward, 1: drop, 2: generate feedback)
+        @statistic[switchSeqNum](record=vector,stats; interpolationmode=none); // Registra il numero di sequenza del pacchetto switch
+        @statistic[switchTtl](record=vector,stats; interpolationmode=none); // Registra il TTL del pacchetto switch
+        @statistic[actionSeqNum](record=vector,stats; interpolationmode=none);
+        @statistic[switchId](record=vector,stats; interpolationmode=none); // Registra l'ID dello switch del pacchetto
+        @statistic[switchIdAction](record=vector,stats; interpolationmode=none); // Registra l'ID dello switch dell'azione del pacchetto
+        @statistic[interfaceId](record=vector,stats; interpolationmode=none); // Registra l'ID dell'interfaccia del pacchetto
         @display("bgb=643,481");
         int num_spines @prompt("Number of spines") = default(8);
         int num_aggs @prompt("Number of aggregation level switches") = default(16);

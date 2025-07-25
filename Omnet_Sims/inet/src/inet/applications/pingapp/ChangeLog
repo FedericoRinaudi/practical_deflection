@@ -159,7 +159,7 @@
 
 2016-07-25  Andras Varga
 
-	Fixed inconsistency between @signal and @statistic
+	Fixed inconsistency between //@signal and //@statistic
 
 2016-06-03  Zoltan Bojthe
 
@@ -197,7 +197,7 @@
 
 2016-07-25  Andras Varga
 
-	PingApp: fix inconsistency between @signal and @statistic
+	PingApp: fix inconsistency between //@signal and //@statistic
 
 2016-06-15  ------ inet-3.4.0 released ------
 
@@ -385,7 +385,7 @@
 
 2011-12-21  Andras Varga
 
-	PingApp: @statistics revised
+	PingApp: //@statistics revised
 
 	Renaming:
 	- pingTx/pingRx -> pingTxSeq/pingRxSeq
@@ -401,7 +401,7 @@
 	- fix: out-of-order arrivals are no longer counted twice (both as "drop"
 	  and as "outOfOrder")
 
-	@statistics:
+	//@statistics:
 	- standardizing on lower case statistics titles
 	- revised recording modes (e.g. "histogram" and "stats" do not make
 	  sense together, as "histogram" already collects count, mean, stddev,
@@ -422,7 +422,7 @@
 	statistics: emit pk (cPacket*) signals instead of pkBytes etc; added
 	more statistics
 
-	Utilize packetBytes() result filter in @statistic to record byte counts
+	Utilize packetBytes() result filter in //@statistic to record byte counts
 
 2011-07-18  Andras Varga
 
@@ -496,13 +496,13 @@
 
 2010-03-05  Andras Varga
 
-	@statistic: added missing 'vector' recording mode
+	//@statistic: added missing 'vector' recording mode
 
 2010-03-05  Andras Varga
 
 	update for omnet++ 4.1b3:
 
-	renamed @signal to @statistic modeHint= to record=
+	renamed //@signal to //@statistic modeHint= to record=
 
 2010-02-22  Zoltan Bojthe
 

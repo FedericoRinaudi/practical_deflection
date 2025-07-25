@@ -33,8 +33,8 @@ simple BehaviorAggregateClassifier extends PacketClassifierBase
     parameters:
         string dscps = default(""); // space separated dscp values of the gates, both names (e.g. AF11, EF) and numbers (0x0A,0b101110) can be used
         @class(BehaviorAggregateClassifier);
-        @signal[pkClass](type=long);
-        @statistic[pkClass](title="packet class"; source=pkClass; record=vector; interpolationmode=none);
+        //@signal[pkClass](type=long);
+        //@statistic[pkClass](title="packet class"; source=pkClass; record=vector; interpolationmode=none);
     gates:
         output defaultOut;
 }

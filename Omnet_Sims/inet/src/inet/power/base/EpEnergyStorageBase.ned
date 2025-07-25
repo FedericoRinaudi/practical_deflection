@@ -31,11 +31,11 @@ simple EpEnergyStorageBase like IEpEnergyStorage
     parameters:
         @display("i=block/plug");
         @class(EpEnergyStorageBase);
-        @signal[powerConsumptionChanged];
-        @signal[powerGenerationChanged];
-        @signal[residualEnergyCapacityChanged];
-        @statistic[powerConsumption](title="Power consumption"; source=powerConsumptionChanged; record=vector; interpolationmode=sample-hold);
-        @statistic[powerGeneration](title="Power generation"; source=powerGenerationChanged; record=vector; interpolationmode=sample-hold);
-        @statistic[residualEnergyCapacity](title="Residual energy capacity"; source=residualEnergyCapacityChanged; record=vector,last; interpolationmode=linear);
+        //@signal[powerConsumptionChanged];
+        //@signal[powerGenerationChanged];
+        //@signal[residualEnergyCapacityChanged];
+        //@statistic[powerConsumption](title="Power consumption"; source=powerConsumptionChanged; record=vector; interpolationmode=sample-hold);
+        //@statistic[powerGeneration](title="Power generation"; source=powerGenerationChanged; record=vector; interpolationmode=sample-hold);
+        //@statistic[residualEnergyCapacity](title="Residual energy capacity"; source=residualEnergyCapacityChanged; record=vector,last; interpolationmode=linear);
 }
 

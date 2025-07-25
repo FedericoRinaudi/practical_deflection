@@ -669,7 +669,7 @@ unsigned int TcpErrorInfoDescriptor::getFieldTypeFlags(int field) const
         field -= basedesc->getFieldCount();
     }
     static unsigned int fieldTypeFlags[] = {
-        0,    // FIELD_errorCode
+        FD_ISEDITABLE,    // FIELD_errorCode
         FD_ISEDITABLE,    // FIELD_messageText
     };
     return (field >= 0 && field < 2) ? fieldTypeFlags[field] : 0;
@@ -801,6 +801,7 @@ bool TcpErrorInfoDescriptor::setFieldValueAsString(void *object, int field, int 
     }
     TcpErrorInfo *pp = (TcpErrorInfo *)object; (void)pp;
     switch (field) {
+        case FIELD_errorCode: pp->setErrorCode((inet::TcpErrorCode)string2enum(value, "inet::TcpErrorCode")); return true;
         case FIELD_messageText: pp->setMessageText((value)); return true;
         default: return false;
     }

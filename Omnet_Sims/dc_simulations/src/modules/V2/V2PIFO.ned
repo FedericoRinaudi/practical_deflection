@@ -50,13 +50,13 @@ simple V2PIFO extends PacketQueue
         
         bool just_prioritize_bursty_flows = default(false);
         
-        @signal[packetDropSeq]();
-        @signal[packetDropRetCount]();
-        @signal[packetDropTotalPayloadLength]();
-        @signal[packetRank]();
+        ////@signal[packetDropSeq]();
+        ////@signal[packetDropRetCount]();
+        ////@signal[packetDropTotalPayloadLength]();
+        ////@signal[packetRank]();
         
-        @statistic[droppktSeqs](title="seqs of the dropped packets"; source="packetDropSeq"; record=vector; interpolationmode=none);
-        @statistic[droppktRetCount](title="ret count of the dropped packets"; source="packetDropRetCount"; record=vector; interpolationmode=none);
-        @statistic[pktDropTotalPayloadLen](title="total payload length of BG packets dropped in v2 queue"; source="packetDropTotalPayloadLength"; record=vector; interpolationmode=none);
-        @statistic[pktRank](title="Rank of packets pushed in the queue"; source="packetRank"; record=vector; interpolationmode=none);
+        ////@statistic[droppktSeqs](title="seqs of the dropped packets"; source="packetDropSeq"; record=vector; interpolationmode=none);
+        ////@statistic[droppktRetCount](title="ret count of the dropped packets"; source="packetDropRetCount"; record=vector; interpolationmode=none);
+        ////@statistic[pktDropTotalPayloadLen](title="total payload length of BG packets dropped in v2 queue"; source="packetDropTotalPayloadLength"; record=vector; interpolationmode=none);
+        ////@statistic[pktRank](title="Rank of packets pushed in the queue"; source="packetRank"; record=vector; interpolationmode=none);
 }

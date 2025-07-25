@@ -73,18 +73,18 @@ simple Udp like IUdp
         string icmpv6Module = default("^.ipv6.icmpv6");
         string crcMode @enum("disabled", "declared", "computed") = default("declared");
         @display("i=block/transport");
-        @signal[packetSentToUpper](type=cPacket);
-        @signal[packetReceivedFromUpper](type=cPacket);
-        @signal[packetSentToLower](type=cPacket);
-        @signal[packetReceivedFromLower](type=cPacket);
-        @signal[packetDropped](type=inet::Packet);
-        @signal[packetSent](type=cPacket);
-        @signal[packetReceived](type=cPacket);
-        @statistic[packetSent](title="packets sent"; source=packetSent; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
-        @statistic[packetReceived](title="packets received"; source=packetReceived; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
-        @statistic[passedUpPk](title="packets passed up"; source=packetSentToUpper; record=count,"vector(count)"; interpolationmode=none);
-        @statistic[droppedPkWrongPort](title="packets dropped (wrong port)"; source=packetDropReasonIsNoPortFound(packetDropped); record=count,"vector(count)"; interpolationmode=none);
-        @statistic[droppedPkBadChecksum](title="packets dropped (checksum error)"; source=packetDropReasonIsIncorrectlyReceived(packetDropped); record=count,"vector(count)"; interpolationmode=none);
+        //@signal[packetSentToUpper](type=cPacket);
+        //@signal[packetReceivedFromUpper](type=cPacket);
+        //@signal[packetSentToLower](type=cPacket);
+        //@signal[packetReceivedFromLower](type=cPacket);
+        //@signal[packetDropped](type=inet::Packet);
+        //@signal[packetSent](type=cPacket);
+        //@signal[packetReceived](type=cPacket);
+        //@statistic[packetSent](title="packets sent"; source=packetSent; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+        //@statistic[packetReceived](title="packets received"; source=packetReceived; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+        //@statistic[passedUpPk](title="packets passed up"; source=packetSentToUpper; record=count,"vector(count)"; interpolationmode=none);
+        //@statistic[droppedPkWrongPort](title="packets dropped (wrong port)"; source=packetDropReasonIsNoPortFound(packetDropped); record=count,"vector(count)"; interpolationmode=none);
+        //@statistic[droppedPkBadChecksum](title="packets dropped (checksum error)"; source=packetDropReasonIsIncorrectlyReceived(packetDropped); record=count,"vector(count)"; interpolationmode=none);
         @selfMessageKinds();    // kind not used in self messages or model doesn't use any self message
         @directSendKinds();     // kind not used in sendDirect() messages or model doesn't use any sendDirect()
 

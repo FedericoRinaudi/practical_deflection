@@ -42,7 +42,7 @@
 
 2018-08-17  Zoltan Bojthe
 
-	Added namespace qualifier to @signal type parameters.
+	Added namespace qualifier to //@signal type parameters.
 
 2018-07-17  Levente Mészáros
 
@@ -230,7 +230,7 @@
 
 2014-01-07  Zoltan Bojthe
 
-	added/fixed @signal declarations, fixed type of emitted values
+	added/fixed //@signal declarations, fixed type of emitted values
 
 2013-08-22  ------ inet-2.2.0 released ------
 
@@ -349,7 +349,7 @@
 	statistics: emit pk (cPacket*) signals instead of pkBytes etc; added
 	more statistics
 
-	Utilize packetBytes() result filter in @statistic to record byte counts
+	Utilize packetBytes() result filter in //@statistic to record byte counts
 
 2011-06-06  Zoltan Bojthe
 

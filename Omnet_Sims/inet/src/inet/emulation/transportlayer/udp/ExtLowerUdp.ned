@@ -28,12 +28,12 @@ simple ExtLowerUdp like IUdp
         string namespace = default("");
         string packetNameFormat = default("Ext-%p-%t-%n");
         @display("i=block/transport");
-        @signal[packetSentToUpper](type=inet::Packet);
-        @signal[packetReceivedFromUpper](type=inet::Packet);
-        @signal[packetSent](type=inet::Packet);
-        @signal[packetReceived](type=inet::Packet);
-        @statistic[packetSent](title="packets sent"; source=packetSent; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
-        @statistic[packetReceived](title="packets received"; source=packetReceived; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+        //@signal[packetSentToUpper](type=inet::Packet);
+        //@signal[packetReceivedFromUpper](type=inet::Packet);
+        //@signal[packetSent](type=inet::Packet);
+        //@signal[packetReceived](type=inet::Packet);
+        //@statistic[packetSent](title="packets sent"; source=packetSent; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+        //@statistic[packetReceived](title="packets received"; source=packetReceived; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
 
     gates:
         input appIn @labels(UdpControlInfo/down);

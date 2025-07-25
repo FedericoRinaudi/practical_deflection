@@ -92,12 +92,12 @@ foreach $fname (@fnames)
 
 # print signals
 
-###print join("\n",@signals);
+###print join("\n",//@signals);
 print "Unrecognised registersignals calls:\n";
 print join("\n",sort(@othersignals)),"\n";
 
 $out = "### rename signals:\n";
-$out .= join("\n", sort(@signals));
+$out .= join("\n", sort(//@signals));
 $out .= "\n";
 
 for $i (sort(keys(%signals))) {

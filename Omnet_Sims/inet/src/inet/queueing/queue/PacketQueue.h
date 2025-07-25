@@ -99,6 +99,9 @@ class INET_API PacketQueue : public PacketQueueBase, public IPacketBuffer::ICall
     virtual long get_queue_occupancy(long on_the_way_packet_num = 0, b on_the_way_packet_length = b(0)) {
         throw cRuntimeError("get_queue_occupancy called in PacketQueue");
     }
+    virtual long get_queue_capacity() {
+        throw cRuntimeError("get_queue_capacity called in PacketQueue");
+    }
     virtual bool is_packet_tag_larger_than_last_packet(Packet* packet) {
         throw cRuntimeError("is_packet_tag_larger_than_last_packet called in PacketQueue");
     }

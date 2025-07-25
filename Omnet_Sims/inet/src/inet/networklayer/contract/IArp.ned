@@ -22,9 +22,9 @@ moduleinterface IArp
 {
     parameters:
         @display("i=block/layer");
-        @signal[arpResolutionInitiated](type=inet::IArp::Notification);
-        @signal[arpResolutionCompleted](type=inet::IArp::Notification);
-        @signal[arpResolutionFailed](type=inet::IArp::Notification);
+        //@signal[arpResolutionInitiated](type=inet::IArp::Notification);
+        //@signal[arpResolutionCompleted](type=inet::IArp::Notification);
+        //@signal[arpResolutionFailed](type=inet::IArp::Notification);
     gates:
         input ifIn @labels(ArpPacket,Ieee802Ctrl);
         output ifOut @labels(ArpPacket,Ieee802Ctrl);

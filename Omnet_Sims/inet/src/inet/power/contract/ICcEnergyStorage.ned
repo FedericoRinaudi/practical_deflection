@@ -30,6 +30,6 @@ moduleinterface ICcEnergyStorage extends ICcEnergySource, ICcEnergySink, IEnergy
 {
     parameters:
         @display("i=block/plug");
-        @signal[residualChargeCapacityChanged](type=double);
+        //@signal[residualChargeCapacityChanged](type=double);
 }
 

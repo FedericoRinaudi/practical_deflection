@@ -36,7 +36,7 @@ contains the modules. By default, the :par:`statisticName` is the same as
 the :par:`signalName`.
 
 Alternatively, the :par:`statisticExpression` parameter can be used instead of :par:`statisticName`.
-The :par:`statisticExpression` parameter can specify an expression with OMNeT++'s ``@statistic`` syntax.
+The :par:`statisticExpression` parameter can specify an expression with OMNeT++'s ``//@statistic`` syntax.
 This is useful in case there is no statistic for the required data, or for selecting another statistic recording mode (by default, the first recording mode defined in the statistic is used by :par:`statisticName`).
 
 The :par:`format` parameter is a string that specifies how the visualizer

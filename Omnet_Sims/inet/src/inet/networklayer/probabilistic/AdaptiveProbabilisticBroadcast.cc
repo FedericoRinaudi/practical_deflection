@@ -120,7 +120,7 @@ void AdaptiveProbabilisticBroadcast::updateBeta()
         beta = 0.2;
     else
         beta = 0.1;
-    bvec.record(beta);
+    //bvec.record(beta);
 }
 
 } // namespace inet

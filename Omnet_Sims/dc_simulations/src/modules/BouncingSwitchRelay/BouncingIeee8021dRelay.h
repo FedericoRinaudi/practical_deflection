@@ -71,6 +71,7 @@ class BouncingIeee8021dRelay : public LayeredProtocolBase
     IInterfaceTable *ifTable = nullptr;
     LSIMacAddressTable *macTable = nullptr;
     InterfaceEntry *ie = nullptr;
+    std::vector<AugmentedEtherMac*> macList;
     bool isStpAware = false;
     std::list<int> port_idx_connected_to_switch_neioghbors;
     int random_power_factor;
@@ -79,6 +80,7 @@ class BouncingIeee8021dRelay : public LayeredProtocolBase
     bool use_memory;
     int random_power_memory_size;
     int random_power_bounce_memory_size;
+    bool capacity_recorded = false; // todo
     /*
      * For forwarding we keep a prefix-based record.
      * Same memory for those prefixes with the same ECMP group
@@ -141,8 +143,27 @@ class BouncingIeee8021dRelay : public LayeredProtocolBase
     static simsignal_t feedBackPacketGeneratedReqIDSignal;
     static simsignal_t bounceLimitPassedSignal;
     static simsignal_t burstyPacketReceivedSignal;
+    static simsignal_t requesterIDSignal; // Nuovo segnale per tracciare il requesterID
+    static simsignal_t packetUniqueIDSignal; // Nuovo segnale per tracciare l'ID univoco del pacchetto
+    static simsignal_t queueLenSignal;
+    static simsignal_t queuesTotLenSignal;
+    static simsignal_t queueCapacitySignal;
+    static simsignal_t queuesTotCapacitySignal;
+    static simsignal_t packetActionSignal;
+    static simsignal_t switchSeqNumSignal; // Sequence number for the switch
+    static simsignal_t switchTtlSignal; // Time to live for the switch
+    static simsignal_t actionSeqNumSignal; // Sequence number for the action taken on the
+    static simsignal_t switchIdSignal; // Switch ID for the packet
+    static simsignal_t switchIdActionSignal; // Switch ID for the action taken on the packet
+    static simsignal_t interfaceIdSignal; // Interface ID for the packet
     unsigned long long light_in_relay_packet_drop_counter = 0;
 
+    // Definizione dei valori per relayAction
+    enum RelayAction {
+        DROP = 0,
+        DEFLECT = 1,
+        FORWARD = 2
+    };
 
     struct Comp
     {
@@ -242,8 +263,10 @@ class BouncingIeee8021dRelay : public LayeredProtocolBase
     void bolt_evaluate_if_src_packet_should_be_generated(Packet *packet, InterfaceEntry *, bool ignore_cc_thresh, bool has_phy_header=true, int extraction_port_interface_id=-1);
     void mark_packet_deflection_tag(Packet *packet, bool has_phy_header=true);
     bool bolt_is_packet_src(Packet *packet);
+    
+    unsigned long getRequesterIDFromPacket(Packet *packet, InterfaceEntry *ie = nullptr);
+    unsigned long getSequenceNumberFromPacket(Packet *packet, InterfaceEntry *ie);
+    unsigned long getPacketIDFromPacket(Packet *packet, InterfaceEntry *ie);
 };
 
-
 #endif // ifndef __INET_BouncingIEEE8021DRELAY_H
-

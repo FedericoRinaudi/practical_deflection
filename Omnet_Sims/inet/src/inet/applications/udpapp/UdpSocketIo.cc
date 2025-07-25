@@ -51,8 +51,8 @@ void UdpSocketIo::handleMessageWhenUp(cMessage *message)
 
 void UdpSocketIo::finish()
 {
-    recordScalar("packets sent", numSent);
-    recordScalar("packets received", numReceived);
+    //recordScalar("packets sent", numSent);
+    //recordScalar("packets received", numReceived);
     ApplicationBase::finish();
 }
 

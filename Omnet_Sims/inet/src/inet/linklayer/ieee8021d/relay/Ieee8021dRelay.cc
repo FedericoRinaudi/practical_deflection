@@ -292,12 +292,12 @@ InterfaceEntry *Ieee8021dRelay::chooseInterface()
 
 void Ieee8021dRelay::finish()
 {
-    recordScalar("number of received BPDUs from STP module", numReceivedBPDUsFromSTP);
-    recordScalar("number of received frames from network (including BPDUs)", numReceivedNetworkFrames);
-    recordScalar("number of dropped frames (including BPDUs)", numDroppedFrames);
-    recordScalar("number of delivered BPDUs to the STP module", numDeliveredBDPUsToSTP);
-    recordScalar("number of dispatched BPDU frames to the network", numDispatchedBDPUFrames);
-    recordScalar("number of dispatched non-BDPU frames to the network", numDispatchedNonBPDUFrames);
+    //recordScalar("number of received BPDUs from STP module", numReceivedBPDUsFromSTP);
+    //recordScalar("number of received frames from network (including BPDUs)", numReceivedNetworkFrames);
+    //recordScalar("number of dropped frames (including BPDUs)", numDroppedFrames);
+    //recordScalar("number of delivered BPDUs to the STP module", numDeliveredBDPUsToSTP);
+    //recordScalar("number of dispatched BPDU frames to the network", numDispatchedBDPUFrames);
+    //recordScalar("number of dispatched non-BDPU frames to the network", numDispatchedNonBPDUFrames);
 }
 
 } // namespace inet

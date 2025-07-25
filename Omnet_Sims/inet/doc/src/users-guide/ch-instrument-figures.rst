@@ -66,7 +66,7 @@ Using Instrument Figures
 
 Instrument figures visualize statistics derived from signals emitted by
 modules in the network. This statistic is declared in the NED file, with
-the ``@statistic`` property. The property's ``source`` attribute is an
+the ``//@statistic`` property. The property's ``source`` attribute is an
 expression that specifies which signals to use from which modules, and
 the mathematical operations on it, to derive the statistic. The
 ``record`` attribute specifies where the values of the statistic is
@@ -84,7 +84,7 @@ Here is an example NED file:
 
 .. code-block:: none
 
-   @statistic[numRcvdPk](source=count(client.app[0].rcvdPk); record=figure; targetFigure=counter);
+   //@statistic[numRcvdPk](source=count(client.app[0].rcvdPk); record=figure; targetFigure=counter);
    @figure[numRcvdPkCounter](type=counter; pos=413,327; label="Packets received"; decimalPlaces=4);
 
 This creates a figure named ``numRcvdPkCounter``, which displays a counter.

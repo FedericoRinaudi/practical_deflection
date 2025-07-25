@@ -118,6 +118,7 @@ class INET_API TcpBaseAlg : public TcpAlgorithm
     static simsignal_t rttvarSignal;    // will record RTT variance (rttvar)
     static simsignal_t rtoSignal;    // will record retransmission timeout
     static simsignal_t numRtosSignal;    // will record total number of RTOs
+    static simsignal_t seqNoSignal;    // will record sequence number
 
   protected:
     /** @name Process REXMIT, PERSIST, DELAYED-ACK and KEEP-ALIVE timers */

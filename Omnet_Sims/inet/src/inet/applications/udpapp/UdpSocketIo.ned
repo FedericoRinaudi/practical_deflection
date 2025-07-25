@@ -36,10 +36,10 @@ simple UdpSocketIo
         double stopOperationTimeout @unit(s) = default(2s);    // timeout value for lifecycle stop operation
         @lifecycleSupport();
         @display("i=block/socket");
-        @signal[packetSent](type=inet::Packet);
-        @signal[packetReceived](type=inet::Packet);
-        @statistic[packetSent](title="packets sent"; source=packetSent; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
-        @statistic[packetReceived](title="packets received"; source=packetReceived; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+        //@signal[packetSent](type=inet::Packet);
+        //@signal[packetReceived](type=inet::Packet);
+        //@statistic[packetSent](title="packets sent"; source=packetSent; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+        //@statistic[packetReceived](title="packets received"; source=packetReceived; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
     gates:
         input trafficIn;
         output trafficOut;

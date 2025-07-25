@@ -450,7 +450,7 @@ unsigned int RtcpPacketDescriptor::getFieldTypeFlags(int field) const
         FD_ISEDITABLE,    // FIELD_version
         FD_ISEDITABLE,    // FIELD_padding
         FD_ISEDITABLE,    // FIELD_count
-        FD_ISEDITABLE,    // FIELD_packetType
+        0,    // FIELD_packetType
         FD_ISEDITABLE,    // FIELD_rtcpLength
     };
     return (field >= 0 && field < 5) ? fieldTypeFlags[field] : 0;
@@ -597,7 +597,6 @@ bool RtcpPacketDescriptor::setFieldValueAsString(void *object, int field, int i,
         case FIELD_version: pp->setVersion(string2long(value)); return true;
         case FIELD_padding: pp->setPadding(string2bool(value)); return true;
         case FIELD_count: pp->setCount(string2long(value)); return true;
-        case FIELD_packetType: pp->setPacketType((inet::rtp::RtcpPacketType)string2enum(value, "inet::rtp::RtcpPacketType")); return true;
         case FIELD_rtcpLength: pp->setRtcpLength(string2long(value)); return true;
         default: return false;
     }

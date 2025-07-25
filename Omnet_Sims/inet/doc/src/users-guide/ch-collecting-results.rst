@@ -10,7 +10,7 @@ TODO
 Recording Statistics
 --------------------
 
-@statistic
+//@statistic
 
 .. _ug:sec:results:recording-pcap-traces:
 

@@ -30,7 +30,7 @@ network HiddenNodeShowcase
     parameters:
         @display("b=297,203;bgb=736.6,557.784");
         @figure[rcvdPkText](type=indicatorText; pos=420,20; anchor=w; font=,20; textFormat="packets received: %g"; initialValue=0);
-        @statistic[packetReceived](source=hostB.udp.packetReceived; record=figure(count); targetFigure=rcvdPkText);
+        //@statistic[packetReceived](source=hostB.udp.packetReceived; record=figure(count); targetFigure=rcvdPkText);
     submodules:
 
         hostA: WirelessHost {

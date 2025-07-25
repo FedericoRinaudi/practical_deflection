@@ -34,6 +34,6 @@ simple V2PacketBuffer extends PacketBuffer
         @class(V2PacketBuffer);
         double dt_alpha = default(1);
         
-        @signal[sharedMemQueueLenByte](type=long);
-		@statistic[sharedMemQueueLengthByte](title="The shared mem length in bytes"; source="sharedMemQueueLenByte"; record=vector; interpolationmode=none);
+        ////@signal[sharedMemQueueLenByte](type=long);
+		////@statistic[sharedMemQueueLengthByte](title="The shared mem length in bytes"; source="sharedMemQueueLenByte"; record=vector; interpolationmode=none);
 }

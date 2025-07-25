@@ -169,10 +169,10 @@ void HttpServerBase::finish()
     EV_INFO << "Text resources served " << textResourcesServed << "\n";
     EV_INFO << "Bad requests " << badRequests << "\n";
 
-    recordScalar("HTML.served", htmlDocsServed);
-    recordScalar("images.served", imgResourcesServed);
-    recordScalar("text.served", textResourcesServed);
-    recordScalar("bad.requests", badRequests);
+    //recordScalar("HTML.served", htmlDocsServed);
+    //recordScalar("images.served", imgResourcesServed);
+    //recordScalar("text.served", textResourcesServed);
+    //recordScalar("bad.requests", badRequests);
 }
 
 void HttpServerBase::refreshDisplay() const

@@ -76,15 +76,15 @@ void Flooding::finish()
     if (plainFlooding) {
         bcMsgs.clear();
     }
-    recordScalar("nbDataPacketsReceived", nbDataPacketsReceived);
-    recordScalar("nbDataPacketsSent", nbDataPacketsSent);
-    recordScalar("nbDataPacketsForwarded", nbDataPacketsForwarded);
-    if (nbDataPacketsReceived > 0) {
-        recordScalar("meanNbHops", (double)nbHops / (double)nbDataPacketsReceived);
-    }
-    else {
-        recordScalar("meanNbHops", 0);
-    }
+    //recordScalar("nbDataPacketsReceived", nbDataPacketsReceived);
+    //recordScalar("nbDataPacketsSent", nbDataPacketsSent);
+    //recordScalar("nbDataPacketsForwarded", nbDataPacketsForwarded);
+    //if (nbDataPacketsReceived > 0) {
+    //    recordScalar("meanNbHops", (double)nbHops / (double)nbDataPacketsReceived);
+    //}
+    //else {
+    //    recordScalar("meanNbHops", 0);
+    //}
 }
 
 /**

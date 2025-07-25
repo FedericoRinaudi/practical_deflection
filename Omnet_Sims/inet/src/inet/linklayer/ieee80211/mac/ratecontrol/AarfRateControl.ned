@@ -38,7 +38,7 @@ simple AarfRateControl like IRateControl
         double increaseThresholdFactor = default(2); // When the transmission of probing packet fails, we multiply by "increaseThresholdFactor" the increaseThreshold.
         int maxIncreaseThreshold = default(50); // Upper bound for increaseThreshold.
         @display("i=block/cogwheel");
-        @signal[datarateChanged];
-        @statistic[datarateChanged](title="datarate"; record=vector; interpolationmode=sample-hold);
+        //@signal[datarateChanged];
+        //@statistic[datarateChanged](title="datarate"; record=vector; interpolationmode=sample-hold);
 }
 

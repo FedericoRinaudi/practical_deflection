@@ -25,7 +25,7 @@ simple OnoeRateControl like IRateControl
         double initialRate @unit(bps) = default(-1bps); // -1 means fastest mandatory rate
         double interval @unit(s) = default(1s);
         @display("i=block/cogwheel");
-        @signal[datarateChanged];
-        @statistic[datarateChanged](title="datarate"; record=vector; interpolationmode=sample-hold);
+        //@signal[datarateChanged];
+        //@statistic[datarateChanged](title="datarate"; record=vector; interpolationmode=sample-hold);
 }
 

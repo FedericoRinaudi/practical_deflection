@@ -432,7 +432,7 @@
 
 2011-12-21  Andras Varga
 
-	IPv6NeighborDiscovery: added @signal[startDAD]
+	IPv6NeighborDiscovery: added //@signal[startDAD]
 
 2011-11-18  ------ INET-1.99.2 released ------
 

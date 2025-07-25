@@ -60,18 +60,18 @@ simple PimDm
         double stateRefreshInterval @unit(s) = 60s;
         double assertTime @unit(s) = 180s;
 
-        @signal[sentHelloPk](type=cPacket);
-        @signal[rcvdHelloPk](type=cPacket);
-        @signal[sentGraftPk](type=cPacket);
-        @signal[rcvdGraftPk](type=cPacket);
-        @signal[sentGraftAckPk](type=cPacket);
-        @signal[rcvdGraftAckPk](type=cPacket);
-        @signal[sentJoinPrunePk](type=cPacket);
-        @signal[rcvdJoinPrunePk](type=cPacket);
-        @signal[sentAssertPk](type=cPacket);
-        @signal[rcvdAssertPk](type=cPacket);
-        @signal[sentStateRefreshPk](type=cPacket);
-        @signal[rcvdStateRefreshPk](type=cPacket);
+        //@signal[sentHelloPk](type=cPacket);
+        //@signal[rcvdHelloPk](type=cPacket);
+        //@signal[sentGraftPk](type=cPacket);
+        //@signal[rcvdGraftPk](type=cPacket);
+        //@signal[sentGraftAckPk](type=cPacket);
+        //@signal[rcvdGraftAckPk](type=cPacket);
+        //@signal[sentJoinPrunePk](type=cPacket);
+        //@signal[rcvdJoinPrunePk](type=cPacket);
+        //@signal[sentAssertPk](type=cPacket);
+        //@signal[rcvdAssertPk](type=cPacket);
+        //@signal[sentStateRefreshPk](type=cPacket);
+        //@signal[rcvdStateRefreshPk](type=cPacket);
 
     gates:
         input ipIn;

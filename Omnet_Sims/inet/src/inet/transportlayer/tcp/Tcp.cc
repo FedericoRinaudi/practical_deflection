@@ -56,21 +56,24 @@ simsignal_t Tcp::tcpConnectionRemovedSignal = registerSignal("tcpConnectionRemov
 simsignal_t Tcp::tcpConnectionSYNSentSignal = registerSignal("tcpConnectionSYN");
 simsignal_t Tcp::tcpConnectionSYNSentIsBurstySignal = registerSignal("tcpConnectionSYNIsBursty");
 simsignal_t Tcp::tcpConnectionFINRcvdSignal = registerSignal("tcpConnectionFIN");
+//simsignal_t Tcp::sndNxtSignal = registerSignal("sndNxt");    // sent seqNo
+//simsignal_t Tcp::rcvSeqSignal = registerSignal("rcvSeq");    // received seqNo
+//simsignal_t Tcp::rcvOooSegSignal = registerSignal("rcvOooSeg");    // number of received out-of-order segments
 
 Tcp::~Tcp()
 {
-    recordScalar("numFastRetransmits", num_fast_retransmits);
-    recordScalar("numDupAcksAfterFastRetransmit", num_dup_acks_after_fast_retransmit);
-    recordScalar("numFastFastRecoveries", num_fast_fast_recoveries);
-    recordScalar("numDupAcks", num_dup_acks);
-    recordScalar("numReceivedOOOSegs", num_received_ooo_segs);
-    recordScalar("numRTOs", num_rtos);
-    recordScalar("numSegmentRetransmissions", num_segment_retransmissions);
-    recordScalar("DCTCPNumPacketsMarked", dctcp_num_packets_marked);
-    recordScalar("numConnections", num_connections);
-    recordScalar("RTTSum", rtt_sum);
-    recordScalar("numRTTRecords", num_rtt_records);
-    recordScalar("lightGoodputNumBitsSentToApp", light_goodput_num_bits_sent_to_app);
+    //recordScalar("numFastRetransmits", num_fast_retransmits);
+    //recordScalar("numDupAcksAfterFastRetransmit", num_dup_acks_after_fast_retransmit);
+    //recordScalar("numFastFastRecoveries", num_fast_fast_recoveries);
+    //recordScalar("numDupAcks", num_dup_acks);
+    //recordScalar("numReceivedOOOSegs", num_received_ooo_segs);
+    //recordScalar("numRTOs", num_rtos);
+    //recordScalar("numSegmentRetransmissions", num_segment_retransmissions);
+    //recordScalar("DCTCPNumPacketsMarked", dctcp_num_packets_marked);
+    //recordScalar("numConnections", num_connections);
+    //recordScalar("RTTSum", rtt_sum);
+    //recordScalar("numRTTRecords", num_rtt_records);
+    //recordScalar("lightGoodputNumBitsSentToApp", light_goodput_num_bits_sent_to_app);
 }
 
 void Tcp::initialize(int stage)

@@ -74,16 +74,16 @@ simple PimSm
         double assertTime @unit(s) = 180s;
         double assertOverrideInterval @unit(s) = 3s;
 
-        @signal[sentHelloPk](type=cPacket);
-        @signal[rcvdHelloPk](type=cPacket);
-        @signal[sentRegisterPk](type=cPacket);
-        @signal[rcvdRegisterPk](type=cPacket);
-        @signal[sentRegisterStopPk](type=cPacket);
-        @signal[rcvdRegisterStopPk](type=cPacket);
-        @signal[sentJoinPrunePk](type=cPacket);
-        @signal[rcvdJoinPrunePk](type=cPacket);
-        @signal[sentAssertPk](type=cPacket);
-        @signal[rcvdAssertPk](type=cPacket);
+        //@signal[sentHelloPk](type=cPacket);
+        //@signal[rcvdHelloPk](type=cPacket);
+        //@signal[sentRegisterPk](type=cPacket);
+        //@signal[rcvdRegisterPk](type=cPacket);
+        //@signal[sentRegisterStopPk](type=cPacket);
+        //@signal[rcvdRegisterStopPk](type=cPacket);
+        //@signal[sentJoinPrunePk](type=cPacket);
+        //@signal[rcvdJoinPrunePk](type=cPacket);
+        //@signal[sentAssertPk](type=cPacket);
+        //@signal[rcvdAssertPk](type=cPacket);
 
     gates:
         input ipIn;

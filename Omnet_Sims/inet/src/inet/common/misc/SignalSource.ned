@@ -25,7 +25,7 @@ simple SignalSource
 {
     parameters:
         @display("i=block/cogwheel");
-        @signal[signalSourceOutput];
+        //@signal[signalSourceOutput];
         double startTime @unit(s) = default(0s);
         double endTime @unit(s) = default(-1s);
         volatile double interval @unit(s) = default(1s);

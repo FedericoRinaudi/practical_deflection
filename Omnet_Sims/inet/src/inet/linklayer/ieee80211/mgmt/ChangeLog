@@ -42,11 +42,12 @@
 
 2018-09-27  Levente Mészáros
 
-	Renamed INITSTAGE_LINK_LAYER to INITSTAGE_NETWORK_INTERFACE_CONFIGURATION.	Renamed INITSTAGE_LINK_LAYER_2 to INITSTAGE_LINK_LAYER.
+	Renamed INITSTAGE_LINK_LAYER to INITSTAGE_NETWORK_INTERFACE_CONFIGURATION.
+	Renamed INITSTAGE_LINK_LAYER_2 to INITSTAGE_LINK_LAYER.
 
 2018-08-17  Zoltan Bojthe
 
-	Added namespace qualifier to @signal type parameters.
+	Added namespace qualifier to //@signal type parameters.
 
 2018-06-27  ------ inet-4.0.0 released ------
 
@@ -461,8 +462,8 @@
 2011-12-21  Andras Varga
 
 	statistics revised:
-	- add "max" to places where "timeavg" was present and appropriate
-	- interpolationmode should be used with @statistic not with @signal
+	- add "max" to places where "timeavg" wa//@statisticand appropriate
+	- interpolationmode should be used with @statistic not with //@signal
 	- statistics: revised recording modes:
 	  - for queue length, "histogram" replaced with "timeavg" (histogram makes no sense here)
 	  - removed "stats" where "histogram" was already present (it implies "stats")
@@ -527,7 +528,7 @@
 
 	statistics: emit pk (cPacket*) signals instead of pkBytes etc; added
 	more statistics
-
+//@statistic
 	Utilize packetBytes() result filter in @statistic to record byte counts
 
 2011-06-14  Rudolf Hornig
@@ -689,14 +690,14 @@
 	also: accidental tab-to-space
 
 2010-03-05  Andras Varga
-
+//@statistic
 	@statistic: added missing 'vector' recording mode
 
 2010-03-05  Andras Varga
 
 	update for omnet++ 4.1b3:
-
-	renamed @signal to @statistic modeHint= to record=
+//@statistic
+	renamed //@signal to @statistic modeHint= to record=
 
 2010-02-26  Zoltan Bojthe
 

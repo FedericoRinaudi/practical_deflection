@@ -36,9 +36,9 @@ simple LSIeee8021dRelay like IMacRelayUnit
         @display("i=block/broadcast;bgb=425,114");
         string interfaceTableModule = default("^.interfaceTable"); // The path to the InterfaceTable module
         string macTableModule = default("^.macTable");             // The path to the MacAddressTable module
-        @signal[packetSentToLower](type=cPacket);
-        @signal[packetReceivedFromLower](type=cPacket);
-        @signal[packetReceivedFromUpper](type=cPacket);
+        ////@signal[packetSentToLower](type=cPacket);
+        ////@signal[packetReceivedFromLower](type=cPacket);
+        ////@signal[packetReceivedFromUpper](type=cPacket);
 
         bool hasStp;
         bool learn_mac_addresses;

@@ -871,11 +871,11 @@ void AugmentedEtherMac::finish()
 
     simtime_t t = simTime();
     simtime_t totalChannelIdleTime = t - totalSuccessfulRxTxTime - totalCollisionTime;
-    recordScalar("rx channel idle (%)", 100 * (totalChannelIdleTime / t));
-    recordScalar("rx channel utilization (%)", 100 * (totalSuccessfulRxTxTime / t));
-    recordScalar("rx channel collision (%)", 100 * (totalCollisionTime / t));
-    recordScalar("collisions", numCollisions);
-    recordScalar("backoffs", numBackoffs);
+    //recordScalar("rx channel idle (%)", 100 * (totalChannelIdleTime / t));
+    //recordScalar("rx channel utilization (%)", 100 * (totalSuccessfulRxTxTime / t));
+    //recordScalar("rx channel collision (%)", 100 * (totalCollisionTime / t));
+    //recordScalar("collisions", numCollisions);
+    //recordScalar("backoffs", numBackoffs);
 }
 
 void AugmentedEtherMac::handleEndPausePeriod()
@@ -1200,6 +1200,49 @@ long AugmentedEtherMac::get_queue_occupancy(std::string queue_path)
 
 }
 
+long AugmentedEtherMac::get_queue_capacity(std::string queue_path)
+{
+    EV << "AugmentedEtherMac::get_queue_capacity" << endl;
+    if (send_header_of_dropped_packet_to_receiver ||
+            use_v2_pifo ||
+            use_pfabric ||
+            use_vertigo_prio_queue ||
+            buffer != nullptr) {
+        // Priority queues, txQueue is actually the scheduler
+        PacketQueue* queue;
+        if (use_bolt_queue && (use_vertigo_prio_queue || use_v2_pifo)) {
+            queue = check_and_cast<V2PIFOBoltQueue *>(getModuleByPath(queue_path.c_str()));
+        } else if (use_bolt_with_vertigo_queue && (use_vertigo_prio_queue || use_v2_pifo)) {
+            queue = check_and_cast<V2PIFO *>(getModuleByPath(queue_path.c_str()));
+        }
+        else if (use_v2_pifo) {
+            queue = check_and_cast<V2PIFO *>(getModuleByPath(queue_path.c_str()));
+        } else if (use_pfabric)
+            queue = check_and_cast<pFabric *>(getModuleByPath(queue_path.c_str()));
+        else if (use_vertigo_prio_queue) {
+            switch (v2pifo_queue_type) {
+                case V2PIFOPRIO:
+                    queue = check_and_cast<V2PIFOPrioQueue *>(getModuleByPath(queue_path.c_str()));
+                    break;
+                case V2PIFOCANARY:
+                    queue = check_and_cast<V2PIFOCanaryQueue *>(getModuleByPath(queue_path.c_str()));
+                    break;
+                default:
+                    throw cRuntimeError("Unknown prio queue");
+            }
+        }
+        return queue->get_queue_capacity();
+    } else {
+        if (txQueue->getMaxNumPackets() != -1) {
+            return txQueue->getMaxNumPackets();
+        }
+        else if (txQueue->getMaxTotalLength() != b(-1)) {
+            return txQueue->getMaxTotalLength().get();
+        } else {
+            throw cRuntimeError("No queue capacity specified! WTF?");
+        }
+    }
+}
 
 void AugmentedEtherMac::add_on_the_way_packet(b packet_length, bool is_v2_dropped_packet_header)
 {

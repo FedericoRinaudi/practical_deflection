@@ -93,6 +93,7 @@ class INET_API V2PIFOBoltQueue : public PacketQueue
     virtual bool is_queue_full(b packet_length, long on_the_way_packet_num = 0, b on_the_way_packet_length = b(0)) override;
     virtual bool is_over_v2_threshold_full(b packet_length, Packet* packet, long on_the_way_packet_num = 0, b on_the_way_packet_length = b(0)) override;
     virtual long get_queue_occupancy(long on_the_way_packet_num = 0, b on_the_way_packet_length = b(0)) override;
+    virtual long get_queue_capacity() override;
     virtual bool isFullPrioQueue(int queue_idx, int packet_len, Packet* packet);
     virtual bool is_packet_tag_larger_than_last_packet(Packet* packet) override;
     double calc_quantile(Packet* packet);

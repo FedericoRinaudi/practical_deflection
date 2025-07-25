@@ -30,7 +30,7 @@ simple EpEnergySourceBase like IEpEnergySource
 {
     parameters:
         @display("i=block/plug");
-        @signal[powerConsumptionChanged];
-        @statistic[powerConsumption](title="Power consumption"; source=powerConsumptionChanged; record=vector; interpolationmode=sample-hold);
+        //@signal[powerConsumptionChanged];
+        //@statistic[powerConsumption](title="Power consumption"; source=powerConsumptionChanged; record=vector; interpolationmode=sample-hold);
 }
 

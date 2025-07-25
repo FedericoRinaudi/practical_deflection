@@ -23,8 +23,8 @@ import inet.visualizer.integrated.IntegratedCanvasVisualizer;
 
 network CoexistenceShowcase
 {
-    @statistic[bitErrorRate](title="Bit error rate"; source=bitErrorRate(packetSentToUpper); record=vector);
-    @statistic[packetErrorRate](title="Packet error rate"; source=packetErrorRate(packetSentToUpper); record=vector);
+    //@statistic[bitErrorRate](title="Bit error rate"; source=bitErrorRate(packetSentToUpper); record=vector);
+    //@statistic[packetErrorRate](title="Packet error rate"; source=packetErrorRate(packetSentToUpper); record=vector);
     submodules:
         visualizer: IntegratedCanvasVisualizer {
             @display("p=5,5");

@@ -53,8 +53,8 @@ void HttpServer::finish()
     EV_INFO << "Sockets opened: " << socketsOpened << endl;
     EV_INFO << "Broken connections: " << numBroken << endl;
 
-    recordScalar("sock.opened", socketsOpened);
-    recordScalar("sock.broken", numBroken);
+    //recordScalar("sock.opened", socketsOpened);
+    //recordScalar("sock.broken", numBroken);
 
     // Clean up sockets and data structures
     sockCollection.deleteSockets();

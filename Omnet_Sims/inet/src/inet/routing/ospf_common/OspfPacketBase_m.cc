@@ -442,7 +442,7 @@ unsigned int OspfPacketBaseDescriptor::getFieldTypeFlags(int field) const
     }
     static unsigned int fieldTypeFlags[] = {
         FD_ISEDITABLE,    // FIELD_version
-        FD_ISEDITABLE,    // FIELD_type
+        0,    // FIELD_type
         FD_ISEDITABLE,    // FIELD_packetLengthField
         0,    // FIELD_routerID
         0,    // FIELD_areaID
@@ -606,7 +606,6 @@ bool OspfPacketBaseDescriptor::setFieldValueAsString(void *object, int field, in
     OspfPacketBase *pp = (OspfPacketBase *)object; (void)pp;
     switch (field) {
         case FIELD_version: pp->setVersion(string2long(value)); return true;
-        case FIELD_type: pp->setType((inet::ospf::OspfPacketType)string2enum(value, "inet::ospf::OspfPacketType")); return true;
         case FIELD_packetLengthField: pp->setPacketLengthField(string2long(value)); return true;
         case FIELD_crc: pp->setCrc(string2ulong(value)); return true;
         default: return false;

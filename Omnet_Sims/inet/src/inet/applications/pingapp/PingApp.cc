@@ -584,9 +584,9 @@ void PingApp::finish()
 
     lossCount += sendSeqNo - expectedReplySeqNo;
     // record statistics
-    recordScalar("Pings sent", sendSeqNo);
-    recordScalar("ping loss rate (%)", 100 * lossCount / (double)sendSeqNo);
-    recordScalar("ping out-of-order rate (%)", 100 * outOfOrderArrivalCount / (double)sendSeqNo);
+    //recordScalar("Pings sent", sendSeqNo);
+    //recordScalar("ping loss rate (%)", 100 * lossCount / (double)sendSeqNo);
+    //recordScalar("ping out-of-order rate (%)", 100 * outOfOrderArrivalCount / (double)sendSeqNo);
 
     // print it to stdout as well
     if (printPing) {

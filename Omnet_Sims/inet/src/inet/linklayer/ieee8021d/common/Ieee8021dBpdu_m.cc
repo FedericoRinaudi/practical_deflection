@@ -390,9 +390,9 @@ unsigned int BpduBaseDescriptor::getFieldTypeFlags(int field) const
         field -= basedesc->getFieldCount();
     }
     static unsigned int fieldTypeFlags[] = {
-        0,    // FIELD_protocolIdentifier
-        0,    // FIELD_protocolVersionIdentifier
-        0,    // FIELD_bpduType
+        FD_ISEDITABLE,    // FIELD_protocolIdentifier
+        FD_ISEDITABLE,    // FIELD_protocolVersionIdentifier
+        FD_ISEDITABLE,    // FIELD_bpduType
     };
     return (field >= 0 && field < 3) ? fieldTypeFlags[field] : 0;
 }
@@ -541,6 +541,9 @@ bool BpduBaseDescriptor::setFieldValueAsString(void *object, int field, int i, c
     }
     BpduBase *pp = (BpduBase *)object; (void)pp;
     switch (field) {
+        case FIELD_protocolIdentifier: pp->setProtocolIdentifier((inet::BpduProtocolIdentifier)string2enum(value, "inet::BpduProtocolIdentifier")); return true;
+        case FIELD_protocolVersionIdentifier: pp->setProtocolVersionIdentifier((inet::BpduProtocolVersionIdentifier)string2enum(value, "inet::BpduProtocolVersionIdentifier")); return true;
+        case FIELD_bpduType: pp->setBpduType((inet::BpduType)string2enum(value, "inet::BpduType")); return true;
         default: return false;
     }
 }

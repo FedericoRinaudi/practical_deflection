@@ -59,8 +59,8 @@ simple DCTCPRedDropper extends PacketFilterBase
         int threshold = default(5); // the parameter for marking packets in DCTCP
         @class(DCTCPRedDropper);
         @display("i=block/downarrow");
-        @signal[packetDropped](type=inet::Packet);
-        @signal[queueCap];
-        @statistic[packetDropCongestion](title="packet drop: congestion"; source=packetDropReasonIsCongestion(packetDropped); record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
-		@statistic[queueCap](title="Queue Capacity";record=vector; interpolationmode=sample-hold);
+        //@signal[packetDropped](type=inet::Packet);
+        //@signal[queueCap];
+        //@statistic[packetDropCongestion](title="packet drop: congestion"; source=packetDropReasonIsCongestion(packetDropped); record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
+		//@statistic[queueCap](title="Queue Capacity";record=vector; interpolationmode=sample-hold);
 }

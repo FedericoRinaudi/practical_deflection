@@ -117,6 +117,7 @@ class INET_API V2PIFOPrioQueue : public PacketQueue
     virtual int wred_get_traffic_class(Packet* packet);
     virtual int red_get_queue_length();
     virtual long get_queue_occupancy(long on_the_way_packet_num = 0, b on_the_way_packet_length = b(0)) override;
+    virtual long get_queue_capacity() override;
     virtual bool isFullPrioQueue(int queue_idx, int packet_len, Packet* packet);
     virtual bool is_packet_tag_larger_than_last_packet(Packet* packet) override;
     double calc_quantile(Packet* packet);

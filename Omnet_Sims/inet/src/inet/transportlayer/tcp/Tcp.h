@@ -102,6 +102,9 @@ class INET_API Tcp : public TransportProtocolBase
     static simsignal_t tcpConnectionSYNSentSignal;
     static simsignal_t tcpConnectionSYNSentIsBurstySignal;
     static simsignal_t tcpConnectionFINRcvdSignal;
+    //static simsignal_t rcvOooSegSignal;
+    //static simsignal_t rcvSeqSignal;
+    //static simsignal_t sndNxtSignal;
 
     enum PortRange {
         EPHEMERAL_PORTRANGE_START = 1024,

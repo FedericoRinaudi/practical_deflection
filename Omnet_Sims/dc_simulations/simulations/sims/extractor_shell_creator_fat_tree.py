@@ -517,6 +517,20 @@ for file_name in onlyfiles:
         f.write('echo \"{}\"\n'.format(output_dir_name))
         f.write(command)
         
+        # Aggiunta estrazione del campo RequesterID
+        output_dir_name = 'REQUESTER_ID/'
+        command = "scavetool x --type v --filter \"module(**.**.relayUnit) AND " \
+                  "\\\"requesterID:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY+output_dir_name+output_file_name, vector_file_name)
+        f.write('echo \"{}\"\n'.format(output_dir_name))
+        f.write(command)
+        
+        # Aggiunta estrazione delle azioni del relay (0=drop, 1=deflect, 2=forward)
+        output_dir_name = 'RELAY_ACTION/'
+        command = "scavetool x --type v --filter \"module(**.**.relayUnit) AND " \
+                  "\\\"relayAction:vector\\\"\" -o {} -F CSV-S {}\n".format(OUTPUT_FILE_DIRECTORY+output_dir_name+output_file_name, vector_file_name)
+        f.write('echo \"{}\"\n'.format(output_dir_name))
+        f.write(command)
+        
         command = '\n\n'
         f.write(command)
 

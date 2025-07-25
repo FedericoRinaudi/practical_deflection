@@ -120,6 +120,7 @@ simsignal_t TcpBaseAlg::srttSignal = cComponent::registerSignal("srtt");    // w
 simsignal_t TcpBaseAlg::rttvarSignal = cComponent::registerSignal("rttvar");    // will record RTT variance (rttvar)
 simsignal_t TcpBaseAlg::rtoSignal = cComponent::registerSignal("rto");    // will record retransmission timeout
 simsignal_t TcpBaseAlg::numRtosSignal = cComponent::registerSignal("numRtos");    // will record total number of RTOs
+simsignal_t TcpBaseAlg::seqNoSignal = cComponent::registerSignal("seqNo");    // will record sequence number
 
 TcpBaseAlg::TcpBaseAlg() : TcpAlgorithm(),
     state((TcpBaseAlgStateVariables *&)TcpAlgorithm::state)
@@ -702,7 +703,6 @@ void TcpBaseAlg::dataSent(uint32 fromseq)
         EV_INFO << "Starting REXMIT timer\n";
         startRexmitTimer();
     }
-
     if (!state->ts_enabled) {
         // start round-trip time measurement (if not already running)
         if (state->rtseq_sendtime == 0) {

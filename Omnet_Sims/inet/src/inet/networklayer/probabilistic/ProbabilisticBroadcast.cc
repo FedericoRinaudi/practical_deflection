@@ -74,7 +74,7 @@ void ProbabilisticBroadcast::handleLowerPacket(Packet *packet)
     delete packet->removeControlInfo();
     ++nbDataPacketsReceived;
     nbHops = nbHops + macHeader->getNbHops();
-    oneHopLatencies.record(SIMTIME_DBL(simTime() - packet->getTimestamp()));
+    //oneHopLatencies.record(SIMTIME_DBL(simTime() - packet->getTimestamp()));
     // oneHopLatency gives us an estimate of how long the message spent in the MAC queue of
     // its sender (compared to that, transmission delay is negligible). Use this value
     // to update the TTL of the message. Dump it if it is dead.
@@ -210,15 +210,15 @@ void ProbabilisticBroadcast::finish()
         delete msgDesc->pkt;
         delete msgDesc;
     }
-    recordScalar("nbDataPacketsReceived", nbDataPacketsReceived);
-    recordScalar("debugNbMessageKnown", debugNbMessageKnown);
-    recordScalar("nbDataPacketsForwarded", nbDataPacketsForwarded);
-    if (nbDataPacketsReceived > 0) {
-        recordScalar("meanNbHops", (double)nbHops / (double)nbDataPacketsReceived);
-    }
-    else {
-        recordScalar("meanNbHops", 0);
-    }
+    //recordScalar("nbDataPacketsReceived", nbDataPacketsReceived);
+    //recordScalar("debugNbMessageKnown", debugNbMessageKnown);
+    //recordScalar("nbDataPacketsForwarded", nbDataPacketsForwarded);
+    //if (nbDataPacketsReceived > 0) {
+    //    recordScalar("meanNbHops", (double)nbHops / (double)nbDataPacketsReceived);
+    //}
+    //else {
+    //    recordScalar("meanNbHops", 0);
+    //}
 }
 
 bool ProbabilisticBroadcast::messageKnown(unsigned int msgId)

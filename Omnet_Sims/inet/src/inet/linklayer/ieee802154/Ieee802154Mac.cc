@@ -133,21 +133,21 @@ void Ieee802154Mac::initialize(int stage)
 
 void Ieee802154Mac::finish()
 {
-    recordScalar("nbTxFrames", nbTxFrames);
-    recordScalar("nbRxFrames", nbRxFrames);
-    recordScalar("nbDroppedFrames", nbDroppedFrames);
-    recordScalar("nbMissedAcks", nbMissedAcks);
-    recordScalar("nbRecvdAcks", nbRecvdAcks);
-    recordScalar("nbTxAcks", nbTxAcks);
-    recordScalar("nbDuplicates", nbDuplicates);
-    if (nbBackoffs > 0) {
-        recordScalar("meanBackoff", backoffValues / nbBackoffs);
-    }
-    else {
-        recordScalar("meanBackoff", 0);
-    }
-    recordScalar("nbBackoffs", nbBackoffs);
-    recordScalar("backoffDurations", backoffValues);
+    //recordScalar("nbTxFrames", nbTxFrames);
+    //recordScalar("nbRxFrames", nbRxFrames);
+    //recordScalar("nbDroppedFrames", nbDroppedFrames);
+    //recordScalar("nbMissedAcks", nbMissedAcks);
+    //recordScalar("nbRecvdAcks", nbRecvdAcks);
+    //recordScalar("nbTxAcks", nbTxAcks);
+    //recordScalar("nbDuplicates", nbDuplicates);
+    //if (nbBackoffs > 0) {
+    //    recordScalar("meanBackoff", backoffValues / nbBackoffs);
+    //}
+    //else {
+    //    recordScalar("meanBackoff", 0);
+    //}
+    //recordScalar("nbBackoffs", nbBackoffs);
+    //recordScalar("backoffDurations", backoffValues);
 }
 
 Ieee802154Mac::~Ieee802154Mac()

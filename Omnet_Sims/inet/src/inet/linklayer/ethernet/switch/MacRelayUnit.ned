@@ -27,9 +27,9 @@ simple MacRelayUnit like IMacRelayUnit
         string interfaceTableModule = default("^.interfaceTable"); // The path to the InterfaceTable module
         bool hasStp;
         string displayStringTextFormat = default("proc: %p\ndisc: %d");
-        @signal[packetSentToLower](type=cPacket);
-        @signal[packetReceivedFromUpper](type=cPacket);
-        @signal[packetReceivedFromLower](type=cPacket);
+        //@signal[packetSentToLower](type=cPacket);
+        //@signal[packetReceivedFromUpper](type=cPacket);
+        //@signal[packetReceivedFromLower](type=cPacket);
     gates:
         input ifIn @labels(EtherFrame);
         output ifOut @labels(EtherFrame);

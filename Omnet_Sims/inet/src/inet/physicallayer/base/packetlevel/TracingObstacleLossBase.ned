@@ -27,6 +27,6 @@ module TracingObstacleLossBase like IObstacleLoss
     parameters:
         string physicalEnvironmentModule = default("physicalEnvironment"); // module path of the physical environment model
         @display("i=block/control");
-        @signal[obstaclePenetrated];
+        //@signal[obstaclePenetrated];
 }
 

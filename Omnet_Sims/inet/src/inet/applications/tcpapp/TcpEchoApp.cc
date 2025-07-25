@@ -87,8 +87,8 @@ void TcpEchoApp::finish()
 {
     TcpServerHostApp::finish();
 
-    recordScalar("bytesRcvd", bytesRcvd);
-    recordScalar("bytesSent", bytesSent);
+    //recordScalar("bytesRcvd", bytesRcvd);
+    //recordScalar("bytesSent", bytesSent);
 }
 
 void TcpEchoAppThread::established()

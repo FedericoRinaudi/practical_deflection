@@ -50,8 +50,8 @@ void HttpBrowser::finish()
     EV_INFO << "Sockets opened: " << socketsOpened << endl;
     EV_INFO << "Broken connections: " << numBroken << endl;
     // Record the sockets related statistics
-    recordScalar("sock.opened", socketsOpened);
-    recordScalar("sock.broken", numBroken);
+    //recordScalar("sock.opened", socketsOpened);
+    //recordScalar("sock.broken", numBroken);
 }
 
 void HttpBrowser::handleMessage(cMessage *msg)

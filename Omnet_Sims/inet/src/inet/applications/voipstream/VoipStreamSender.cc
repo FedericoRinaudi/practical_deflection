@@ -114,7 +114,7 @@ void VoipStreamSender::initialize(int stage)
         EV_TRACE << "VoIPSourceApp -> initialize(" << stage << ")" << endl;
 
         // Hack for create results folder
-        recordScalar("hackForCreateResultsFolder", 0);
+        //recordScalar("hackForCreateResultsFolder", 0);
 
         destAddress = L3AddressResolver().resolve(par("destAddress"));
         socket.setOutputGate(gate("socketOut"));

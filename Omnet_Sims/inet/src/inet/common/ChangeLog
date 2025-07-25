@@ -226,7 +226,7 @@
 
 2018-08-17  Zoltan Bojthe
 
-	Added namespace qualifier to @signal type parameters.
+	Added namespace qualifier to //@signal type parameters.
 
 2018-07-17  Levente Mészáros
 
@@ -1138,7 +1138,7 @@
 
 2014-01-07  Zoltan Bojthe
 
-	added/fixed @signal declarations, fixed type of emitted values
+	added/fixed //@signal declarations, fixed type of emitted values
 
 2013-12-18  Zoltan Bojthe
 
@@ -1487,7 +1487,7 @@
 	statistics: emit pk (cPacket*) signals instead of pkBytes etc; added
 	more statistics
 
-	Utilize packetBytes() result filter in @statistic to record byte counts
+	Utilize packetBytes() result filter in //@statistic to record byte counts
 
 2011-07-07  Levente Meszaros
 
@@ -1695,13 +1695,13 @@
 
 2010-03-05  Andras Varga
 
-	@statistic: added missing 'vector' recording mode
+	//@statistic: added missing 'vector' recording mode
 
 2010-03-05  Andras Varga
 
 	update for omnet++ 4.1b3:
 
-	renamed @signal to @statistic modeHint= to record=
+	renamed //@signal to //@statistic modeHint= to record=
 
 2010-02-26  Zoltan Bojthe
 

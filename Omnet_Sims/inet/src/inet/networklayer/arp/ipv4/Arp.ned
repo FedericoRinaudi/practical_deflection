@@ -52,16 +52,16 @@ simple Arp like IArp
         double cacheTimeout @unit(s) = default(120s); // number seconds unused entries in the cache will time out
         string proxyArpInterfaces = default("*");     // list of interfaces that proxy ARP is enabled (all interfaces by default)
         @display("i=block/layer");
-        @signal[arpRequestSent](type=inet::Packet);
-        @signal[arpReplySent](type=inet::Packet);
-        @signal[arpResolutionInitiated](type=inet::IArp::Notification);
-        @signal[arpResolutionCompleted](type=inet::IArp::Notification);
-        @signal[arpResolutionFailed](type=inet::IArp::Notification);
-        @statistic[arpRequestSent](title="ARP request sent"; source=arpRequestSent; record=count,"sum(packetBytes)","vector(packetBytes)");
-        @statistic[arpReplySent](title="ARP replies sent"; source=arpReplySent; record=count,"sum(packetBytes)","vector(packetBytes)");
-        @statistic[arpResolutionInitiated](title="ARP initiated resolutions"; record=count);
-        @statistic[arpResolutionCompleted](title="ARP completed resolutions"; record=count);
-        @statistic[arpResolutionFailed](title="ARP failed resolutions"; record=count);
+        //@signal[arpRequestSent](type=inet::Packet);
+        //@signal[arpReplySent](type=inet::Packet);
+        //@signal[arpResolutionInitiated](type=inet::IArp::Notification);
+        //@signal[arpResolutionCompleted](type=inet::IArp::Notification);
+        //@signal[arpResolutionFailed](type=inet::IArp::Notification);
+        //@statistic[arpRequestSent](title="ARP request sent"; source=arpRequestSent; record=count,"sum(packetBytes)","vector(packetBytes)");
+        //@statistic[arpReplySent](title="ARP replies sent"; source=arpReplySent; record=count,"sum(packetBytes)","vector(packetBytes)");
+        //@statistic[arpResolutionInitiated](title="ARP initiated resolutions"; record=count);
+        //@statistic[arpResolutionCompleted](title="ARP completed resolutions"; record=count);
+        //@statistic[arpResolutionFailed](title="ARP failed resolutions"; record=count);
     gates:
         input netwIn @labels(ArpPacket+Ieee802Ctrl); // incoming ARP requests and replies
         output netwOut @labels(ArpPacket+Ieee802Ctrl,Ipv4Header+Ieee802Ctrl);  // outgoing ARP requests/replies, and datagrams with resolved next hop

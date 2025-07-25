@@ -40,8 +40,8 @@ EtherMacFullDuplex::EtherMacFullDuplex()
 
 EtherMacFullDuplex::~EtherMacFullDuplex()
 {
-    recordScalar("lightThroughputBitsSent", light_throughput_bits_sent);
-    recordScalar("lightThroughputBitsRcvd", light_throughput_bits_rcvd);
+    //recordScalar("lightThroughputBitsSent", light_throughput_bits_sent);
+    //recordScalar("lightThroughputBitsRcvd", light_throughput_bits_rcvd);
 }
 
 void EtherMacFullDuplex::initialize(int stage)
@@ -363,8 +363,8 @@ void EtherMacFullDuplex::finish()
 
     simtime_t t = simTime();
     simtime_t totalRxChannelIdleTime = t - totalSuccessfulRxTime;
-    recordScalar("rx channel idle (%)", 100 * (totalRxChannelIdleTime / t));
-    recordScalar("rx channel utilization (%)", 100 * (totalSuccessfulRxTime / t));
+    //recordScalar("rx channel idle (%)", 100 * (totalRxChannelIdleTime / t));
+    //recordScalar("rx channel utilization (%)", 100 * (totalSuccessfulRxTime / t));
 }
 
 void EtherMacFullDuplex::handleEndPausePeriod()

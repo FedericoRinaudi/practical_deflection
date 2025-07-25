@@ -378,7 +378,7 @@ unsigned int RtpSenderControlMessageDescriptor::getFieldTypeFlags(int field) con
         field -= basedesc->getFieldCount();
     }
     static unsigned int fieldTypeFlags[] = {
-        FD_ISEDITABLE,    // FIELD_command
+        0,    // FIELD_command
         FD_ISEDITABLE,    // FIELD_commandParameter1
         FD_ISEDITABLE,    // FIELD_commandParameter2
     };
@@ -515,7 +515,6 @@ bool RtpSenderControlMessageDescriptor::setFieldValueAsString(void *object, int 
     }
     RtpSenderControlMessage *pp = (RtpSenderControlMessage *)object; (void)pp;
     switch (field) {
-        case FIELD_command: pp->setCommand((inet::rtp::RtpSenderControlMessageCommands)string2enum(value, "inet::rtp::RtpSenderControlMessageCommands")); return true;
         case FIELD_commandParameter1: pp->setCommandParameter1(string2double(value)); return true;
         case FIELD_commandParameter2: pp->setCommandParameter2(string2double(value)); return true;
         default: return false;

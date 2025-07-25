@@ -60,11 +60,11 @@ simple V2PIFOCanaryQueue extends PacketQueue
         
         bool just_prioritize_bursty_flows = default(false);
 
-        @signal[packetDropSeq]();
-        @signal[packetDropRetCount]();
-        @signal[packetDropTotalPayloadLength]();
+        ////@signal[packetDropSeq]();
+        ////@signal[packetDropRetCount]();
+        ////@signal[packetDropTotalPayloadLength]();
         
-        @statistic[droppktSeqs](title="seqs of the dropped packets"; source="packetDropSeq"; record=vector; interpolationmode=none);
-        @statistic[droppktRetCount](title="ret count of the dropped packets"; source="packetDropRetCount"; record=vector; interpolationmode=none);
-        @statistic[pktDropTotalPayloadLen](title="total payload length of BG packets dropped in v2 queue"; source="packetDropTotalPayloadLength"; record=vector; interpolationmode=none);
+        ////@statistic[droppktSeqs](title="seqs of the dropped packets"; source="packetDropSeq"; record=vector; interpolationmode=none);
+        ////@statistic[droppktRetCount](title="ret count of the dropped packets"; source="packetDropRetCount"; record=vector; interpolationmode=none);
+        ////@statistic[pktDropTotalPayloadLen](title="total payload length of BG packets dropped in v2 queue"; source="packetDropTotalPayloadLength"; record=vector; interpolationmode=none);
 }

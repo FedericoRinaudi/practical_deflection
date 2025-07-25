@@ -25,8 +25,8 @@ package inet.routing.pim.tables;
 simple PimNeighborTable
 {
       @display("i=block/table");
-      @signal[pimNeighborAdded](type=inet::PimNeighbor);
-    @signal[pimNeighborDeleted](type=inet::PimNeighbor);
-    @signal[pimNeighborChanged](type=inet::PimNeighbor);
+      //@signal[pimNeighborAdded](type=inet::PimNeighbor);
+    //@signal[pimNeighborDeleted](type=inet::PimNeighbor);
+    //@signal[pimNeighborChanged](type=inet::PimNeighbor);
 }
 

@@ -30,6 +30,6 @@ moduleinterface ICcEnergyGenerator extends IEnergyGenerator
 {
     parameters:
         @display("i=block/plug");
-        @signal[currentGenerationChanged](type=double);
+        //@signal[currentGenerationChanged](type=double);
 }
 

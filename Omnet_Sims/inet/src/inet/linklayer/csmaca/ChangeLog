@@ -56,10 +56,11 @@
 
 2018-09-27  Levente Mészáros
 
-	Renamed INITSTAGE_LINK_LAYER to INITSTAGE_NETWORK_INTERFACE_CONFIGURATION.	Renamed INITSTAGE_LINK_LAYER_2 to INITSTAGE_LINK_LAYER.
+	Renamed INITSTAGE_LINK_LAYER to INITSTAGE_NETWORK_INTERFACE_CONFIGURATION.
+	Renamed INITSTAGE_LINK_LAYER_2 to INITSTAGE_LINK_LAYER.
 
 2018-08-17  Zoltan Bojthe
-
+//@signal
 	Added namespace qualifier to @signal type parameters.
 
 2018-07-27  Zoltan Bojthe
@@ -182,7 +183,7 @@
 2017-07-10  Levente Mészáros
 
 	Updated packet drop signals and statistics.
-	Added reason codes where packet drop signals are emitted.
+	Added //@signalcodes where packet drop signals are emitted.
 	Fixed @signal[NF_LINK_BREAK] emitted object types.
 
 2017-06-20  Levente Mészáros

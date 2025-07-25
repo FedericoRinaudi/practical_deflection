@@ -385,6 +385,7 @@ class INET_API TcpConnection : public cSimpleModule
     static simsignal_t sackedBytesSignal;    // current number of received sacked bytes
     static simsignal_t tcpRcvQueueBytesSignal;    // current amount of used bytes in tcp receive queue
     static simsignal_t tcpRcvQueueDropsSignal;    // number of drops in tcp receive queue
+    static simsignal_t retransmittedSignal; // number of retransmitted segments
 
     // v2 marking and ordering
     std::string source_ip, destination_ip, source_port, destination_port;
@@ -492,7 +493,7 @@ class INET_API TcpConnection : public cSimpleModule
     virtual TcpEventCode processSegmentInListen(Packet *packet, const Ptr<const TcpHeader>& tcpseg, L3Address src, L3Address dest);
     virtual TcpEventCode processSynInListen(Packet *packet, const Ptr<const TcpHeader>& tcpseg, L3Address srcAddr, L3Address destAddr);
     virtual TcpEventCode processSegmentInSynSent(Packet *packet, const Ptr<const TcpHeader>& tcpseg, L3Address src, L3Address dest);
-    virtual TcpEventCode processSegment1stThru8th(Packet *packet, const Ptr<const TcpHeader>& tcpseg);
+    virtual TcpEventCode processSegment1stThru8th(Packet *packet, const Ptr<const TcpHeader>& tcpseg, L3Address src, L3Address dests);
     virtual TcpEventCode processRstInSynReceived(const Ptr<const TcpHeader>& tcpseg);
     virtual bool processAckInEstabEtc(Packet *packet, const Ptr<const TcpHeader>& tcpseg);
     //@}

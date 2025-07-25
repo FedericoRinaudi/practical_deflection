@@ -38,21 +38,21 @@ simple VoipStreamReceiver like IApp
         int localPort;
         double playoutDelay @unit(s) = default(20ms);
         string resultFile;
-        @signal[packetReceived](type=inet::Packet); // expected type=VoipStreamPacket
-        @signal[packetDropped](type=inet::Packet);
-        @signal[lostSamples](type=long);
-        @signal[lostPackets](type=long);
-        @signal[packetHasVoice](type=long);  // 1=yes, 0=no
-        @signal[connState](type=long);  // 1=open, -1=close
-        @signal[delay](type=simtime_t);  // total time lag of voice transmission
-        @statistic[packetReceived](title="packets received"; source=packetReceived; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
-        @statistic[dropPk](title="packets dropped"; source=packetDropped; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
-        @statistic[lostSamples](title="lost samples"; interpolationmode=none; record=vector,stats);
-        @statistic[lostPackets](title="lost packets"; interpolationmode=none; record=vector,stats);
-        @statistic[packetHasVoice](title="voice or silence packet"; record=mean,vector; interpolationmode=none);
-        @statistic[delay](title="delay"; unit=s; record=vector,histogram; interpolationmode=none);
-        @statistic[numActiveSessions](title="number of active sessions"; source="sum(connState)"; record=max,timeavg,vector; interpolationmode=sample-hold; );
-        @statistic[numSessions](title="total number of sessions"; source="sum(connState+1)/2"; record=last);
+        //@signal[packetReceived](type=inet::Packet); // expected type=VoipStreamPacket
+        //@signal[packetDropped](type=inet::Packet);
+        //@signal[lostSamples](type=long);
+        //@signal[lostPackets](type=long);
+        //@signal[packetHasVoice](type=long);  // 1=yes, 0=no
+        //@signal[connState](type=long);  // 1=open, -1=close
+        //@signal[delay](type=simtime_t);  // total time lag of voice transmission
+        //@statistic[packetReceived](title="packets received"; source=packetReceived; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+        //@statistic[dropPk](title="packets dropped"; source=packetDropped; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+        //@statistic[lostSamples](title="lost samples"; interpolationmode=none; record=vector,stats);
+        //@statistic[lostPackets](title="lost packets"; interpolationmode=none; record=vector,stats);
+        //@statistic[packetHasVoice](title="voice or silence packet"; record=mean,vector; interpolationmode=none);
+        //@statistic[delay](title="delay"; unit=s; record=vector,histogram; interpolationmode=none);
+        //@statistic[numActiveSessions](title="number of active sessions"; source="sum(connState)"; record=max,timeavg,vector; interpolationmode=sample-hold; );
+        //@statistic[numSessions](title="total number of sessions"; source="sum(connState+1)/2"; record=last);
         @display("i=block/arrival");
     gates:
         input socketIn @labels(UdpControlInfo/up);

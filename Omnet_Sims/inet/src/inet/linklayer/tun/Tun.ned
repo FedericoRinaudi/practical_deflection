@@ -25,10 +25,10 @@ simple Tun
         int mtu @unit(B) = default(1500B);
         @display("i=block/tunnel");
 
-        @signal[packetSentToLower](type=cPacket);
-        @signal[packetReceivedFromLower](type=cPacket);
-        @signal[packetSentToUpper](type=cPacket);
-        @signal[packetReceivedFromUpper](type=cPacket);
+        //@signal[packetSentToLower](type=cPacket);
+        //@signal[packetReceivedFromLower](type=cPacket);
+        //@signal[packetSentToUpper](type=cPacket);
+        //@signal[packetReceivedFromUpper](type=cPacket);
 
     gates:
         input upperLayerIn;    // from upper layers

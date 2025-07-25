@@ -30,8 +30,8 @@ simple ActivePacketSource extends PacketSourceBase like IActivePacketSource
         volatile double productionInterval @unit(s); // elapsed time between subsequent packets pushed to the connected packet consumer
         @class(ActivePacketSource);
         @display("i=block/source");
-        @signal[packetCreated](type=inet::Packet);
-        @statistic[packetCreated](title="packets created"; record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
+        //@signal[packetCreated](type=inet::Packet);
+        //@statistic[packetCreated](title="packets created"; record=count,sum(packetBytes),vector(packetBytes); interpolationmode=none);
     gates:
         output out @labels(push);
 }

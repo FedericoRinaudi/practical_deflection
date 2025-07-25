@@ -377,7 +377,7 @@ unsigned int EchoPacketDescriptor::getFieldTypeFlags(int field) const
         field -= basedesc->getFieldCount();
     }
     static unsigned int fieldTypeFlags[] = {
-        0,    // FIELD_type
+        FD_ISEDITABLE,    // FIELD_type
         FD_ISEDITABLE,    // FIELD_identifier
         FD_ISEDITABLE,    // FIELD_seqNumber
     };
@@ -514,6 +514,7 @@ bool EchoPacketDescriptor::setFieldValueAsString(void *object, int field, int i,
     }
     EchoPacket *pp = (EchoPacket *)object; (void)pp;
     switch (field) {
+        case FIELD_type: pp->setType((inet::EchoProtocolType)string2enum(value, "inet::EchoProtocolType")); return true;
         case FIELD_identifier: pp->setIdentifier(string2long(value)); return true;
         case FIELD_seqNumber: pp->setSeqNumber(string2long(value)); return true;
         default: return false;

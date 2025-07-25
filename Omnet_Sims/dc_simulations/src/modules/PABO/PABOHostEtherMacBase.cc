@@ -572,16 +572,16 @@ void PABOHostEtherMacBase::finish()
 {
     if (!disabled) {
         simtime_t t = simTime();
-        recordScalar("simulated time", t);
-        recordScalar("full-duplex", duplexMode);
+        //recordScalar("simulated time", t);
+        //recordScalar("full-duplex", duplexMode);
 
 //        std::cout << "time is " << t << "s and number of bytes sent is " << numBytesSent << " so bitsSent is" << (8.0 * numBytesSent) / t << endl;
 
         if (t > 0) {
-            recordScalar("frames/sec sent", numFramesSent / t);
-            recordScalar("frames/sec rcvd", numFramesReceivedOK / t);
-            recordScalar("bits/sec sent", (8.0 * numBytesSent) / t);
-            recordScalar("bits/sec rcvd", (8.0 * numBytesReceivedOK) / t);
+            //recordScalar("frames/sec sent", numFramesSent / t);
+            //recordScalar("frames/sec rcvd", numFramesReceivedOK / t);
+            //recordScalar("bits/sec sent", (8.0 * numBytesSent) / t);
+            //recordScalar("bits/sec rcvd", (8.0 * numBytesReceivedOK) / t);
         }
     }
 }

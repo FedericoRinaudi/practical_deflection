@@ -31,9 +31,9 @@ simsignal_t V2PIFOBoltQueue::packetDropTotalPayloadLenSignal = registerSignal("p
 
 V2PIFOBoltQueue::~V2PIFOBoltQueue()
 {
-    recordScalar("lightInQueuePacketDropCount", light_in_queue_packet_drop_count);
-    recordScalar("lightAllQueueingTime", all_packets_queueing_time_sum / num_all_packets);
-    recordScalar("lightMiceQueueingTime", mice_packets_queueing_time_sum / num_mice_packets);
+    //recordScalar("lightInQueuePacketDropCount", light_in_queue_packet_drop_count);
+    //recordScalar("lightAllQueueingTime", all_packets_queueing_time_sum / num_all_packets);
+    //recordScalar("lightMiceQueueingTime", mice_packets_queueing_time_sum / num_mice_packets);
 }
 
 void V2PIFOBoltQueue::initialize(int stage) {
@@ -365,6 +365,15 @@ long V2PIFOBoltQueue::get_queue_occupancy(long on_the_way_packet_num, b on_the_w
     } else {
         throw cRuntimeError("No queue capacity specified!");
     }
+}
+
+long V2PIFOBoltQueue::get_queue_capacity() {
+    if (getMaxNumPackets() != -1) {
+        return getMaxNumPackets();
+    } else if (getMaxTotalLength() != b(-1)) {
+        return getMaxTotalLength().get();
+    } else
+        throw cRuntimeError("No queue capacity specified!");
 }
 
 bool V2PIFOBoltQueue::is_queue_full(b packet_length, long on_the_way_packet_num, b on_the_way_packet_length) {

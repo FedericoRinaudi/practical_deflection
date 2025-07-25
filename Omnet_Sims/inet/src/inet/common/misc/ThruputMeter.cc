@@ -84,12 +84,12 @@ void ThruputMeter::finish()
 {
     simtime_t duration = simTime() - startTime;
 
-    recordScalar("duration", duration);
-    recordScalar("total packets", numPackets);
-    recordScalar("total bits", numBits);
+    //recordScalar("duration", duration);
+    //recordScalar("total packets", numPackets);
+    //recordScalar("total bits", numBits);
 
-    recordScalar("avg throughput (bit/s)", numBits / duration.dbl());
-    recordScalar("avg packets/s", numPackets / duration.dbl());
+    //recordScalar("avg throughput (bit/s)", numBits / duration.dbl());
+    //recordScalar("avg packets/s", numPackets / duration.dbl());
 }
 
 } // namespace inet

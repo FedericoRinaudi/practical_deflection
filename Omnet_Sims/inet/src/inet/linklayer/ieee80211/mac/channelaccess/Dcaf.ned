@@ -30,8 +30,8 @@ module Dcaf
         string rxModule;
         @class("Dcaf");
         @display("i=block/star");
-        @signal[channelOwnershipChanged](type=bool);
-        @statistic[channelOwnershipChanged](title="channel ownership"; record=count,vector?; interpolationmode=sample-hold);
+        //@signal[channelOwnershipChanged](type=bool);
+        //@statistic[channelOwnershipChanged](title="channel ownership"; record=count,vector?; interpolationmode=sample-hold);
     submodules:
         pendingQueue: <default("PendingQueue")> like IPacketQueue {
             parameters:

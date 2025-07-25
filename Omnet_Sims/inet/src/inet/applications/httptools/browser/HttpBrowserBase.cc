@@ -175,14 +175,14 @@ void HttpBrowserBase::finish()
     EV_INFO << "Text resources requested " << textResourcesRequested << "\n";
     EV_INFO << "Text resources received " << textResourcesReceived << "\n";
 
-    recordScalar("session.count", sessionCount);
-    recordScalar("html.requested", htmlRequested);
-    recordScalar("html.received", htmlReceived);
-    recordScalar("html.errors", htmlErrorsReceived);
-    recordScalar("html.image.requested", imgResourcesRequested);
-    recordScalar("html.image.received", imgResourcesReceived);
-    recordScalar("html.text.requested", textResourcesRequested);
-    recordScalar("html.text.received", textResourcesReceived);
+    //recordScalar("session.count", sessionCount);
+    //recordScalar("html.requested", htmlRequested);
+    //recordScalar("html.received", htmlReceived);
+    //recordScalar("html.errors", htmlErrorsReceived);
+    //recordScalar("html.image.requested", imgResourcesRequested);
+    //recordScalar("html.image.received", imgResourcesReceived);
+    //recordScalar("html.text.requested", textResourcesRequested);
+    //recordScalar("html.text.received", textResourcesReceived);
 }
 
 void HttpBrowserBase::handleSelfMessages(cMessage *msg)

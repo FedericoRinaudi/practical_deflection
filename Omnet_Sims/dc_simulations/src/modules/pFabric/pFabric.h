@@ -71,6 +71,7 @@ class INET_API pFabric : public PacketQueue
     virtual std::list<Packet*> eject_and_push(int num_packets_to_eject) override;
     virtual bool is_queue_full(b packet_length, long on_the_way_packet_num = 0, b on_the_way_packet_length = b(0)) override;
     virtual long get_queue_occupancy(long on_the_way_packet_num = 0, b on_the_way_packet_length = b(0)) override;
+    virtual long get_queue_capacity() override;
 
 
 };

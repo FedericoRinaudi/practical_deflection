@@ -38,10 +38,10 @@ simple MpduGen like IApp
     string localAddress = default("");
     double startTime @unit(s) = default(0.05s);
     @display("i=block/app");
-    @signal[packetSent](type=cPacket);
-    @signal[packetReceived](type=cPacket);
-    @statistic[packetReceived](title="packets received"; source=packetReceived; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
-    @statistic[packetSent](title="packets sent"; source=packetSent; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+    //@signal[packetSent](type=cPacket);
+    //@signal[packetReceived](type=cPacket);
+    //@statistic[packetReceived](title="packets received"; source=packetReceived; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
+    //@statistic[packetSent](title="packets sent"; source=packetSent; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
 
     gates:
         input socketIn @labels(UdpControlInfo/up);

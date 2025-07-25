@@ -37,7 +37,8 @@
 
 2018-09-27  Levente Mészáros
 
-	Renamed INITSTAGE_LINK_LAYER to INITSTAGE_NETWORK_INTERFACE_CONFIGURATION.	Renamed INITSTAGE_LINK_LAYER_2 to INITSTAGE_LINK_LAYER.
+	Renamed INITSTAGE_LINK_LAYER to INITSTAGE_NETWORK_INTERFACE_CONFIGURATION.
+	Renamed INITSTAGE_LINK_LAYER_2 to INITSTAGE_LINK_LAYER.
 
 2018-09-04  Zoltan Bojthe
 
@@ -447,14 +448,14 @@
 	fixed `title="title"' lines
 
 2010-03-05  Andras Varga
-
+//@statistic
 	@statistic: added missing 'vector' recording mode
 
 2010-03-05  Andras Varga
 
 	update for omnet++ 4.1b3:
-
-	renamed @signal to @statistic modeHint= to record=
+//@statistic
+	renamed //@signal to @statistic modeHint= to record=
 
 2010-06-24  Zoltan Bojthe
 

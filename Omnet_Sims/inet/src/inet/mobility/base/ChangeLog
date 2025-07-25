@@ -55,7 +55,7 @@
 
 2018-08-17  Zoltan Bojthe
 
-	Added namespace qualifier to @signal type parameters.
+	Added namespace qualifier to //@signal type parameters.
 
 2018-06-27  ------ inet-4.0.0 released ------
 

@@ -60,8 +60,8 @@ void UdpBasicApp::initialize(int stage)
 
 void UdpBasicApp::finish()
 {
-    recordScalar("packets sent", numSent);
-    recordScalar("packets received", numReceived);
+    //recordScalar("packets sent", numSent);
+    //recordScalar("packets received", numReceived);
     ApplicationBase::finish();
 }
 

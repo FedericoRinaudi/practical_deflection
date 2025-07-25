@@ -274,7 +274,7 @@
 
 2017-10-02  Levente Mészáros
 
-	Added statisticUnit parameter for the case when @statistic is on a submodule.
+	Added statisticUnit parameter for the case when //@statistic is on a submodule.
 	With the current omnetpp API there's no way to get the properties object.
 
 2017-10-02  ------ inet-3.6.2 released ------

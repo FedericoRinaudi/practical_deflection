@@ -75,9 +75,9 @@ void StaticConcentricMobility::setInitialPosition()
     }
 
     lastPosition.z = par("initialZ");
-    recordScalar("x", lastPosition.x);
-    recordScalar("y", lastPosition.y);
-    recordScalar("z", lastPosition.z);
+    //recordScalar("x", lastPosition.x);
+    //recordScalar("y", lastPosition.y);
+    //recordScalar("z", lastPosition.z);
 }
 
 } // namespace inet

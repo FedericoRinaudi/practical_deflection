@@ -43,7 +43,7 @@ std::ostream& PropagationBase::printToStream(std::ostream& stream, int level) co
 void PropagationBase::finish()
 {
     EV_INFO << "Radio signal arrival computation count = " << arrivalComputationCount << endl;
-    recordScalar("Arrival computation count", arrivalComputationCount);
+    //recordScalar("Arrival computation count", arrivalComputationCount);
 }
 
 } // namespace physicallayer

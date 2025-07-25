@@ -922,7 +922,7 @@ unsigned int TcpOptionDescriptor::getFieldTypeFlags(int field) const
         field -= basedesc->getFieldCount();
     }
     static unsigned int fieldTypeFlags[] = {
-        0,    // FIELD_kind
+        FD_ISEDITABLE,    // FIELD_kind
         FD_ISEDITABLE,    // FIELD_length
     };
     return (field >= 0 && field < 2) ? fieldTypeFlags[field] : 0;
@@ -1054,6 +1054,7 @@ bool TcpOptionDescriptor::setFieldValueAsString(void *object, int field, int i, 
     }
     TcpOption *pp = (TcpOption *)object; (void)pp;
     switch (field) {
+        case FIELD_kind: pp->setKind((inet::tcp::TcpOptionNumbers)string2enum(value, "inet::tcp::TcpOptionNumbers")); return true;
         case FIELD_length: pp->setLength(string2ulong(value)); return true;
         default: return false;
     }

@@ -527,8 +527,8 @@ void SctpServer::finish()
         EV_DETAIL << "\tlife time: " << elem.second.lifeTime << "\n";
         EV_DETAIL << "\treceived bytes:" << elem.second.rcvdBytes << "\n";
         EV_DETAIL << "\tthroughput: " << (elem.second.rcvdBytes / elem.second.lifeTime.dbl()) * 8 << " bit/sec\n";
-        recordScalar("bytes rcvd", elem.second.rcvdBytes);
-        recordScalar("throughput", (elem.second.rcvdBytes / elem.second.lifeTime.dbl()) * 8);
+        //recordScalar("bytes rcvd", elem.second.rcvdBytes);
+        //recordScalar("throughput", (elem.second.rcvdBytes / elem.second.lifeTime.dbl()) * 8);
     }
     EV_INFO << getFullPath() << "Over all " << packetsRcvd << " packets received\n ";
     EV_INFO << getFullPath() << "Over all " << notificationsReceived << " notifications received\n ";

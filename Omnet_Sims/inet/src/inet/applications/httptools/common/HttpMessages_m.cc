@@ -1056,7 +1056,7 @@ unsigned int HttpReplyMessageDescriptor::getFieldTypeFlags(int field) const
     }
     static unsigned int fieldTypeFlags[] = {
         FD_ISEDITABLE,    // FIELD_result
-        0,    // FIELD_contentType
+        FD_ISEDITABLE,    // FIELD_contentType
     };
     return (field >= 0 && field < 2) ? fieldTypeFlags[field] : 0;
 }
@@ -1188,6 +1188,7 @@ bool HttpReplyMessageDescriptor::setFieldValueAsString(void *object, int field, 
     HttpReplyMessage *pp = (HttpReplyMessage *)object; (void)pp;
     switch (field) {
         case FIELD_result: pp->setResult(string2long(value)); return true;
+        case FIELD_contentType: pp->setContentType((inet::httptools::HttpContentType)string2enum(value, "inet::httptools::HttpContentType")); return true;
         default: return false;
     }
 }

@@ -909,35 +909,35 @@ void Sctp::removeAssociation(SctpAssociation *assoc)
         const SctpPathVariables *path = pathMapIterator->second;
         snprintf(str, sizeof(str), "Number of Fast Retransmissions %d:%s",
                 assoc->assocId, path->remoteAddress.str().c_str());
-        recordScalar(str, path->numberOfFastRetransmissions);
+        //recordScalar(str, path->numberOfFastRetransmissions);
         snprintf(str, sizeof(str), "Number of Timer-Based Retransmissions %d:%s",
                 assoc->assocId, path->remoteAddress.str().c_str());
-        recordScalar(str, path->numberOfTimerBasedRetransmissions);
+        //recordScalar(str, path->numberOfTimerBasedRetransmissions);
         snprintf(str, sizeof(str), "Number of Heartbeats Sent %d:%s",
                 assoc->assocId, path->remoteAddress.str().c_str());
-        recordScalar(str, path->numberOfHeartbeatsSent);
+        //recordScalar(str, path->numberOfHeartbeatsSent);
         snprintf(str, sizeof(str), "Number of Heartbeats Received %d:%s",
                 assoc->assocId, path->remoteAddress.str().c_str());
-        recordScalar(str, path->numberOfHeartbeatsRcvd);
+        //recordScalar(str, path->numberOfHeartbeatsRcvd);
         snprintf(str, sizeof(str), "Number of Heartbeat ACKs Sent %d:%s",
                 assoc->assocId, path->remoteAddress.str().c_str());
-        recordScalar(str, path->numberOfHeartbeatAcksSent);
+        //recordScalar(str, path->numberOfHeartbeatAcksSent);
         snprintf(str, sizeof(str), "Number of Heartbeat ACKs Received %d:%s",
                 assoc->assocId, path->remoteAddress.str().c_str());
-        recordScalar(str, path->numberOfHeartbeatAcksRcvd);
+        //recordScalar(str, path->numberOfHeartbeatAcksRcvd);
         snprintf(str, sizeof(str), "Number of Duplicates %d:%s",
                 assoc->assocId, path->remoteAddress.str().c_str());
-        recordScalar(str, path->numberOfDuplicates);
+        //recordScalar(str, path->numberOfDuplicates);
         snprintf(str, sizeof(str), "Number of Bytes received from %d:%s",
                 assoc->assocId, path->remoteAddress.str().c_str());
-        recordScalar(str, path->numberOfBytesReceived);
+        //recordScalar(str, path->numberOfBytesReceived);
     }
     for (uint16 i = 0; i < assoc->inboundStreams; i++) {
         snprintf(str, sizeof(str), "Bytes received on stream %d of assoc %d",
                 i, assoc->assocId);
-        recordScalar(str, assoc->getState()->streamThroughput[i]);
+        //recordScalar(str, assoc->getState()->streamThroughput[i]);
     }
-    recordScalar("Blocking TSNs Moved", assoc->state->blockingTsnsMoved);
+    //recordScalar("Blocking TSNs Moved", assoc->state->blockingTsnsMoved);
 
     assoc->removePath();
     assoc->deleteStreams();
@@ -999,44 +999,44 @@ void Sctp::finish()
                   << ", path failures=" << assoc.numPathFailures << ", ForwardTsns=" << assoc.numForwardTsn << endl;
         EV_DETAIL << "AllMessages=" << numPacketsReceived << " BadMessages=" << numPacketsDropped << endl;
 
-        recordScalar("Association Lifetime", assoc.lifeTime);
-        recordScalar("Acked Bytes", assoc.ackedBytes);
-        recordScalar("Throughput [bit/s]", assoc.throughput);
-        recordScalar("Transmitted Bytes", assoc.transmittedBytes);
-        recordScalar("Fast RTX", assoc.numFastRtx);
-        recordScalar("Timer-Based RTX", assoc.numT3Rtx);
-        recordScalar("Duplicate Acks", assoc.numDups);
-        recordScalar("Packets Received", numPacketsReceived);
-        recordScalar("Packets Dropped", numPacketsDropped);
-        recordScalar("Sum of R Gap Ranges", assoc.sumRGapRanges);
-        recordScalar("Sum of NR Gap Ranges", assoc.sumNRGapRanges);
-        recordScalar("Overfull SACKs", assoc.numOverfullSACKs);
-        recordScalar("Drops Because New TSN Greater Than Highest TSN", assoc.numDropsBecauseNewTsnGreaterThanHighestTsn);
-        recordScalar("Drops Because No Room In Buffer", assoc.numDropsBecauseNoRoomInBuffer);
-        recordScalar("Chunks Reneged", assoc.numChunksReneged);
-        recordScalar("sackPeriod", (simtime_t)socketOptions->sackPeriod);
-        recordScalar("Number of AUTH chunks sent", assoc.numAuthChunksSent);
-        recordScalar("Number of AUTH chunks accepted", assoc.numAuthChunksAccepted);
-        recordScalar("Number of AUTH chunks rejected", assoc.numAuthChunksRejected);
-        recordScalar("Number of StreamReset requests sent", assoc.numResetRequestsSent);
-        recordScalar("Number of StreamReset requests performed", assoc.numResetRequestsPerformed);
+        //recordScalar("Association Lifetime", assoc.lifeTime);
+        //recordScalar("Acked Bytes", assoc.ackedBytes);
+        //recordScalar("Throughput [bit/s]", assoc.throughput);
+        //recordScalar("Transmitted Bytes", assoc.transmittedBytes);
+        //recordScalar("Fast RTX", assoc.numFastRtx);
+        //recordScalar("Timer-Based RTX", assoc.numT3Rtx);
+        //recordScalar("Duplicate Acks", assoc.numDups);
+        //recordScalar("Packets Received", numPacketsReceived);
+        //recordScalar("Packets Dropped", numPacketsDropped);
+        //recordScalar("Sum of R Gap Ranges", assoc.sumRGapRanges);
+        //recordScalar("Sum of NR Gap Ranges", assoc.sumNRGapRanges);
+        //recordScalar("Overfull SACKs", assoc.numOverfullSACKs);
+        //recordScalar("Drops Because New TSN Greater Than Highest TSN", assoc.numDropsBecauseNewTsnGreaterThanHighestTsn);
+        //recordScalar("Drops Because No Room In Buffer", assoc.numDropsBecauseNoRoomInBuffer);
+        //recordScalar("Chunks Reneged", assoc.numChunksReneged);
+        //recordScalar("sackPeriod", (simtime_t)socketOptions->sackPeriod);
+        //recordScalar("Number of AUTH chunks sent", assoc.numAuthChunksSent);
+        //recordScalar("Number of AUTH chunks accepted", assoc.numAuthChunksAccepted);
+        //recordScalar("Number of AUTH chunks rejected", assoc.numAuthChunksRejected);
+        //recordScalar("Number of StreamReset requests sent", assoc.numResetRequestsSent);
+        //recordScalar("Number of StreamReset requests performed", assoc.numResetRequestsPerformed);
         if (par("fairStart").doubleValue() > 0.0) {
-            recordScalar("fair acked bytes", assoc.fairAckedBytes);
-            recordScalar("fair start time", assoc.fairStart);
-            recordScalar("fair stop time", assoc.fairStop);
-            recordScalar("fair lifetime", assoc.fairLifeTime);
-            recordScalar("fair throughput", assoc.fairThroughput);
+            //recordScalar("fair acked bytes", assoc.fairAckedBytes);
+            //recordScalar("fair start time", assoc.fairStart);
+            //recordScalar("fair stop time", assoc.fairStop);
+            //recordScalar("fair lifetime", assoc.fairLifeTime);
+            //recordScalar("fair throughput", assoc.fairThroughput);
         }
-        recordScalar("Number of PacketDrop Reports", numPktDropReports);
+        //recordScalar("Number of PacketDrop Reports", numPktDropReports);
 
         if (assoc.numEndToEndMessages > 0 && (assoc.cumEndToEndDelay / assoc.numEndToEndMessages) > 0) {
             uint32 msgnum = assoc.numEndToEndMessages - assoc.startEndToEndDelay;
             if (assoc.stopEndToEndDelay > 0)
                 msgnum -= (assoc.numEndToEndMessages - assoc.stopEndToEndDelay);
-            recordScalar("Average End to End Delay", assoc.cumEndToEndDelay / msgnum);
+            //recordScalar("Average End to End Delay", assoc.cumEndToEndDelay / msgnum);
         }
 
-        recordScalar("RTXMethod", par("RTXMethod").intValue());
+        //recordScalar("RTXMethod", par("RTXMethod").intValue());
     }
 }
 

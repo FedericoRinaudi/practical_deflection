@@ -83,14 +83,14 @@ Ipv4::~Ipv4()
         delete it.second;
     flush();
 
-    recordScalar("IPPacketSentCounter", ip_packet_sent_counter);
-    recordScalar("IPDataPacketSentCounter", ip_data_packet_sent_counter);
+    ////recordScalar("IPPacketSentCounter", ip_packet_sent_counter);
+    //recordScalar("IPDataPacketSentCounter", ip_data_packet_sent_counter);
 
     if (should_use_v2_marking) {
         // flush v2 marking tables
         // remove from flow and packet tables also clear the packet lru tarcker
         EV << "The remained length of flow_hash_table: " << flow_hash_table.size() << endl;
-        recordScalar("numTimeoutsMarking", num_timeouts_marking);
+        //recordScalar("numTimeoutsMarking", num_timeouts_marking);
         for (std::unordered_map<unsigned long, LRUFlowInfo*>::iterator flow_it = flow_hash_table.begin();
                 flow_it != flow_hash_table.end(); flow_it++) {
             for (std::unordered_map<unsigned long, LRUPacketInfo*>::iterator it =
@@ -107,10 +107,10 @@ Ipv4::~Ipv4()
 
     if (has_ordering_layer) {
         // emit the counter signals
-        recordScalar("numTimeoutsOrdering", num_timeouts_ordering);
-        recordScalar("v2RcvdSoonerStored", received_sooner_stored_counter);
-        recordScalar("v2RcvdCorrectlyPushed", received_correctly_pushed_counter);
-        recordScalar("v2RcvdLaterPushed", received_later_pushed_counter);
+        //recordScalar("numTimeoutsOrdering", num_timeouts_ordering);
+        //recordScalar("v2RcvdSoonerStored", received_sooner_stored_counter);
+        //recordScalar("v2RcvdCorrectlyPushed", received_correctly_pushed_counter);
+        //recordScalar("v2RcvdLaterPushed", received_later_pushed_counter);
 
         // flush v2 ordering tables
         EV << "The remained length of ordering_component_flow_hash_table: "

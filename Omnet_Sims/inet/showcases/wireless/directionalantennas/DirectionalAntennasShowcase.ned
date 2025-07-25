@@ -9,7 +9,7 @@ import inet.visualizer.integrated.IntegratedVisualizer;
 network DirectionalAntennasShowcase
 {
     @display("bgb=700,400");
-    @statistic[receptionPower](source="receptionMinSignalPower(radioMedium.signalArrivalStarted)"; record=vector);
+    //@statistic[receptionPower](source="receptionMinSignalPower(radioMedium.signalArrivalStarted)"; record=vector);
     submodules:
         configurator: Ipv4NetworkConfigurator {
             @display("p=62,43;is=s");

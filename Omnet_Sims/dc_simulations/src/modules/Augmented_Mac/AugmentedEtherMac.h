@@ -52,6 +52,7 @@ class INET_API AugmentedEtherMac : public EtherMacBase
     void add_on_the_way_packet(b packet_length, bool is_v2_dropped_packet_header = false);
     bool is_queue_over_v2_threshold(b packet_length, std::string queue_path, Packet* packet);
     long get_queue_occupancy(std::string queue_path = "");
+    long get_queue_capacity(std::string queue_path = "");
     bool is_packet_tag_larger_than_last_packet(std::string queue_path, Packet* packet);
     virtual double get_link_util() override;
 

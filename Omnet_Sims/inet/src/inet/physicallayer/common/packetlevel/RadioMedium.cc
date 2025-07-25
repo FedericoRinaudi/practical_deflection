@@ -139,18 +139,18 @@ void RadioMedium::finish()
     EV_INFO << "SNIR cache hit = " << snirCacheHitPercentage << " %" << endl;
     EV_INFO << "Reception decision cache hit = " << decisionCacheHitPercentage << " %" << endl;
     EV_INFO << "Reception result cache hit = " << resultCacheHitPercentage << " %" << endl;
-    recordScalar("transmission count", transmissionCount);
-    recordScalar("signal send count", signalSendCount);
-    recordScalar("reception computation count", receptionComputationCount);
-    recordScalar("interference computation count", interferenceComputationCount);
-    recordScalar("reception decision computation count", receptionDecisionComputationCount);
-    recordScalar("listening decision computation count", listeningDecisionComputationCount);
-    recordScalar("reception cache hit", receptionCacheHitPercentage, "%");
-    recordScalar("interference cache hit", interferenceCacheHitPercentage, "%");
-    recordScalar("noise cache hit", noiseCacheHitPercentage, "%");
-    recordScalar("snir cache hit", snirCacheHitPercentage, "%");
-    recordScalar("reception decision cache hit", decisionCacheHitPercentage, "%");
-    recordScalar("reception result cache hit", resultCacheHitPercentage, "%");
+    //recordScalar("transmission count", transmissionCount);
+    //recordScalar("signal send count", signalSendCount);
+    //recordScalar("reception computation count", receptionComputationCount);
+    //recordScalar("interference computation count", interferenceComputationCount);
+    //recordScalar("reception decision computation count", receptionDecisionComputationCount);
+    //recordScalar("listening decision computation count", listeningDecisionComputationCount);
+    //recordScalar("reception cache hit", receptionCacheHitPercentage, "%");
+    //recordScalar("interference cache hit", interferenceCacheHitPercentage, "%");
+    //recordScalar("noise cache hit", noiseCacheHitPercentage, "%");
+    //recordScalar("snir cache hit", snirCacheHitPercentage, "%");
+    //recordScalar("reception decision cache hit", decisionCacheHitPercentage, "%");
+    //recordScalar("reception result cache hit", resultCacheHitPercentage, "%");
 }
 
 std::ostream& RadioMedium::printToStream(std::ostream &stream, int level) const

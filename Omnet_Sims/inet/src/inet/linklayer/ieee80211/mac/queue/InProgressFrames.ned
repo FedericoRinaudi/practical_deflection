@@ -25,11 +25,11 @@ simple InProgressFrames
         string originatorMacDataServiceModule;
         string ackHandlerModule;
         @display("i=block/queue");
-        @signal[packetEnqueued](type=inet::Packet);
-        @signal[packetDequeued](type=inet::Packet);
-        @statistic[queueingTime](title="queueing times"; source=queueingTime(packetDequeued); record=mean,sum; interpolationmode=none);
-        @statistic[queueingTimeIncast](title="incast packet queueing times"; source=queueingTimeIncast(packetDequeued); record=mean,sum; interpolationmode=none);
-        @statistic[queueingTimeFlowSize](title="flow size mapping to queueing times"; source=queueingTimeFlowSize(packetPopped); record=vector; interpolationmode=none);
-        @statistic[queueLength](title="queue length"; source=count(packetEnqueued) - count(packetDequeued); record=max,timeavg,vector; interpolationmode=sample-hold);
+        //@signal[packetEnqueued](type=inet::Packet);
+        //@signal[packetDequeued](type=inet::Packet);
+        //@statistic[queueingTime](title="queueing times"; source=queueingTime(packetDequeued); record=mean,sum; interpolationmode=none);
+        //@statistic[queueingTimeIncast](title="incast packet queueing times"; source=queueingTimeIncast(packetDequeued); record=mean,sum; interpolationmode=none);
+        //@statistic[queueingTimeFlowSize](title="flow size mapping to queueing times"; source=queueingTimeFlowSize(packetPopped); record=vector; interpolationmode=none);
+        //@statistic[queueLength](title="queue length"; source=count(packetEnqueued) - count(packetDequeued); record=max,timeavg,vector; interpolationmode=sample-hold);
 }
 

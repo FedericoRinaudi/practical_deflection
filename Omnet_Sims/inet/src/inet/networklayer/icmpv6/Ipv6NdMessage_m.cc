@@ -445,7 +445,7 @@ unsigned int Ipv6NdOptionDescriptor::getFieldTypeFlags(int field) const
         field -= basedesc->getFieldCount();
     }
     static unsigned int fieldTypeFlags[] = {
-        0,    // FIELD_type
+        FD_ISEDITABLE,    // FIELD_type
         FD_ISEDITABLE,    // FIELD_optionLength
         FD_ISARRAY | FD_ISEDITABLE,    // FIELD_paddingBytes
     };
@@ -583,6 +583,7 @@ bool Ipv6NdOptionDescriptor::setFieldValueAsString(void *object, int field, int 
     }
     Ipv6NdOption *pp = (Ipv6NdOption *)object; (void)pp;
     switch (field) {
+        case FIELD_type: pp->setType((inet::Ipv6NdOptionTypes)string2enum(value, "inet::Ipv6NdOptionTypes")); return true;
         case FIELD_optionLength: pp->setOptionLength(string2long(value)); return true;
         case FIELD_paddingBytes: pp->setPaddingBytes(i,string2long(value)); return true;
         default: return false;
