@@ -14,8 +14,9 @@ core
 *.db*
 *.pyc
 Omnet_Sims/dc_simulations/simulations/Vertigo_Sims/distributions/
-Omnet_Sims/dc_simulations/simulations/Vertigo_Sims/dist_files_100gbps/
-Omnet_Sims/dc_simulations/simulations/Vertigo_Sims/dist_files_40_10gbps/
+Omnet_Sims/dc_simulations/simulations/Vertigo_Sims/dist_files_100gbps/*
+Omnet_Sims/dc_simulations/simulations/Vertigo_Sims/dist_files_40_10gbps/*
+Omnet_Sims/dc_simulations/simulations/sims/merged_final.csv 
 src/dc_simulations
 src/dc_simulations_dbg
 perf*

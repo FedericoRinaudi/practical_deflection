@@ -115,7 +115,7 @@ def main():
     parser.add_argument("--folder8", default="results_1G/PACKET_ACTION")
     parser.add_argument("--name8",   default="action")
 
-    parser.add_argument("--output",   default="merged_final.csv")
+    parser.add_argument("--output",   default="results_1G/merged_final.csv")
     args = parser.parse_args()
 
     # 1) Zipping dei primi 6
