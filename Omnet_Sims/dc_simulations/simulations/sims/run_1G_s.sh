@@ -38,4 +38,11 @@ echo "creating dataset"
 python3 create_dataset.py
 echo "dataset created"
 
+echo "filtering collisions"
+python3 filter_collisions.py
+echo "collisions filtered" 
+
+echo "filtering overlapping timestamps"
+python3 filter_overlapping_timestamps.py
+echo "overlapping timestamps filtered"
 # python3 sample_qct.py
