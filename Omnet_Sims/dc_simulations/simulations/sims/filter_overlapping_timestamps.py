@@ -187,7 +187,7 @@ def main():
     merged = pd.merge(df4_f, interval_df, on='seq_num', how='left')
     final_ds = merged[(merged['time'] > merged['start_time']) & (merged['time'] < merged['end_time'])]
 
-    save_df('results_1G/final_dataset1.csv', final_ds)
+    save_df('results_1G/final_dataset.csv', final_ds)
 
 
 if __name__ == '__main__':
