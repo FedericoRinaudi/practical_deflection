@@ -54,9 +54,9 @@ simple BouncingIeee8021dRelay like IMacRelayUnit
         @signal[switchSeqNum](type=int); // Sequence number for the switch
         @signal[switchTtl](type=short); // Time to live for the switch
         @signal[actionSeqNum](type=int); // Sequence number for the action taken on the packet
-        @signal[switchId](type=int); // Switch ID for the packet
-        @signal[switchIdAction](type=int); // Switch ID for the action taken on the packet
-        @signal[interfaceId](type=int); // Interface ID for the packet
+        //@signal[switchId](type=int); // Switch ID for the packet
+        //@signal[switchIdAction](type=int); // Switch ID for the action taken on the packet
+        //@signal[interfaceId](type=int); // Interface ID for the packet
         
         ////@statistic[FBPacketDropped](title="feedback packet dropped"; source="feedBackPacketDropped"; record=vector; interpolationmode=none);
         ////@statistic[FBPacketDroppedPort](title="feedback packet dropped port"; source="feedBackPacketDroppedPort"; record=vector; interpolationmode=none);

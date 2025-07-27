@@ -44,9 +44,9 @@ network LeafSpine1G
         @statistic[switchSeqNum](record=vector,stats; interpolationmode=none); // Registra il numero di sequenza del pacchetto switch
         @statistic[switchTtl](record=vector,stats; interpolationmode=none); // Registra il TTL del pacchetto switch
         @statistic[actionSeqNum](record=vector,stats; interpolationmode=none);
-        @statistic[switchId](record=vector,stats; interpolationmode=none); // Registra l'ID dello switch del pacchetto
-        @statistic[switchIdAction](record=vector,stats; interpolationmode=none); // Registra l'ID dello switch dell'azione del pacchetto
-        @statistic[interfaceId](record=vector,stats; interpolationmode=none); // Registra l'ID dell'interfaccia del pacchetto
+        //@statistic[switchId](record=vector,stats; interpolationmode=none); // Registra l'ID dello switch del pacchetto
+        //@statistic[switchIdAction](record=vector,stats; interpolationmode=none); // Registra l'ID dello switch dell'azione del pacchetto
+        //@statistic[interfaceId](record=vector,stats; interpolationmode=none); // Registra l'ID dell'interfaccia del pacchetto
         @display("bgb=643,481");
         int num_spines @prompt("Number of spines") = default(8);
         int num_aggs @prompt("Number of aggregation level switches") = default(16);
